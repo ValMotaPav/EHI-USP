@@ -1,12 +1,12 @@
-# Login + site do Earth Hologenome Iniciative
+# Login + site do Earth Hologenome Iniciative + Fluxograma
 ```
 ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br  
 cd /labgenomaarea2/valentina.pavelecini  
 conda activate EHI  
 ```
 
-https://www.earthhologenome.org/bioinformatics/index.html
-
+https://www.earthhologenome.org/bioinformatics/index.html  
+https://www.canva.com/design/DAHUDcTIaEc/Z9jiEwyVO9jZrfU_UPkavA/edit?ui=e30  
 
 # Objetivo
 Reconstruir um genoma procariótico a partir dos reads metagenômicos de amostra de água, produzindo um MAG (Metagenome-Assembled Genome)
@@ -563,6 +563,18 @@ Fim: Wed Sep  2 09:50:10 -03 2026
 
 # Próxima etapa: Avaliação da complexidade taxonômica com Nonpareil
 
+```
+nonpareil \
+    -s {input.non_host_r1} \
+    -f fastq \
+    -T kmer \
+    -t {threads} \
+    -b {wildcards.sample}
+
+#Script to extract nonpareil values of interest
+Rscript {config[codedir]}/scripts/nonpareil_table.R {output.npo} {output.npstats}
+```
+
 OBSERVAÇÃO: Pularemos completamente a etapa da pipeline do EHI de separar dados do hospedeiro, afinal estamos trabalhando com amostras de água, sem um hospedeiro conhecido específico.  
 
 Começaremos instalando o nonparail com ```conda install bioconda::nonpareil```. Depois, criamos um diretório chamado ```nonpareil``` com ```mkdir nonpareil```, onde irão os arquivos de saída.  
@@ -577,7 +589,7 @@ nonpareil \
     -t 2 \
     -b TF-2587-PM-1-A_S5_L001
 ```
-Obs: este código está sendo executado em ```/labgenomaarea2/valentina.pavelecini/EHI/nonpareil```, pois é onde quero que fiquem os arquivo de saída
+Obs: este código está sendo executado em ```/labgenomaarea2/valentina.pavelecini/EHI/nonpareil```, pois é onde quero que fiquem os arquivo de saída.  
 Retornou erro ```Fatal error: Segmentation fault (core dumped)``` porque coloquei o nome errado, é ```TF-2587-PM-1-A_R1.fastq.gz```
 
 ```
@@ -651,3 +663,95 @@ echo "=========================================="
 ```
 
 E iniciando com ```bash nonpareil.sh```:
+
+```
+==========================================
+Processando: TF-2587-PM-5-A_S7_L001
+Início: Wed Sep  2 10:42:02 -03 2026
+==========================================
+Nonpareil v3.5.5
+ [      0.6]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz.enve-tmp.500778 was created
+ [      0.6]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz.enve-tmp.500778
+ [      0.6]   Picking 10000 random sequences
+ [      0.6]   Counting kmers
+ [      3.4]  Read file with 9798845 sequences
+ [      3.4]  Average read length is 144.252272bp
+ [      3.4]  Sub-sampling library
+ [      3.7]  Evaluating consistency
+ [      3.7]  Everything seems correct
+Finalizado: TF-2587-PM-5-A_S7_L001
+Fim: Wed Sep  2 10:46:05 -03 2026
+
+==========================================
+Processando: TF-2587-RF-1-B_S1_L001
+Início: Wed Sep  2 10:46:05 -03 2026
+==========================================
+Nonpareil v3.5.5
+ [      1.7]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz.enve-tmp.501007 was created
+ [      1.7]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz.enve-tmp.501007
+ [      1.7]   Picking 10000 random sequences
+ [      1.7]   Counting kmers
+ [      9.1]  Read file with 26644982 sequences
+ [      9.1]  Average read length is 143.370599bp
+ [      9.1]  Sub-sampling library
+ [      9.4]  Evaluating consistency
+ [      9.4]  Everything seems correct
+Finalizado: TF-2587-RF-1-B_S1_L001
+Fim: Wed Sep  2 10:56:29 -03 2026
+
+==========================================
+Processando: TF-2587-RF-2-B_S2_L001
+Início: Wed Sep  2 10:56:29 -03 2026
+==========================================
+Nonpareil v3.5.5
+ [      2.5]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz.enve-tmp.501362 was created
+ [      2.5]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz.enve-tmp.501362
+ [      2.5]   Picking 10000 random sequences
+ [      2.5]   Counting kmers
+ [     14.5]  Read file with 41834992 sequences
+ [     14.5]  Average read length is 141.923278bp
+ [     14.5]  Sub-sampling library
+ [     14.7]  Evaluating consistency
+ [     14.7]  Everything seems correct
+Finalizado: TF-2587-RF-2-B_S2_L001
+Fim: Wed Sep  2 11:12:55 -03 2026
+
+==========================================
+Processando: TF-2587-RF-4-B_S3_L001
+Início: Wed Sep  2 11:12:55 -03 2026
+==========================================
+Nonpareil v3.5.5
+ [      0.6]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz.enve-tmp.502151 was created
+ [      0.6]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz.enve-tmp.502151
+ [      0.6]   Picking 10000 random sequences
+ [      0.6]   Counting kmers
+ [      3.3]  Read file with 9897059 sequences
+ [      3.3]  Average read length is 138.466419bp
+ [      3.3]  Sub-sampling library
+ [      3.5]  Evaluating consistency
+ [      3.5]  Everything seems correct
+Finalizado: TF-2587-RF-4-B_S3_L001
+Fim: Wed Sep  2 11:16:48 -03 2026
+
+==========================================
+Processando: TF-2587-RF-5-B_S4_L001
+Início: Wed Sep  2 11:16:48 -03 2026
+==========================================
+Nonpareil v3.5.5
+ [      1.5]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz.enve-tmp.502341 was created
+ [      1.5]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz.enve-tmp.502341
+ [      1.5]   Picking 10000 random sequences
+ [      1.5]   Counting kmers
+ [      8.6]  Read file with 25206565 sequences
+ [      8.6]  Average read length is 142.789925bp
+ [      8.6]  Sub-sampling library
+ [      8.8]  Evaluating consistency
+ [      8.8]  Everything seems correct
+Finalizado: TF-2587-RF-5-B_S4_L001
+Fim: Wed Sep  2 11:26:38 -03 2026
+
+==========================================
+TODAS AS 5 AMOSTRAS FORAM PROCESSADAS
+Fim: Wed Sep  2 11:26:38 -03 2026
+==========================================
+```
