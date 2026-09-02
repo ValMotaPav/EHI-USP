@@ -1,3 +1,11 @@
+# Login + site do Earth Hologenome Iniciative
+ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br  
+cd /labgenomaarea2/valentina.pavelecini  
+conda activate EHI  
+
+https://www.earthhologenome.org/bioinformatics/index.html
+
+
 # 31/08/2026
 
 ## Realizando o primeiro passo da pipeline do EHI: filtro de qualidade
@@ -255,3 +263,14 @@ echo "Fim: $(date)"
 echo "=========================================="
 ```
 indica que para cada amostra em samples, fastp será executado seguindo o comando que realizamos no teste, substituindo cada parâmetro pela variável correspondente. Além disso, serão ecoados no terminal indicadores de início/fim do(s) processo(s), acompanhado da data e hora de início e fim.
+
+
+#02/09/2026
+
+Rodando o script automatizado com ```bash EHI_filtragem.sh```, que retornou:
+```
+==========================================
+Processando: TF-2587-PM-5-A_S7_L001
+Início: Wed Sep  2 08:50:08 -03 2026
+==========================================
+```
