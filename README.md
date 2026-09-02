@@ -1,7 +1,9 @@
 # Login + site do Earth Hologenome Iniciative
+```
 ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br  
 cd /labgenomaarea2/valentina.pavelecini  
 conda activate EHI  
+```
 
 https://www.earthhologenome.org/bioinformatics/index.html
 
@@ -272,5 +274,285 @@ Rodando o script automatizado com ```bash EHI_filtragem.sh```, que retornou:
 ==========================================
 Processando: TF-2587-PM-5-A_S7_L001
 Início: Wed Sep  2 08:50:08 -03 2026
+==========================================
+Read1 before filtering:
+total reads: 9985759
+total bases: 1507849609
+Q20 bases: 1480418421(98.1808%)
+Q30 bases: 1436979655(95.2999%)
+Q40 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 9985759
+total bases: 1507849609
+Q20 bases: 1464950014(97.1549%)
+Q30 bases: 1400006136(92.8479%)
+Q40 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 9798845
+total bases: 1413505653
+Q20 bases: 1397961173(98.9003%)
+Q30 bases: 1360623963(96.2588%)
+Q40 bases: 0(0%)
+
+Read2 after filtering:
+total reads: 9798845
+total bases: 1413424118
+Q20 bases: 1388147223(98.2117%)
+Q30 bases: 1331828682(94.2271%)
+Q40 bases: 0(0%)
+
+Filtering result:
+reads passed filter: 19597690
+reads failed due to low quality: 183926
+reads failed due to too many N: 2848
+reads failed due to too short: 180998
+reads failed due to low complexity: 4658
+reads failed due to adapter dimer: 1398
+reads with adapter trimmed: 4164630
+bases trimmed due to adapters: 141649715
+reads with polyX in 3' end: 60749
+bases trimmed in polyX tail: 1034931
+
+Duplication rate: 42.0141%
+
+Insert size peak (evaluated by paired-end reads): 152
+
+JSON report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-PM-5-A_S7_L001_fastp.json
+HTML report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-PM-5-A_S7_L001_fastp.html
+
+fastp --in1 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-PM-5-A_S7_L001_R1_001.fastq.gz --in2 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-PM-5-A_S7_L001_R2_001.fastq.gz --out1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz --out2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz --trim_poly_g --trim_poly_x --low_complexity_filter --n_base_limit 5 --qualified_quality_phred 20 --length_required 60 --thread 2 --html /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-PM-5-A_S7_L001_fastp.html --json /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-PM-5-A_S7_L001_fastp.json --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+fastp v1.3.6, time used: 317 seconds
+Finalizado: TF-2587-PM-5-A_S7_L001
+Fim: Wed Sep  2 08:55:26 -03 2026
+
+==========================================
+Processando: TF-2587-RF-1-B_S1_L001
+Início: Wed Sep  2 08:55:26 -03 2026
+==========================================
+Read1 before filtering:
+total reads: 27153134
+total bases: 4100123234
+Q20 bases: 4032254733(98.3447%)
+Q30 bases: 3914129614(95.4637%)
+Q40 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 27153134
+total bases: 4100123234
+Q20 bases: 4000837905(97.5785%)
+Q30 bases: 3838615384(93.622%)
+Q40 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 26644982
+total bases: 3820107019
+Q20 bases: 3779236655(98.9301%)
+Q30 bases: 3680215874(96.338%)
+Q40 bases: 0(0%)
+
+Read2 after filtering:
+total reads: 26644982
+total bases: 3820003784
+Q20 bases: 3760197317(98.4344%)
+Q30 bases: 3621180897(94.7952%)
+Q40 bases: 0(0%)
+
+Filtering result:
+reads passed filter: 53289964
+reads failed due to low quality: 502976
+reads failed due to too many N: 7526
+reads failed due to too short: 464238
+reads failed due to low complexity: 25710
+reads failed due to adapter dimer: 15854
+reads with adapter trimmed: 12754373
+bases trimmed due to adapters: 433310480
+reads with polyX in 3' end: 172548
+bases trimmed in polyX tail: 3464229
+
+Duplication rate: 39.1692%
+
+Insert size peak (evaluated by paired-end reads): 151
+
+JSON report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-1-B_S1_L001_fastp.json
+HTML report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-1-B_S1_L001_fastp.html
+
+fastp --in1 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-1-B_S1_L001_R1_001.fastq.gz --in2 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-1-B_S1_L001_R2_001.fastq.gz --out1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz --out2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz --trim_poly_g --trim_poly_x --low_complexity_filter --n_base_limit 5 --qualified_quality_phred 20 --length_required 60 --thread 2 --html /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-1-B_S1_L001_fastp.html --json /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-1-B_S1_L001_fastp.json --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+fastp v1.3.6, time used: 844 seconds
+Finalizado: TF-2587-RF-1-B_S1_L001
+Fim: Wed Sep  2 09:09:30 -03 2026
+
+==========================================
+Processando: TF-2587-RF-2-B_S2_L001
+Início: Wed Sep  2 09:09:30 -03 2026
+==========================================
+Read1 before filtering:
+total reads: 42723059
+total bases: 6451181909
+Q20 bases: 6335105148(98.2007%)
+Q30 bases: 6137850356(95.143%)
+Q40 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 42723059
+total bases: 6451181909
+Q20 bases: 6258058716(97.0064%)
+Q30 bases: 5978075705(92.6664%)
+Q40 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 41834992
+total bases: 5937359191
+Q20 bases: 5870570308(98.8751%)
+Q30 bases: 5709384285(96.1603%)
+Q40 bases: 0(0%)
+
+Read2 after filtering:
+total reads: 41834992
+total bases: 5937233856
+Q20 bases: 5834018888(98.2616%)
+Q30 bases: 5600183995(94.3231%)
+Q40 bases: 0(0%)
+
+Filtering result:
+reads passed filter: 83669984
+reads failed due to low quality: 846650
+reads failed due to too many N: 11762
+reads failed due to too short: 865214
+reads failed due to low complexity: 41700
+reads failed due to adapter dimer: 10808
+reads with adapter trimmed: 22628308
+bases trimmed due to adapters: 801743789
+reads with polyX in 3' end: 333342
+bases trimmed in polyX tail: 6086987
+
+Duplication rate: 48.5783%
+
+Insert size peak (evaluated by paired-end reads): 151
+
+JSON report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-2-B_S2_L001_fastp.json
+HTML report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-2-B_S2_L001_fastp.html
+
+fastp --in1 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-2-B_S2_L001_R1_001.fastq.gz --in2 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-2-B_S2_L001_R2_001.fastq.gz --out1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz --out2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz --trim_poly_g --trim_poly_x --low_complexity_filter --n_base_limit 5 --qualified_quality_phred 20 --length_required 60 --thread 2 --html /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-2-B_S2_L001_fastp.html --json /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-2-B_S2_L001_fastp.json --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+fastp v1.3.6, time used: 1328 seconds
+Finalizado: TF-2587-RF-2-B_S2_L001
+Fim: Wed Sep  2 09:31:38 -03 2026
+
+==========================================
+Processando: TF-2587-RF-4-B_S3_L001
+Início: Wed Sep  2 09:31:38 -03 2026
+==========================================
+Read1 before filtering:
+total reads: 10318813
+total bases: 1558140763
+Q20 bases: 1524124785(97.8169%)
+Q30 bases: 1475318019(94.6845%)
+Q40 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 10318813
+total bases: 1558140763
+Q20 bases: 1506594561(96.6918%)
+Q30 bases: 1436789946(92.2118%)
+Q40 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 9897059
+total bases: 1370410315
+Q20 bases: 1355701841(98.9267%)
+Q30 bases: 1320333450(96.3458%)
+Q40 bases: 0(0%)
+
+Read2 after filtering:
+total reads: 9897059
+total bases: 1370391929
+Q20 bases: 1348468879(98.4002%)
+Q30 bases: 1297633798(94.6907%)
+Q40 bases: 0(0%)
+
+Filtering result:
+reads passed filter: 19794118
+reads failed due to low quality: 200108
+reads failed due to too many N: 2738
+reads failed due to too short: 625134
+reads failed due to low complexity: 9930
+reads failed due to adapter dimer: 5598
+reads with adapter trimmed: 6910285
+bases trimmed due to adapters: 258719439
+reads with polyX in 3' end: 72472
+bases trimmed in polyX tail: 1395069
+
+Duplication rate: 46.7192%
+
+Insert size peak (evaluated by paired-end reads): 40
+
+JSON report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-4-B_S3_L001_fastp.json
+HTML report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-4-B_S3_L001_fastp.html
+
+fastp --in1 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-4-B_S3_L001_R1_001.fastq.gz --in2 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-4-B_S3_L001_R2_001.fastq.gz --out1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz --out2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz --trim_poly_g --trim_poly_x --low_complexity_filter --n_base_limit 5 --qualified_quality_phred 20 --length_required 60 --thread 2 --html /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-4-B_S3_L001_fastp.html --json /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-4-B_S3_L001_fastp.json --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+fastp v1.3.6, time used: 305 seconds
+Finalizado: TF-2587-RF-4-B_S3_L001
+Fim: Wed Sep  2 09:36:43 -03 2026
+
+==========================================
+Processando: TF-2587-RF-5-B_S4_L001
+Início: Wed Sep  2 09:36:43 -03 2026
+==========================================
+Read1 before filtering:
+total reads: 25842990
+total bases: 3902291490
+Q20 bases: 3823251041(97.9745%)
+Q30 bases: 3702119866(94.8704%)
+Q40 bases: 0(0%)
+
+Read2 before filtering:
+total reads: 25842990
+total bases: 3902291490
+Q20 bases: 3774302904(96.7202%)
+Q30 bases: 3609168137(92.4884%)
+Q40 bases: 0(0%)
+
+Read1 after filtering:
+total reads: 25206565
+total bases: 3599243529
+Q20 bases: 3555169366(98.7755%)
+Q30 bases: 3456327177(96.0293%)
+Q40 bases: 0(0%)
+
+Read2 after filtering:
+total reads: 25206565
+total bases: 3599027607
+Q20 bases: 3535995165(98.2486%)
+Q30 bases: 3398878324(94.4388%)
+Q40 bases: 0(0%)
+
+Filtering result:
+reads passed filter: 50413130
+reads failed due to low quality: 736940
+reads failed due to too many N: 6974
+reads failed due to too short: 499956
+reads failed due to low complexity: 23826
+reads failed due to adapter dimer: 5154
+reads with adapter trimmed: 12814364
+bases trimmed due to adapters: 428453030
+reads with polyX in 3' end: 225747
+bases trimmed in polyX tail: 4285570
+
+Duplication rate: 26.1427%
+
+Insert size peak (evaluated by paired-end reads): 151
+
+JSON report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-5-B_S4_L001_fastp.json
+HTML report: /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-5-B_S4_L001_fastp.html
+
+fastp --in1 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-5-B_S4_L001_R1_001.fastq.gz --in2 /labgenomaarea2/valentina.pavelecini/raw_data/TF-2587-RF-5-B_S4_L001_R2_001.fastq.gz --out1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz --out2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz --trim_poly_g --trim_poly_x --low_complexity_filter --n_base_limit 5 --qualified_quality_phred 20 --length_required 60 --thread 2 --html /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-5-B_S4_L001_fastp.html --json /labgenomaarea2/valentina.pavelecini/EHI/fastp_reports/TF-2587-RF-5-B_S4_L001_fastp.json --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+fastp v1.3.6, time used: 807 seconds
+Finalizado: TF-2587-RF-5-B_S4_L001
+Fim: Wed Sep  2 09:50:10 -03 2026
+
+==========================================
+TODAS AS 5 AMOSTRAS FORAM PROCESSADAS
+Fim: Wed Sep  2 09:50:10 -03 2026
 ==========================================
 ```
