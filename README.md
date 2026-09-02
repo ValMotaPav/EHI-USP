@@ -8,9 +8,12 @@ conda activate EHI
 https://www.earthhologenome.org/bioinformatics/index.html
 
 
-# 31/08/2026
+# Objetivo
+Reconstruir um genoma procariótico a partir dos reads metagenômicos de amostra de água, produzindo um MAG (Metagenome-Assembled Genome)
 
-## Realizando o primeiro passo da pipeline do EHI: filtro de qualidade
+# Realizando o primeiro passo da pipeline do EHI: filtro de qualidade
+
+## 31/08/2026
 
 ```
 2.1 Quality-filtering
@@ -267,7 +270,7 @@ echo "=========================================="
 indica que para cada amostra em samples, fastp será executado seguindo o comando que realizamos no teste, substituindo cada parâmetro pela variável correspondente. Além disso, serão ecoados no terminal indicadores de início/fim do(s) processo(s), acompanhado da data e hora de início e fim.
 
 
-#02/09/2026
+## 02/09/2026
 
 Rodando o script automatizado com ```bash EHI_filtragem.sh```, que retornou:
 ```
@@ -556,3 +559,95 @@ TODAS AS 5 AMOSTRAS FORAM PROCESSADAS
 Fim: Wed Sep  2 09:50:10 -03 2026
 ==========================================
 ```
+Êxito.
+
+# Próxima etapa: Avaliação da complexidade taxonômica com Nonpareil
+
+OBSERVAÇÃO: Pularemos completamente a etapa da pipeline do EHI de separar dados do hospedeiro, afinal estamos trabalhando com amostras de água, sem um hospedeiro conhecido específico.  
+
+Começaremos instalando o nonparail com ```conda install bioconda::nonpareil```. Depois, criamos um diretório chamado ```nonpareil``` com ```mkdir nonpareil```, onde irão os arquivos de saída.  
+
+Iremos fazer o primeiro teste com o arquivo ```TF-2587-PM-1-A_S5_L001_R1.fastq.gz```, o mesmo que utilizamos para teste na primeira etapa, porém filtrado. Depois, automatizaremos.
+
+```
+nonpareil \
+    -s /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_S5_L001_R1.fastq.gz \
+    -f fastq \
+    -T kmer \
+    -t 2 \
+    -b TF-2587-PM-1-A_S5_L001
+```
+Obs: este código está sendo executado em ```/labgenomaarea2/valentina.pavelecini/EHI/nonpareil```, pois é onde quero que fiquem os arquivo de saída
+Retornou erro ```Fatal error: Segmentation fault (core dumped)``` porque coloquei o nome errado, é ```TF-2587-PM-1-A_R1.fastq.gz```
+
+```
+nonpareil \
+    -s /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz \
+    -f fastq \
+    -T kmer \
+    -t 2 \
+    -b TF-2587-PM-1-A_S5_L001
+```
+Êxito:
+```
+Nonpareil v3.5.5
+ [      0.4]   The file /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz.enve-tmp.500452 was created
+ [      0.4]  Reading /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz.enve-tmp.500452
+ [      0.4]   Picking 10000 random sequences
+ [      0.4]   Counting kmers
+ [      2.2]  Read file with 6442594 sequences
+ [      2.2]  Average read length is 141.993772bp
+ [      2.2]  Sub-sampling library
+ [      2.4]  Evaluating consistency
+ [      2.4]  Everything seems correct
+```
+
+_______________________________________________________
+
+Agora vamos automatizar para as outras 5 amostras. Começamos criando o arquivo .sh com ```nano nonpareil.sh``` e criando o comando:
+```
+#!/bin/bash
+set -e
+
+FILTRADOS="/labgenomaarea2/valentina.pavelecini/EHI/filtrados"
+OUT="/labgenomaarea2/valentina.pavelecini/EHI/nonpareil"
+
+mkdir -p "$OUT"
+
+THREADS=2
+
+samples=(
+    "TF-2587-PM-5-A_S7_L001"
+    "TF-2587-RF-1-B_S1_L001"
+    "TF-2587-RF-2-B_S2_L001"
+    "TF-2587-RF-4-B_S3_L001"
+    "TF-2587-RF-5-B_S4_L001"
+)
+
+for sample in "${samples[@]}"; do
+
+    echo "=========================================="
+    echo "Processando: $sample"
+    echo "Início: $(date)"
+    echo "=========================================="
+
+    nonpareil \
+        -s "$FILTRADOS/${sample}_R1.fastq.gz" \
+        -f fastq \
+        -T kmer \
+        -t "$THREADS" \
+        -b "$OUT/$sample"
+
+    echo "Finalizado: $sample"
+    echo "Fim: $(date)"
+    echo ""
+
+done
+
+echo "=========================================="
+echo "TODAS AS 5 AMOSTRAS FORAM PROCESSADAS"
+echo "Fim: $(date)"
+echo "=========================================="
+```
+
+E iniciando com ```bash nonpareil.sh```:
