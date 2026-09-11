@@ -577,7 +577,7 @@ Rscript {config[codedir]}/scripts/nonpareil_table.R {output.npo} {output.npstats
 
 OBSERVAÇÃO: Pularemos completamente a etapa da pipeline do EHI de separar dados do hospedeiro, afinal estamos trabalhando com amostras de água, sem um hospedeiro conhecido específico.  
 
-Começaremos instalando o nonparail com ```conda install bioconda::nonpareil```. Depois, criamos um diretório chamado ```nonpareil``` com ```mkdir nonpareil```, onde irão os arquivos de saída.  
+Começaremos instalando o nonparail com ```conda install -c bioconda nonpareil```. Depois, criamos um diretório chamado ```nonpareil``` com ```mkdir nonpareil```, onde irão os arquivos de saída.  
 
 Iremos fazer o primeiro teste com o arquivo ```TF-2587-PM-1-A_S5_L001_R1.fastq.gz```, o mesmo que utilizamos para teste na primeira etapa, porém filtrado. Depois, automatizaremos.
 
@@ -754,4 +754,61 @@ Fim: Wed Sep  2 11:26:38 -03 2026
 TODAS AS 5 AMOSTRAS FORAM PROCESSADAS
 Fim: Wed Sep  2 11:26:38 -03 2026
 ==========================================
+```
+
+##11/09/2026
+
+A documentação disponível no site da Earth Hologenome Initiative apresenta uma etapa adicional após a execução do Nonpareil, na qual o script nonpareil_table.R é utilizado para extrair valores de interesse dos arquivos .npo e gerar arquivos .npstats:
+```
+#Script to extract nonpareil values of interest
+Rscript {config[codedir]}/scripts/nonpareil_table.R {output.npo} {output.npstats}
+```
+Entretanto, como indicado após clonarmos o repositório mais recente do EHI, essa etapa não está presente na versão atual do 1_Preprocess_QC.snakefile que estamos utilizando.   
+Na versão atual do workflow, os arquivos .npo gerados pelo Nonpareil são utilizados diretamente pela regra de geração do relatório, que cria o arquivo nonpareil_metadata.tsv a partir desses resultados. Portanto, não executaremos a etapa nonpareil_table.R descrita na página do site, pois ela não faz parte da versão do workflow que estamos reproduzindo.
+
+Desta forma, a etapa de Avaliação da complexidade taxonômica com Nonpareil está completa.
+
+
+# Próxima etapa: Avaliação da fração procariótica
+
+Esta etapa avaliará a proporção, diversidade, e atividade de bactérias e archeas através de diferentes amostras ambientais. Essa etapa incluir duas análises diferentes:
+```
+#Run singlem pipe
+singlem pipe \
+    -1 {input.non_host_r1} \
+    -2 {input.non_host_r2} \
+    --otu-table {params.pipe_uncompressed} \
+    --taxonomic-profile {output.condense} \
+    --threads {threads}
+```
+Identifica/classifica marcadores taxonômicos e produz um perfil taxonômico. Ou seja, a abundância relativa dos microrganismos presentes na amostra ambiental ("Quem está lá?" e "Em qual quantidade?")
+
+```
+#Run singlem read_fraction
+singlem read_fraction \
+    -1 {input.non_host_r1} \
+    -2 {input.non_host_r2} \
+    --input-profile {output.condense} \
+    --output-tsv {output.read_fraction} \
+    --output-per-taxon-read-fractions {params.read_fraction_taxa}
+```
+Estima a fração de reads atribuída a cada táxon.   
+
+___________________
+
+Vamos começar criando um diretório específico com ```mkdir SingleM```, e então instalando o SingleM com ```conda install -c conda-forge -c bioconda --strict-channel-priority singlem```, em que:
+- ```-c conda-forge```: indica o canal conda-forge em que está o pacote singlem
+- ```-c bioconda```: indica o canal bioconda em que está o pacote singlem
+- ```--strict-channel-priority```: evita que o Conda misture versões de pacotes dos canais diferentes de maneira desnecessária
+- ```singlem```: pacote desejado
+
+
+Com o SingleM instalado, vamos primeiro produzir o perfil taxonômico:
+```
+singlem pipe \
+    -1 {input.non_host_r1} \
+    -2 {input.non_host_r2} \
+    --otu-table {params.pipe_uncompressed} \
+    --taxonomic-profile {output.condense} \
+    --threads {threads}
 ```
