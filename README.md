@@ -806,9 +806,69 @@ Vamos começar criando um diretório específico com ```mkdir SingleM```, e ent�
 Com o SingleM instalado, vamos primeiro produzir o perfil taxonômico:
 ```
 singlem pipe \
-    -1 {input.non_host_r1} \
-    -2 {input.non_host_r2} \
-    --otu-table {params.pipe_uncompressed} \
-    --taxonomic-profile {output.condense} \
-    --threads {threads}
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_taxonomic_profile.tsv \
+    --threads 2
+```
+
+Erro:
+```
+(/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini/EHI/SingleM$ singlem pipe \
+>     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz \
+>     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz \
+>     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_otu_table.tsv \
+>     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_taxonomic_profile.tsv \
+>     --threads 2
+2026/09/11 10:00:47 AM INFO: SingleM v0.21.4
+Traceback (most recent call last):
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/bin/singlem", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/singlem/main.py", line 780, in main
+    singlem.pipe.SearchPipe().run(
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/singlem/pipe.py", line 67, in run
+    metapackage = self._parse_packages_or_metapackage(**kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/singlem/pipe.py", line 117, in _parse_packages_or_metapackage
+    return Metapackage.acquire_default()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/singlem/metapackage.py", line 156, in acquire_default
+    backpack = Metapackage.acquire_default_backpack()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/singlem/metapackage.py", line 113, in acquire_default_backpack
+    raise Exception("The {} environment variable, which points to the default data directory, is not set. To download the default SingleM metapackage, use 'singlem data'. The metapackage can also be downloaded manually from https://doi.org/{}".format(DATA_ENVIRONMENT_VARIABLE, DATA_DOI))
+Exception: The SINGLEM_METAPACKAGE_PATH environment variable, which points to the default data directory, is not set. To download the default SingleM metapackage, use 'singlem data'. The metapackage can also be downloaded manually from https://doi.org/10.5281/zenodo.5739611
+```
+
+Não temos o metapackage, ou seja, o banco de referência para o SingleM analisar os reads. Começaremos criando uma pasta com ```mkdir metapackage```. O SingleM 0.21.4 possui uma função própria para baixar o metapackage padrão, então usaremos ela:
+```
+singlem data \
+    --output-directory /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage
+```
+Output:
+```
+2026/09/11 10:33:51 AM INFO: Extracting files from archive...
+2026/09/11 10:39:01 AM INFO: Verifying version and checksums...
+2026/09/11 10:40:54 AM INFO: Verification success.
+2026/09/11 10:40:54 AM INFO: Finished downloading data
+2026/09/11 10:40:54 AM INFO: The environment variable SINGLEM_METAPACKAGE_PATH can now be set to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage
+2026/09/11 10:40:54 AM INFO: For instance, the following can be included in your .bashrc (requires logout and login after inclusion):
+2026/09/11 10:40:54 AM INFO: export SINGLEM_METAPACKAGE_PATH='/labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb'
+```
+
+Então, definiremos a variável de ambiente "SINGLEM_METAPACKAGE_PATH" como indicado pelo próprio SingleM na mensagem após a instalação
+```
+export SINGLEM_METAPACKAGE_PATH='/labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb'
+```
+
+E então tentaremos produzir o perfil taxonômico de novo:
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_taxonomic_profile.tsv \
+    --threads 2
 ```
