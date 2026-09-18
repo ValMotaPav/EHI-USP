@@ -756,7 +756,7 @@ Fim: Wed Sep  2 11:26:38 -03 2026
 ==========================================
 ```
 
-##11/09/2026
+## 11/09/2026
 
 A documentação disponível no site da Earth Hologenome Initiative apresenta uma etapa adicional após a execução do Nonpareil, na qual o script nonpareil_table.R é utilizado para extrair valores de interesse dos arquivos .npo e gerar arquivos .npstats:
 ```
@@ -871,5 +871,181 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_taxonomic_profile.tsv \
+    --threads 2
+```
+
+_____________________________
+
+## 18/09/2026
+
+Output do SingleM Pipe:
+```
+2026/09/18 09:03:18 AM INFO: SingleM v0.21.4
+2026/09/18 09:03:18 AM INFO: Retrieval successful. Location of backpack is: /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb
+2026/09/18 09:03:19 AM INFO: Loaded 59 SingleM packages
+2026/09/18 09:03:25 AM INFO: Using as input 1 different pairs of sequence files e.g. /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz & /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz
+2026/09/18 09:03:25 AM INFO: DIAMOND version: diamond version 2.2.6
+2026/09/18 09:03:25 AM INFO: Filtering sequence files through DIAMOND blastx
+2026/09/18 09:03:25 AM INFO: Filtering TF-2587-PM-1-A_R1.fastq.gz
+2026/09/18 09:11:55 AM INFO: Found 27634 hits for TF-2587-PM-1-A_R1.fastq.gz
+2026/09/18 09:11:55 AM INFO: Filtering TF-2587-PM-1-A_R2.fastq.gz
+2026/09/18 09:20:20 AM INFO: Found 27544 hits for TF-2587-PM-1-A_R2.fastq.gz
+2026/09/18 09:20:20 AM INFO: Finished DIAMOND prefilter phase
+2026/09/18 09:20:20 AM INFO: Assigning sequences to SingleM packages with DIAMOND ..
+2026/09/18 09:20:21 AM INFO: Extracting reads from 1 sample(s) across 59 package(s) using 2 thread(s)
+Extracting reads: 100%|█████████████████████████████████████████████████████████| 59/59 [00:59<00:00,  1.01s/sample×pkg]
+2026/09/18 09:21:21 AM INFO: After read extraction, 26645 sequence(s) remain
+2026/09/18 09:21:21 AM INFO: Running taxonomic assignment ..
+2026/09/18 09:21:21 AM INFO: Assigning taxonomy by singlem query ..
+Querying taxonomy: 100%|█████████████████████████████████████████████████████████| 5419/5419 [01:49<00:00, 49.45 seqs/s]
+2026/09/18 09:23:11 AM INFO: Finished running singlem query-based taxonomic assignment, now running diamond using 2 thread(s) ..
+2026/09/18 09:23:11 AM INFO: Assigning taxonomy with DIAMOND blastx to 7750 OTUs (The 81.6% that were not assigned by smafa) ..
+DIAMOND taxonomy: 100%|████████████████████████████████████████████████████████████| 118/118 [35:45<00:00, 18.18s/chunk]
+2026/09/18 09:58:57 AM INFO: Finished running taxonomic assignment
+2026/09/18 09:59:58 AM INFO: Finished
+2026/09/18 09:59:58 AM INFO: Writing /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_otu_table.tsv
+2026/09/18 09:59:58 AM INFO: Writing taxonomic profile to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-1-A_taxonomic_profile.tsv
+2026/09/18 09:59:58 AM INFO: Using minimum taxon coverage of 0.35
+2026/09/18 09:59:58 AM INFO: Removing off-target OTUs from TF-2587-PM-1-A_R1
+2026/09/18 09:59:58 AM INFO: Found 12555.54 assigned and 0.00 unassigned OTU coverage units
+2026/09/18 09:59:58 AM INFO: After removing off-target OTUs, found 10763.80 assigned and 0.00 unassigned OTU coverage units
+2026/09/18 09:59:58 AM INFO: Total OTU coverage by query: 2100.4268488180187
+2026/09/18 09:59:58 AM INFO: Total OTU coverage by diamond: 8663.371088033391
+2026/09/18 09:59:58 AM INFO: Applying species-wise expectation maximization algorithm to OTU table
+2026/09/18 09:59:58 AM INFO: Found 2 species uniquely hitting >= 10 marker genes
+2026/09/18 10:00:00 AM INFO: Species-wise EM converged in 55 steps
+2026/09/18 10:00:00 AM INFO: Gathering equivalence classes
+2026/09/18 10:00:00 AM INFO: Demultiplexing OTU table
+2026/09/18 10:00:01 AM INFO: Finished expectation maximization
+2026/09/18 10:00:01 AM INFO: Converting DIAMOND IDs to taxons
+2026/09/18 10:00:36 AM INFO: Converted 3718 Diamond-assigned OTU taxon_ids to taxon strings
+2026/09/18 10:00:36 AM INFO: Applying genus-wise expectation maximization algorithm to OTU table
+2026/09/18 10:00:39 AM INFO: Genus-wise EM converged in 50 steps
+2026/09/18 10:00:39 AM INFO: Gathering equivalence classes
+2026/09/18 10:00:39 AM INFO: Demultiplexing OTU table
+2026/09/18 10:00:40 AM INFO: Finished genus expectation maximization
+2026/09/18 10:00:40 AM INFO: Total profile coverage after condense domain to species: 298.77297293837285
+2026/09/18 10:00:40 AM INFO: Total profile coverage after push down: 298.7729729383729
+2026/09/18 10:00:40 AM INFO: Taxonomic level coverage:
+2026/09/18 10:00:40 AM INFO: kingdom:   6.09%   2 taxons
+2026/09/18 10:00:40 AM INFO: phylum:    5.86%   20 taxons
+2026/09/18 10:00:40 AM INFO: class:     15.77%  37 taxons
+2026/09/18 10:00:40 AM INFO: order:     16.47%  57 taxons
+2026/09/18 10:00:40 AM INFO: family:    21.72%  66 taxons
+2026/09/18 10:00:40 AM INFO: genus:     31.74%  51 taxons
+2026/09/18 10:00:40 AM INFO: species:   2.35%   7 taxons
+2026/09/18 10:00:40 AM INFO: Finished condense
+```
+
+Como a análise do SingleM é demorada (~1h), não iremos criar um bash para rodar todas as amostras de uma vez só, e sim rodar cada uma manualmente:
+
+Já fizemos PM-1-A
+
+### PM-5-A
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-5-A_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-5-A_taxonomic_profile.tsv \
+    --threads 2
+```
+
+Output:
+```
+2026/09/18 10:23:11 AM INFO: SingleM v0.21.4
+2026/09/18 10:23:11 AM INFO: Retrieval successful. Location of backpack is: /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb
+2026/09/18 10:23:12 AM INFO: Loaded 59 SingleM packages
+2026/09/18 10:23:18 AM INFO: Using as input 1 different pairs of sequence files e.g. /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz & /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz
+2026/09/18 10:23:18 AM INFO: DIAMOND version: diamond version 2.2.6
+2026/09/18 10:23:18 AM INFO: Filtering sequence files through DIAMOND blastx
+2026/09/18 10:23:18 AM INFO: Filtering TF-2587-PM-5-A_S7_L001_R1.fastq.gz
+2026/09/18 10:36:23 AM INFO: Found 38396 hits for TF-2587-PM-5-A_S7_L001_R1.fastq.gzHI/SingleM/metapackage
+2026/09/18 10:36:24 AM INFO: Filtering TF-2587-PM-5-A_S7_L001_R2.fastq.gz
+2026/09/18 10:49:22 AM INFO: Found 37997 hits for TF-2587-PM-5-A_S7_L001_R2.fastq.gz
+2026/09/18 10:49:22 AM INFO: Finished DIAMOND prefilter phase
+2026/09/18 10:49:22 AM INFO: Assigning sequences to SingleM packages with DIAMOND ..
+2026/09/18 10:49:23 AM INFO: Extracting reads from 1 sample(s) across 59 package(s) using 2 thread(s)
+Extracting reads: 100%|█████████████████████████████████████████████████████████████████████████████████████| 59/59 [01:13<00:00,  1.24s/sample×pkg]
+2026/09/18 10:50:37 AM INFO: After read extraction, 35425 sequence(s) remain
+2026/09/18 10:50:37 AM INFO: Running taxonomic assignment ..
+2026/09/18 10:50:37 AM INFO: Assigning taxonomy by singlem query ..
+Querying taxonomy: 100%|█████████████████████████████████████████████████████████████████████████████████████| 4450/4450 [01:37<00:00, 45.78 seqs/s]
+2026/09/18 10:52:15 AM INFO: Finished running singlem query-based taxonomic assignment, now running diamond using 2 thread(s) ..
+2026/09/18 10:52:15 AM INFO: Assigning taxonomy with DIAMOND blastx to 9745 OTUs (The 76.1% that were not assigned by smafa) ..
+DIAMOND taxonomy: 100%|████████████████████████████████████████████████████████████████████████████████████████| 118/118 [45:06<00:00, 22.94s/chunk]
+2026/09/18 11:37:22 AM INFO: Finished running taxonomic assignment
+2026/09/18 11:38:27 AM INFO: Finished
+2026/09/18 11:38:27 AM INFO: Writing /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-5-A_otu_table.tsv
+2026/09/18 11:38:27 AM INFO: Writing taxonomic profile to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/PM-5-A_taxonomic_profile.tsv
+2026/09/18 11:38:27 AM INFO: Using minimum taxon coverage of 0.35
+2026/09/18 11:38:27 AM INFO: Removing off-target OTUs from TF-2587-PM-5-A_S7_L001_R1
+2026/09/18 11:38:27 AM INFO: Found 17498.27 assigned and 0.00 unassigned OTU coverage units
+2026/09/18 11:38:27 AM INFO: After removing off-target OTUs, found 14662.68 assigned and 0.00 unassigned OTU coverage units
+2026/09/18 11:38:27 AM INFO: Total OTU coverage by query: 3853.890936463486
+2026/09/18 11:38:27 AM INFO: Total OTU coverage by diamond: 10808.791954260652
+2026/09/18 11:38:27 AM INFO: Applying species-wise expectation maximization algorithm to OTU table
+2026/09/18 11:38:27 AM INFO: Found 3 species uniquely hitting >= 10 marker genes
+2026/09/18 11:38:28 AM INFO: Species-wise EM converged in 63 steps
+2026/09/18 11:38:28 AM INFO: Gathering equivalence classes
+2026/09/18 11:38:28 AM INFO: Demultiplexing OTU table
+2026/09/18 11:38:29 AM INFO: Finished expectation maximization
+2026/09/18 11:38:29 AM INFO: Converting DIAMOND IDs to taxons
+2026/09/18 11:39:01 AM INFO: Converted 2911 Diamond-assigned OTU taxon_ids to taxon strings
+2026/09/18 11:39:01 AM INFO: Applying genus-wise expectation maximization algorithm to OTU table
+2026/09/18 11:39:04 AM INFO: Genus-wise EM converged in 59 steps
+2026/09/18 11:39:04 AM INFO: Gathering equivalence classes
+2026/09/18 11:39:04 AM INFO: Demultiplexing OTU table
+2026/09/18 11:39:04 AM INFO: Finished genus expectation maximization
+2026/09/18 11:39:04 AM INFO: Total profile coverage after condense domain to species: 408.681532696004
+2026/09/18 11:39:04 AM INFO: Total profile coverage after push down: 408.68153269600407
+2026/09/18 11:39:04 AM INFO: Taxonomic level coverage:
+2026/09/18 11:39:04 AM INFO: kingdom:   6.78%   2 taxons
+2026/09/18 11:39:04 AM INFO: phylum:    5.67%   19 taxons
+2026/09/18 11:39:04 AM INFO: class:     12.14%  32 taxons
+2026/09/18 11:39:04 AM INFO: order:     11.61%  41 taxons
+2026/09/18 11:39:04 AM INFO: family:    13.33%  51 taxons
+2026/09/18 11:39:04 AM INFO: genus:     44.03%  51 taxons
+2026/09/18 11:39:04 AM INFO: species:   6.44%   12 taxons
+2026/09/18 11:39:04 AM INFO: Finished condense
+```
+
+### RF-1-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-1-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-1-B_taxonomic_profile.tsv \
+    --threads 2
+```
+
+### RF-2-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_taxonomic_profile.tsv \
+    --threads 2
+```
+
+### RF-4-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_taxonomic_profile.tsv \
+    --threads 2
+```
+
+### RF-5-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv \
     --threads 2
 ```
