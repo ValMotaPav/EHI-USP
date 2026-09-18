@@ -858,10 +858,11 @@ Output:
 2026/09/11 10:40:54 AM INFO: export SINGLEM_METAPACKAGE_PATH='/labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb'
 ```
 
-Então, definiremos a variável de ambiente "SINGLEM_METAPACKAGE_PATH" como indicado pelo próprio SingleM na mensagem após a instalação
+Feito isso, definiremos a variável de ambiente "SINGLEM_METAPACKAGE_PATH" como indicado pelo próprio SingleM na mensagem após a instalação
 ```
 export SINGLEM_METAPACKAGE_PATH='/labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb'
 ```
+_NOTA: a variável precisa ser definida em toda sessão. Ou seja, toda vez que deslogar do LAD e logar de novo, esse comando precisa ser rodado novamente._
 
 E então tentaremos produzir o perfil taxonômico de novo:
 ```
