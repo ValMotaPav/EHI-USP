@@ -1014,6 +1014,14 @@ DIAMOND taxonomy: 100%|███████████████████
 
 ## 23/09/2026
 
+Mudei um pouco a estratégia hoje: vou usar uma janela do tmux pra rodar as próximas amostras. O tmux é uma janela em que os processos nela continuam rodando mesmo que o computador desligue (tipo um job só que mais interativo). Comecei criando uma janela para essas análises do SingleM com ```tmux new -s SingleM-EHI```.  Defini os parâmetros dessa sessão com ```srun -N 2 -t 01:30:00 -n 8 --pty bash -i```, em que ```-N 2``` separa 2 máquinas pro processo, ```-t 01:30:00``` aloca essa sessão por 1 hora e meia, ```-n``` define o limite pra 8 threads (ao invés de 2), e ```--pty bash -i``` indica que esses parâmetros vão valer para qualquer comando realizado nessa janela na próxima 1h30. O objetivo é diminuir um pouco o tempo de análise. Além disso, pra iniciar cada processo, sempre lembremos de rodar ```export SINGLEM_METAPACKAGE_PATH='/labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb'``` para cada nova sessão.
+
+
+Além disso, vamos adicionar mais uma linha aos comandos seguintes: ```&> /labgenomaarea2/valentina.pavelecini/conda_envs/EHI/SingleM/outputs/output-XX-X.log```, que salva os outputs dos processos em um arquivo .log.
+
+Por isso, os próximos comandos serão um pouco diferentes dos anteriores:
+
+
 ### RF-1-B
 ```
 singlem pipe \
@@ -1021,7 +1029,8 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-1-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-1-B_taxonomic_profile.tsv \
-    --threads 2
+    --threads 2 \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-1.log
 ```
 
 ### RF-2-B
@@ -1031,7 +1040,8 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_taxonomic_profile.tsv \
-    --threads 2
+    --threads 2 \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-2.log
 ```
 
 ### RF-4-B
@@ -1041,7 +1051,8 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_taxonomic_profile.tsv \
-    --threads 2
+    --threads 2 \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-4.log
 ```
 
 ### RF-5-B
@@ -1051,5 +1062,6 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv \
-    --threads 2
+    --threads 2 \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-5.log
 ```
