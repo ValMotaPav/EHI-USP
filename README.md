@@ -5,8 +5,9 @@ cd /labgenomaarea2/valentina.pavelecini
 conda activate EHI  
 ```
 
-https://www.earthhologenome.org/bioinformatics/index.html  
-https://www.canva.com/design/DAHUDcTIaEc/Z9jiEwyVO9jZrfU_UPkavA/edit?ui=e30  
+Pipeline: https://www.earthhologenome.org/bioinformatics/index.html  
+
+Fluxograma: https://www.canva.com/design/DAHUDcTIaEc/Z9jiEwyVO9jZrfU_UPkavA/edit?ui=e30  
 
 # Objetivo
 Reconstruir um genoma procariótico a partir dos reads metagenômicos de amostra de água, produzindo um MAG (Metagenome-Assembled Genome)
@@ -1009,6 +1010,9 @@ DIAMOND taxonomy: 100%|███████████████████
 2026/09/18 11:39:04 AM INFO: species:   6.44%   12 taxons
 2026/09/18 11:39:04 AM INFO: Finished condense
 ```
+
+
+## 23/09/2026
 
 ### RF-1-B
 ```
