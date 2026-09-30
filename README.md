@@ -1,6 +1,8 @@
 # Login + site do Earth Hologenome Iniciative + Fluxograma
 ```
-ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br  
+ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br
+```
+```
 cd /labgenomaarea2/valentina.pavelecini  
 conda activate EHI  
 ```
@@ -1092,16 +1094,10 @@ DIAMOND taxonomy: 100%|███████████████████
 2026/09/25 12:02:57 PM INFO: Finished condense
 ```
 
-### RF-2-B
-```
-singlem pipe \
-    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
-    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
-    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_otu_table.tsv \
-    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_taxonomic_profile.tsv \
-    --threads 2 \
-    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-2.log
-```
+## 30/09/2026
+
+Usar tmux não deu certo então azar. Voltando a fazer normal:
+
 
 ### RF-4-B
 ```
@@ -1110,9 +1106,19 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_taxonomic_profile.tsv \
-    --threads 2 \
-    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-4.log
+    --threads 2
 ```
+
+### RF-2-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_taxonomic_profile.tsv \
+    --threads 2
+```
+
 
 ### RF-5-B
 ```
@@ -1121,6 +1127,5 @@ singlem pipe \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
     --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv \
-    --threads 2 \
-    &> /labgenomaarea2/valentina.pavelecini/EHI/SingleM/outputs/output-RF-5.log
+    --threads 2
 ```
