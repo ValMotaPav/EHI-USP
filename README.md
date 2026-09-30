@@ -1108,6 +1108,64 @@ singlem pipe \
     --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_taxonomic_profile.tsv \
     --threads 2
 ```
+Output:
+```
+2026/09/30 08:46:40 AM INFO: SingleM v0.21.4
+2026/09/30 08:46:40 AM INFO: Retrieval successful. Location of backpack is: /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb
+2026/09/30 08:46:41 AM INFO: Loaded 59 SingleM packages
+2026/09/30 08:46:46 AM INFO: Using as input 1 different pairs of sequence files e.g. /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz & /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz
+2026/09/30 08:46:47 AM INFO: DIAMOND version: diamond version 2.2.6
+2026/09/30 08:46:47 AM INFO: Filtering sequence files through DIAMOND blastx
+2026/09/30 08:46:47 AM INFO: Filtering TF-2587-RF-4-B_S3_L001_R1.fastq.gz
+2026/09/30 08:58:58 AM INFO: Found 35535 hits for TF-2587-RF-4-B_S3_L001_R1.fastq.gz
+2026/09/30 08:58:58 AM INFO: Filtering TF-2587-RF-4-B_S3_L001_R2.fastq.gz
+2026/09/30 09:11:32 AM INFO: Found 35744 hits for TF-2587-RF-4-B_S3_L001_R2.fastq.gz
+2026/09/30 09:11:32 AM INFO: Finished DIAMOND prefilter phase
+2026/09/30 09:11:32 AM INFO: Assigning sequences to SingleM packages with DIAMOND ..
+2026/09/30 09:11:33 AM INFO: Extracting reads from 1 sample(s) across 59 package(s) using 2 thread(s)
+Extracting reads: 100%|█████████████████████████████████████████████████████████| 59/59 [01:06<00:00,  1.13s/sample×pkg]
+2026/09/30 09:12:40 AM INFO: After read extraction, 33278 sequence(s) remain
+2026/09/30 09:12:40 AM INFO: Running taxonomic assignment ..
+2026/09/30 09:12:40 AM INFO: Assigning taxonomy by singlem query ..
+Querying taxonomy: 100%|█████████████████████████████████████████████████████████| 2891/2891 [01:30<00:00, 31.80 seqs/s]
+2026/09/30 09:14:12 AM INFO: Finished running singlem query-based taxonomic assignment, now running diamond using 2 thread(s) ..
+2026/09/30 09:14:12 AM INFO: Assigning taxonomy with DIAMOND blastx to 9289 OTUs (The 80.6% that were not assigned by smafa) ..
+DIAMOND taxonomy: 100%|██████████████████████████████████████████████████████████| 118/118 [1:05:40<00:00, 33.39s/chunk]
+2026/09/30 10:19:53 AM INFO: Finished running taxonomic assignment
+2026/09/30 10:20:55 AM INFO: Finished
+2026/09/30 10:20:56 AM INFO: Writing /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_otu_table.tsv
+2026/09/30 10:20:56 AM INFO: Writing taxonomic profile to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-4-B_taxonomic_profile.tsv
+2026/09/30 10:20:56 AM INFO: Using minimum taxon coverage of 0.35
+2026/09/30 10:20:56 AM INFO: Removing off-target OTUs from TF-2587-RF-4-B_S3_L001_R1
+2026/09/30 10:20:56 AM INFO: Found 15457.02 assigned and 0.00 unassigned OTU coverage units
+2026/09/30 10:20:56 AM INFO: After removing off-target OTUs, found 13080.66 assigned and 0.00 unassigned OTU coverage units
+2026/09/30 10:20:56 AM INFO: Total OTU coverage by query: 2687.6175338801227
+2026/09/30 10:20:56 AM INFO: Total OTU coverage by diamond: 10393.037546219548
+2026/09/30 10:20:56 AM INFO: Applying species-wise expectation maximization algorithm to OTU table
+2026/09/30 10:20:56 AM INFO: Found 0 species uniquely hitting >= 10 marker genes
+2026/09/30 10:20:57 AM INFO: Species-wise EM converged in 56 steps
+2026/09/30 10:20:57 AM INFO: Gathering equivalence classes
+2026/09/30 10:20:57 AM INFO: Demultiplexing OTU table
+2026/09/30 10:20:58 AM INFO: Finished expectation maximization
+2026/09/30 10:20:58 AM INFO: Converting DIAMOND IDs to taxons
+2026/09/30 10:21:19 AM INFO: Converted 1900 Diamond-assigned OTU taxon_ids to taxon strings
+2026/09/30 10:21:19 AM INFO: Applying genus-wise expectation maximization algorithm to OTU table
+2026/09/30 10:21:23 AM INFO: Genus-wise EM converged in 113 steps
+2026/09/30 10:21:23 AM INFO: Gathering equivalence classes
+2026/09/30 10:21:23 AM INFO: Demultiplexing OTU table
+2026/09/30 10:21:23 AM INFO: Finished genus expectation maximization
+2026/09/30 10:21:23 AM INFO: Total profile coverage after condense domain to species: 354.8656978489279
+2026/09/30 10:21:23 AM INFO: Total profile coverage after push down: 354.865697848928
+2026/09/30 10:21:23 AM INFO: Taxonomic level coverage:
+2026/09/30 10:21:23 AM INFO: kingdom:   12.19%  2 taxons
+2026/09/30 10:21:23 AM INFO: phylum:    8.27%   14 taxons
+2026/09/30 10:21:23 AM INFO: class:     14.42%  18 taxons
+2026/09/30 10:21:23 AM INFO: order:     10.41%  24 taxons
+2026/09/30 10:21:23 AM INFO: family:    12.20%  27 taxons
+2026/09/30 10:21:23 AM INFO: genus:     36.89%  30 taxons
+2026/09/30 10:21:23 AM INFO: species:   5.61%   8 taxons
+2026/09/30 10:21:23 AM INFO: Finished condense
+```
 
 ### RF-2-B
 ```
