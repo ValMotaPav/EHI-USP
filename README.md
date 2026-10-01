@@ -1167,6 +1167,258 @@ DIAMOND taxonomy: 100%|███████████████████
 2026/09/30 10:21:23 AM INFO: Finished condense
 ```
 
+
+### RF-5-B
+```
+singlem pipe \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
+    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv \
+    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv \
+    --threads 2
+```
+
+Output:
+```
+2026/09/28 02:42:10 PM INFO: SingleM v0.21.4
+2026/09/28 02:42:10 PM INFO: Retrieval successful. Location of backpack is: /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb
+2026/09/28 02:42:10 PM INFO: Loaded 59 SingleM packages
+2026/09/28 02:42:15 PM INFO: Using as input 1 different pairs of sequence files e.g. /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz & /labgenoma>
+2026/09/28 02:42:15 PM INFO: DIAMOND version: diamond version 2.2.6
+2026/09/28 02:42:15 PM INFO: Filtering sequence files through DIAMOND blastx
+2026/09/28 02:42:15 PM INFO: Filtering TF-2587-RF-5-B_S4_L001_R1.fastq.gz
+^M                                                                                ^M2026/09/28 03:05:38 PM INFO: Found 81757 hits for TF-2587-RF-5-B_S4_L001_R1.fastq.gz
+2026/09/28 03:05:38 PM INFO: Filtering TF-2587-RF-5-B_S4_L001_R2.fastq.gz
+^M                                                                                ^M2026/09/28 03:29:00 PM INFO: Found 81504 hits for TF-2587-RF-5-B_S4_L001_R2.fastq.gz
+2026/09/28 03:29:00 PM INFO: Finished DIAMOND prefilter phase
+2026/09/28 03:29:00 PM INFO: Assigning sequences to SingleM packages with DIAMOND ..
+2026/09/28 03:29:00 PM INFO: Extracting reads from 1 sample(s) across 59 package(s) using 2 thread(s)
+2026/09/28 03:30:10 PM INFO: Finished extracting reads for chunk 1 of 59
+2026/09/28 03:30:10 PM INFO: Finished extracting reads for chunk 2 of 59
+2026/09/28 03:30:13 PM INFO: Finished extracting reads for chunk 3 of 59
+2026/09/28 03:30:14 PM INFO: Finished extracting reads for chunk 4 of 59
+2026/09/28 03:30:16 PM INFO: Finished extracting reads for chunk 5 of 59
+2026/09/28 03:30:17 PM INFO: Finished extracting reads for chunk 6 of 59
+2026/09/28 03:30:19 PM INFO: Finished extracting reads for chunk 7 of 59
+2026/09/28 03:30:20 PM INFO: Finished extracting reads for chunk 8 of 59
+2026/09/28 03:30:22 PM INFO: Finished extracting reads for chunk 9 of 59
+2026/09/28 03:30:23 PM INFO: Finished extracting reads for chunk 10 of 59
+2026/09/28 03:30:25 PM INFO: Finished extracting reads for chunk 11 of 59
+2026/09/28 03:30:26 PM INFO: Finished extracting reads for chunk 12 of 59
+2026/09/28 03:30:28 PM INFO: Finished extracting reads for chunk 13 of 59
+2026/09/28 03:30:29 PM INFO: Finished extracting reads for chunk 14 of 59
+2026/09/28 03:30:30 PM INFO: Finished extracting reads for chunk 15 of 59
+2026/09/28 03:30:32 PM INFO: Finished extracting reads for chunk 16 of 59
+2026/09/28 03:30:32 PM INFO: Finished extracting reads for chunk 17 of 59
+2026/09/28 03:30:33 PM INFO: Finished extracting reads for chunk 18 of 59
+2026/09/28 03:30:33 PM INFO: Finished extracting reads for chunk 19 of 59
+2026/09/28 03:30:33 PM INFO: Finished extracting reads for chunk 20 of 59
+2026/09/28 03:30:34 PM INFO: Finished extracting reads for chunk 21 of 59
+2026/09/28 03:30:35 PM INFO: Finished extracting reads for chunk 22 of 59
+2026/09/28 03:30:35 PM INFO: Finished extracting reads for chunk 23 of 59
+2026/09/28 03:30:36 PM INFO: Finished extracting reads for chunk 24 of 59
+2026/09/28 03:30:36 PM INFO: Finished extracting reads for chunk 25 of 59
+2026/09/28 03:30:36 PM INFO: Finished extracting reads for chunk 26 of 59
+2026/09/28 03:30:37 PM INFO: Finished extracting reads for chunk 27 of 59
+2026/09/28 03:30:36 PM INFO: Finished extracting reads for chunk 26 of 59
+2026/09/28 03:30:37 PM INFO: Finished extracting reads for chunk 27 of 59
+2026/09/28 03:30:37 PM INFO: Finished extracting reads for chunk 28 of 59
+2026/09/28 03:30:38 PM INFO: Finished extracting reads for chunk 29 of 59
+2026/09/28 03:30:38 PM INFO: Finished extracting reads for chunk 30 of 59
+2026/09/28 03:30:39 PM INFO: Finished extracting reads for chunk 31 of 59
+2026/09/28 03:30:39 PM INFO: Finished extracting reads for chunk 32 of 59
+2026/09/28 03:30:40 PM INFO: Finished extracting reads for chunk 33 of 59
+2026/09/28 03:30:40 PM INFO: Finished extracting reads for chunk 34 of 59
+2026/09/28 03:30:41 PM INFO: Finished extracting reads for chunk 35 of 59
+2026/09/28 03:30:41 PM INFO: Finished extracting reads for chunk 36 of 59
+2026/09/28 03:30:42 PM INFO: Finished extracting reads for chunk 37 of 59
+2026/09/28 03:30:44 PM INFO: Finished extracting reads for chunk 38 of 59
+2026/09/28 03:30:46 PM INFO: Finished extracting reads for chunk 39 of 59
+2026/09/28 03:30:47 PM INFO: Finished extracting reads for chunk 40 of 59
+2026/09/28 03:30:49 PM INFO: Finished extracting reads for chunk 41 of 59
+2026/09/28 03:30:50 PM INFO: Finished extracting reads for chunk 42 of 59
+2026/09/28 03:30:52 PM INFO: Finished extracting reads for chunk 43 of 59
+2026/09/28 03:30:53 PM INFO: Finished extracting reads for chunk 44 of 59
+2026/09/28 03:30:55 PM INFO: Finished extracting reads for chunk 45 of 59
+2026/09/28 03:30:55 PM INFO: Finished extracting reads for chunk 46 of 59
+2026/09/28 03:30:57 PM INFO: Finished extracting reads for chunk 47 of 59
+2026/09/28 03:30:58 PM INFO: Finished extracting reads for chunk 48 of 59
+2026/09/28 03:31:00 PM INFO: Finished extracting reads for chunk 49 of 59
+2026/09/28 03:31:01 PM INFO: Finished extracting reads for chunk 50 of 59
+2026/09/28 03:31:02 PM INFO: Finished extracting reads for chunk 51 of 59
+2026/09/28 03:31:04 PM INFO: Finished extracting reads for chunk 52 of 59
+2026/09/28 03:31:05 PM INFO: Finished extracting reads for chunk 53 of 59
+2026/09/28 03:31:07 PM INFO: Finished extracting reads for chunk 54 of 59
+2026/09/28 03:31:08 PM INFO: Finished extracting reads for chunk 55 of 59
+2026/09/28 03:31:10 PM INFO: Finished extracting reads for chunk 56 of 59
+2026/09/28 03:31:11 PM INFO: Finished extracting reads for chunk 57 of 59
+2026/09/28 03:31:13 PM INFO: Finished extracting reads for chunk 58 of 59
+2026/09/28 03:31:13 PM INFO: Finished extracting reads for chunk 59 of 59
+2026/09/28 03:31:13 PM INFO: After read extraction, 73093 sequence(s) remain
+2026/09/28 03:31:13 PM INFO: Running taxonomic assignment ..
+2026/09/28 03:31:13 PM INFO: Assigning taxonomy by singlem query ..
+2026/09/28 03:31:30 PM INFO: Progress: 189/7893 (2%)
+2026/09/28 03:31:36 PM INFO: Progress: 1843/7893 (23%)
+2026/09/28 03:31:43 PM INFO: Progress: 3538/7893 (44%)
+2026/09/28 03:31:48 PM INFO: Progress: 5022/7893 (63%)
+2026/09/28 03:31:53 PM INFO: Progress: 6579/7893 (83%)
+2026/09/28 03:31:58 PM INFO: Finished running singlem query-based taxonomic assignment, now running diamond using 2 thread(s) ..
+2026/09/28 03:31:58 PM INFO: Assigning taxonomy with DIAMOND blastx to 16790 OTUs (The 63.6% that were not assigned by smafa) ..
+2026/09/28 03:34:44 PM INFO: Finished DIAMOND blastx chunk 1 of 118
+2026/09/28 03:35:18 PM INFO: Finished DIAMOND blastx chunk 2 of 118
+2026/09/28 03:36:11 PM INFO: Finished DIAMOND blastx chunk 3 of 118
+2026/09/28 03:37:00 PM INFO: Finished DIAMOND blastx chunk 4 of 118
+2026/09/28 03:39:05 PM INFO: Finished DIAMOND blastx chunk 5 of 118
+2026/09/28 03:40:27 PM INFO: Finished DIAMOND blastx chunk 6 of 118
+2026/09/28 03:41:46 PM INFO: Finished DIAMOND blastx chunk 7 of 118
+2026/09/28 03:43:39 PM INFO: Finished DIAMOND blastx chunk 8 of 118
+2026/09/28 03:44:29 PM INFO: Finished DIAMOND blastx chunk 9 of 118
+2026/09/28 03:46:08 PM INFO: Finished DIAMOND blastx chunk 10 of 118
+2026/09/28 03:47:48 PM INFO: Finished DIAMOND blastx chunk 11 of 118
+2026/09/28 03:49:23 PM INFO: Finished DIAMOND blastx chunk 12 of 118
+2026/09/28 03:50:24 PM INFO: Finished DIAMOND blastx chunk 13 of 118
+2026/09/28 03:51:31 PM INFO: Finished DIAMOND blastx chunk 14 of 118
+2026/09/28 03:53:40 PM INFO: Finished DIAMOND blastx chunk 15 of 118
+2026/09/28 03:54:39 PM INFO: Finished DIAMOND blastx chunk 16 of 118
+2026/09/28 03:55:20 PM INFO: Finished DIAMOND blastx chunk 17 of 118
+2026/09/28 03:56:04 PM INFO: Finished DIAMOND blastx chunk 18 of 118
+2026/09/28 03:58:02 PM INFO: Finished DIAMOND blastx chunk 19 of 118
+2026/09/28 03:58:37 PM INFO: Finished DIAMOND blastx chunk 20 of 118
+2026/09/28 04:00:42 PM INFO: Finished DIAMOND blastx chunk 21 of 118
+2026/09/28 04:00:50 PM INFO: Finished DIAMOND blastx chunk 22 of 118
+2026/09/28 04:02:37 PM INFO: Finished DIAMOND blastx chunk 23 of 118
+2026/09/28 04:02:40 PM INFO: Finished DIAMOND blastx chunk 24 of 118
+2026/09/28 04:04:21 PM INFO: Finished DIAMOND blastx chunk 25 of 118
+2026/09/28 04:04:47 PM INFO: Finished DIAMOND blastx chunk 26 of 118
+2026/09/28 04:06:00 PM INFO: Finished DIAMOND blastx chunk 27 of 118
+2026/09/28 04:06:22 PM INFO: Finished DIAMOND blastx chunk 28 of 118
+2026/09/28 04:07:51 PM INFO: Finished DIAMOND blastx chunk 29 of 118
+2026/09/28 04:08:22 PM INFO: Finished DIAMOND blastx chunk 30 of 118
+2026/09/28 04:10:57 PM INFO: Finished DIAMOND blastx chunk 31 of 118
+2026/09/28 04:10:57 PM INFO: Finished DIAMOND blastx chunk 31 of 118
+2026/09/28 04:10:57 PM INFO: Finished DIAMOND blastx chunk 32 of 118
+2026/09/28 04:10:58 PM INFO: Finished DIAMOND blastx chunk 33 of 118
+2026/09/28 04:10:59 PM INFO: Finished DIAMOND blastx chunk 34 of 118
+2026/09/28 04:11:00 PM INFO: Finished DIAMOND blastx chunk 35 of 118
+2026/09/28 04:11:00 PM INFO: Finished DIAMOND blastx chunk 36 of 118
+2026/09/28 04:11:01 PM INFO: Finished DIAMOND blastx chunk 37 of 118
+2026/09/28 04:11:02 PM INFO: Finished DIAMOND blastx chunk 38 of 118
+2026/09/28 04:11:02 PM INFO: Finished DIAMOND blastx chunk 39 of 118
+2026/09/28 04:11:02 PM INFO: Finished DIAMOND blastx chunk 40 of 118
+2026/09/28 04:11:03 PM INFO: Finished DIAMOND blastx chunk 41 of 118
+2026/09/28 04:11:04 PM INFO: Finished DIAMOND blastx chunk 42 of 118
+2026/09/28 04:11:05 PM INFO: Finished DIAMOND blastx chunk 43 of 118
+2026/09/28 04:11:05 PM INFO: Finished DIAMOND blastx chunk 44 of 118
+2026/09/28 04:11:07 PM INFO: Finished DIAMOND blastx chunk 45 of 118
+2026/09/28 04:11:07 PM INFO: Finished DIAMOND blastx chunk 46 of 118
+2026/09/28 04:11:07 PM INFO: Finished DIAMOND blastx chunk 47 of 118
+2026/09/28 04:11:07 PM INFO: Finished DIAMOND blastx chunk 48 of 118
+2026/09/28 04:11:07 PM INFO: Finished DIAMOND blastx chunk 49 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 50 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 51 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 52 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 53 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 54 of 118
+2026/09/28 04:11:08 PM INFO: Finished DIAMOND blastx chunk 55 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 56 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 57 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 58 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 59 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 60 of 118
+2026/09/28 04:11:09 PM INFO: Finished DIAMOND blastx chunk 61 of 118
+2026/09/28 04:11:10 PM INFO: Finished DIAMOND blastx chunk 62 of 118
+2026/09/28 04:11:10 PM INFO: Finished DIAMOND blastx chunk 63 of 118
+2026/09/28 04:11:10 PM INFO: Finished DIAMOND blastx chunk 64 of 118
+2026/09/28 04:11:10 PM INFO: Finished DIAMOND blastx chunk 65 of 118
+2026/09/28 04:11:10 PM INFO: Finished DIAMOND blastx chunk 66 of 118
+2026/09/28 04:11:11 PM INFO: Finished DIAMOND blastx chunk 67 of 118
+2026/09/28 04:11:11 PM INFO: Finished DIAMOND blastx chunk 68 of 118
+2026/09/28 04:11:11 PM INFO: Finished DIAMOND blastx chunk 69 of 118
+2026/09/28 04:11:11 PM INFO: Finished DIAMOND blastx chunk 70 of 118
+2026/09/28 04:11:11 PM INFO: Finished DIAMOND blastx chunk 71 of 118
+2026/09/28 04:11:12 PM INFO: Finished DIAMOND blastx chunk 72 of 118
+2026/09/28 04:11:13 PM INFO: Finished DIAMOND blastx chunk 73 of 118
+2026/09/28 04:11:14 PM INFO: Finished DIAMOND blastx chunk 74 of 118
+2026/09/28 04:14:44 PM INFO: Finished DIAMOND blastx chunk 75 of 118
+2026/09/28 04:14:50 PM INFO: Finished DIAMOND blastx chunk 76 of 118
+2026/09/28 04:16:34 PM INFO: Finished DIAMOND blastx chunk 77 of 118
+2026/09/28 04:16:47 PM INFO: Finished DIAMOND blastx chunk 78 of 118
+2026/09/28 04:18:49 PM INFO: Finished DIAMOND blastx chunk 79 of 118
+2026/09/28 04:18:51 PM INFO: Finished DIAMOND blastx chunk 80 of 118
+2026/09/28 04:21:25 PM INFO: Finished DIAMOND blastx chunk 81 of 118
+2026/09/28 04:21:35 PM INFO: Finished DIAMOND blastx chunk 82 of 118
+2026/09/28 04:22:25 PM INFO: Finished DIAMOND blastx chunk 83 of 118
+2026/09/28 04:22:28 PM INFO: Finished DIAMOND blastx chunk 84 of 118
+2026/09/28 04:24:39 PM INFO: Finished DIAMOND blastx chunk 85 of 118
+2026/09/28 04:25:28 PM INFO: Finished DIAMOND blastx chunk 86 of 118
+2026/09/28 04:25:37 PM INFO: Finished DIAMOND blastx chunk 87 of 118
+2026/09/28 04:26:29 PM INFO: Finished DIAMOND blastx chunk 88 of 118
+2026/09/28 04:28:16 PM INFO: Finished DIAMOND blastx chunk 89 of 118
+2026/09/28 04:28:35 PM INFO: Finished DIAMOND blastx chunk 90 of 118
+2026/09/28 04:29:03 PM INFO: Finished DIAMOND blastx chunk 91 of 118
+2026/09/28 04:29:25 PM INFO: Finished DIAMOND blastx chunk 92 of 118
+2026/09/28 04:30:58 PM INFO: Finished DIAMOND blastx chunk 93 of 118
+2026/09/28 04:31:07 PM INFO: Finished DIAMOND blastx chunk 94 of 118
+2026/09/28 04:32:27 PM INFO: Finished DIAMOND blastx chunk 95 of 118
+2026/09/28 04:32:48 PM INFO: Finished DIAMOND blastx chunk 96 of 118
+2026/09/28 04:33:30 PM INFO: Finished DIAMOND blastx chunk 97 of 118
+2026/09/28 04:33:51 PM INFO: Finished DIAMOND blastx chunk 98 of 118
+2026/09/28 04:35:13 PM INFO: Finished DIAMOND blastx chunk 99 of 118
+2026/09/28 04:35:39 PM INFO: Finished DIAMOND blastx chunk 100 of 118
+2026/09/28 04:35:45 PM INFO: Finished DIAMOND blastx chunk 101 of 118
+2026/09/28 04:36:12 PM INFO: Finished DIAMOND blastx chunk 102 of 118
+2026/09/28 04:38:02 PM INFO: Finished DIAMOND blastx chunk 103 of 118
+2026/09/28 04:38:41 PM INFO: Finished DIAMOND blastx chunk 104 of 118
+2026/09/28 04:39:05 PM INFO: Finished DIAMOND blastx chunk 105 of 118
+2026/09/28 04:39:40 PM INFO: Finished DIAMOND blastx chunk 106 of 118
+2026/09/28 04:43:38 PM INFO: Finished DIAMOND blastx chunk 107 of 118
+2026/09/28 04:44:26 PM INFO: Finished DIAMOND blastx chunk 108 of 118
+2026/09/28 04:46:37 PM INFO: Finished DIAMOND blastx chunk 109 of 118
+2026/09/28 04:47:10 PM INFO: Finished DIAMOND blastx chunk 110 of 118
+2026/09/28 04:51:06 PM INFO: Finished DIAMOND blastx chunk 111 of 118
+2026/09/28 04:52:18 PM INFO: Finished DIAMOND blastx chunk 112 of 118
+2026/09/28 04:53:02 PM INFO: Finished DIAMOND blastx chunk 113 of 118
+2026/09/28 04:53:30 PM INFO: Finished DIAMOND blastx chunk 114 of 118
+2026/09/28 04:54:26 PM INFO: Finished DIAMOND blastx chunk 115 of 118
+2026/09/28 04:55:07 PM INFO: Finished DIAMOND blastx chunk 116 of 118
+2026/09/28 04:56:49 PM INFO: Finished DIAMOND blastx chunk 117 of 118
+2026/09/28 04:57:28 PM INFO: Finished DIAMOND blastx chunk 118 of 118
+2026/09/28 04:57:28 PM INFO: Finished running taxonomic assignment
+2026/09/28 04:58:02 PM INFO: Finished
+2026/09/28 04:58:02 PM INFO: Writing /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv
+2026/09/28 04:58:02 PM INFO: Writing taxonomic profile to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv
+2026/09/28 04:58:02 PM INFO: Using minimum taxon coverage of 0.35
+2026/09/28 04:58:02 PM INFO: Removing off-target OTUs from TF-2587-RF-5-B_S4_L001_R1
+2026/09/28 04:58:02 PM INFO: Found 35791.95 assigned and 0.00 unassigned OTU coverage units
+2026/09/28 04:58:02 PM INFO: After removing off-target OTUs, found 30091.35 assigned and 0.00 unassigned OTU coverage units
+2026/09/28 04:58:02 PM INFO: Total OTU coverage by query: 11334.89855749553
+2026/09/28 04:58:02 PM INFO: Total OTU coverage by diamond: 18756.45272374535
+2026/09/28 04:58:02 PM INFO: Applying species-wise expectation maximization algorithm to OTU table
+2026/09/28 04:58:02 PM INFO: Found 6 species uniquely hitting >= 10 marker genes
+2026/09/28 04:58:06 PM INFO: Species-wise EM converged in 96 steps
+2026/09/28 04:58:06 PM INFO: Gathering equivalence classes
+2026/09/28 04:58:06 PM INFO: Demultiplexing OTU table
+2026/09/28 04:58:06 PM INFO: Finished expectation maximization
+2026/09/28 04:58:06 PM INFO: Converting DIAMOND IDs to taxons
+2026/09/28 04:58:34 PM INFO: Converted 4603 Diamond-assigned OTU taxon_ids to taxon strings
+2026/09/28 04:58:34 PM INFO: Applying genus-wise expectation maximization algorithm to OTU table
+2026/09/28 04:58:38 PM INFO: Genus-wise EM converged in 79 steps
+2026/09/28 04:58:38 PM INFO: Gathering equivalence classes
+2026/09/28 04:58:38 PM INFO: Demultiplexing OTU table
+2026/09/28 04:58:38 PM INFO: Finished genus expectation maximization
+2026/09/28 04:58:39 PM INFO: Total profile coverage after condense domain to species: 844.656681119038
+2026/09/28 04:58:39 PM INFO: Total profile coverage after push down: 844.6566811190384
+2026/09/28 04:58:39 PM INFO: Taxonomic level coverage:
+2026/09/28 04:58:39 PM INFO: kingdom:   3.68%   2 taxons
+2026/09/28 04:58:39 PM INFO: phylum:    2.37%   20 taxons
+2026/09/28 04:58:39 PM INFO: class:     5.40%   31 taxons
+2026/09/28 04:58:39 PM INFO: order:     7.14%   47 taxons
+2026/09/28 04:58:39 PM INFO: family:    11.16%  60 taxons
+2026/09/28 04:58:39 PM INFO: genus:     46.45%  66 taxons
+2026/09/28 04:58:39 PM INFO: species:   23.78%  27 taxons
+2026/09/28 04:58:39 PM INFO: Finished condense
+```
+
 ### RF-2-B
 ```
 singlem pipe \
@@ -1177,13 +1429,281 @@ singlem pipe \
     --threads 2
 ```
 
-
-### RF-5-B
+Output:
 ```
-singlem pipe \
-    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz \
-    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
-    --otu-table /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_otu_table.tsv \
-    --taxonomic-profile /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-5-B_taxonomic_profile.tsv \
-    --threads 2
+2026/09/28 08:41:31 AM INFO: SingleM v0.21.4
+2026/09/28 08:41:31 AM INFO: Retrieval successful. Location of backpack is: /labgenomaarea2/valentina.pavelecini/EHI/SingleM/metapackage/S6.5.0.GTDB_r232.metapackage_20260319.smpkg.zb
+2026/09/28 08:41:31 AM INFO: Loaded 59 SingleM packages
+2026/09/28 08:41:37 AM INFO: Using as input 1 different pairs of sequence files e.g. /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz & /labgenoma>
+2026/09/28 08:41:37 AM INFO: DIAMOND version: diamond version 2.2.6
+2026/09/28 08:41:37 AM INFO: Filtering sequence files through DIAMOND blastx
+2026/09/28 08:41:37 AM INFO: Filtering TF-2587-RF-2-B_S2_L001_R1.fastq.gz
+^M                                                                                ^M2026/09/28 09:19:59 AM INFO: Found 150227 hits for TF-2587-RF-2-B_S2_L001_R1.fastq.gz
+2026/09/28 09:19:59 AM INFO: Filtering TF-2587-RF-2-B_S2_L001_R2.fastq.gz
+^M                                                                                ^M2026/09/28 09:58:28 AM INFO: Found 150981 hits for TF-2587-RF-2-B_S2_L001_R2.fastq.gz
+2026/09/28 09:58:28 AM INFO: Finished DIAMOND prefilter phase
+2026/09/28 09:58:28 AM INFO: Assigning sequences to SingleM packages with DIAMOND ..
+2026/09/28 09:58:28 AM INFO: Extracting reads from 1 sample(s) across 59 package(s) using 2 thread(s)
+2026/09/28 10:00:33 AM INFO: Finished extracting reads for chunk 1 of 59
+2026/09/28 10:00:34 AM INFO: Finished extracting reads for chunk 2 of 59
+2026/09/28 10:00:38 AM INFO: Finished extracting reads for chunk 3 of 59
+2026/09/28 10:00:40 AM INFO: Finished extracting reads for chunk 4 of 59
+2026/09/28 10:00:44 AM INFO: Finished extracting reads for chunk 5 of 59
+2026/09/28 10:00:45 AM INFO: Finished extracting reads for chunk 6 of 59
+2026/09/28 10:00:49 AM INFO: Finished extracting reads for chunk 7 of 59
+2026/09/28 10:00:51 AM INFO: Finished extracting reads for chunk 8 of 59
+2026/09/28 10:00:54 AM INFO: Finished extracting reads for chunk 9 of 59
+2026/09/28 10:00:57 AM INFO: Finished extracting reads for chunk 10 of 59
+2026/09/28 10:01:00 AM INFO: Finished extracting reads for chunk 11 of 59
+2026/09/28 10:01:03 AM INFO: Finished extracting reads for chunk 12 of 59
+2026/09/28 10:01:05 AM INFO: Finished extracting reads for chunk 13 of 59
+2026/09/28 10:01:08 AM INFO: Finished extracting reads for chunk 14 of 59
+2026/09/28 10:01:10 AM INFO: Finished extracting reads for chunk 15 of 59
+2026/09/28 10:01:12 AM INFO: Finished extracting reads for chunk 16 of 59
+2026/09/28 10:01:12 AM INFO: Finished extracting reads for chunk 17 of 59
+2026/09/28 10:01:15 AM INFO: Finished extracting reads for chunk 18 of 59
+2026/09/28 10:01:15 AM INFO: Finished extracting reads for chunk 19 of 59
+2026/09/28 10:01:16 AM INFO: Finished extracting reads for chunk 20 of 59
+2026/09/28 10:01:17 AM INFO: Finished extracting reads for chunk 21 of 59
+2026/09/28 10:01:18 AM INFO: Finished extracting reads for chunk 22 of 59
+2026/09/28 10:01:19 AM INFO: Finished extracting reads for chunk 23 of 59
+2026/09/28 10:01:20 AM INFO: Finished extracting reads for chunk 24 of 59
+2026/09/28 10:01:21 AM INFO: Finished extracting reads for chunk 25 of 59
+2026/09/28 10:01:21 AM INFO: Finished extracting reads for chunk 26 of 59
+2026/09/28 10:01:22 AM INFO: Finished extracting reads for chunk 27 of 59
+2026/09/28 10:01:23 AM INFO: Finished extracting reads for chunk 28 of 59
+2026/09/28 10:01:24 AM INFO: Finished extracting reads for chunk 29 of 59
+2026/09/28 10:01:25 AM INFO: Finished extracting reads for chunk 30 of 59
+2026/09/28 10:01:26 AM INFO: Finished extracting reads for chunk 31 of 59
+2026/09/28 10:01:27 AM INFO: Finished extracting reads for chunk 32 of 59
+2026/09/28 10:01:28 AM INFO: Finished extracting reads for chunk 33 of 59
+2026/09/28 10:01:28 AM INFO: Finished extracting reads for chunk 34 of 59
+2026/09/28 10:01:30 AM INFO: Finished extracting reads for chunk 35 of 59
+2026/09/28 10:01:30 AM INFO: Finished extracting reads for chunk 36 of 59
+2026/09/28 10:01:33 AM INFO: Finished extracting reads for chunk 37 of 59
+2026/09/28 10:01:37 AM INFO: Finished extracting reads for chunk 38 of 59
+2026/09/28 10:01:40 AM INFO: Finished extracting reads for chunk 39 of 59
+2026/09/28 10:01:41 AM INFO: Finished extracting reads for chunk 40 of 59
+2026/09/28 10:01:46 AM INFO: Finished extracting reads for chunk 41 of 59
+2026/09/28 10:01:46 AM INFO: Finished extracting reads for chunk 42 of 59
+2026/09/28 10:01:50 AM INFO: Finished extracting reads for chunk 43 of 59
+2026/09/28 10:01:51 AM INFO: Finished extracting reads for chunk 44 of 59
+2026/09/28 10:01:56 AM INFO: Finished extracting reads for chunk 45 of 59
+2026/09/28 10:01:56 AM INFO: Finished extracting reads for chunk 46 of 59
+2026/09/28 10:02:00 AM INFO: Finished extracting reads for chunk 47 of 59
+2026/09/28 10:02:02 AM INFO: Finished extracting reads for chunk 48 of 59
+2026/09/28 10:02:05 AM INFO: Finished extracting reads for chunk 49 of 59
+2026/09/28 10:02:07 AM INFO: Finished extracting reads for chunk 50 of 59
+2026/09/28 10:02:09 AM INFO: Finished extracting reads for chunk 51 of 59
+2026/09/28 10:02:12 AM INFO: Finished extracting reads for chunk 52 of 59
+2026/09/28 10:02:14 AM INFO: Finished extracting reads for chunk 53 of 59
+2026/09/28 10:02:17 AM INFO: Finished extracting reads for chunk 54 of 59
+2026/09/28 10:02:20 AM INFO: Finished extracting reads for chunk 55 of 59
+2026/09/28 10:02:23 AM INFO: Finished extracting reads for chunk 56 of 59
+2026/09/28 10:02:24 AM INFO: Finished extracting reads for chunk 57 of 59
+2026/09/28 10:02:28 AM INFO: Finished extracting reads for chunk 58 of 59
+2026/09/28 10:02:28 AM INFO: Finished extracting reads for chunk 59 of 59
+2026/09/28 10:02:28 AM INFO: After read extraction, 139297 sequence(s) remain
+2026/09/28 10:02:28 AM INFO: Running taxonomic assignment ..
+2026/09/28 10:02:28 AM INFO: Assigning taxonomy by singlem query ..
+2026/09/28 10:02:55 AM INFO: Progress: 330/12696 (2%)
+2026/09/28 10:03:04 AM INFO: Progress: 640/12696 (5%)
+2026/09/28 10:03:13 AM INFO: Progress: 923/12696 (7%)
+2026/09/28 10:03:22 AM INFO: Progress: 1267/12696 (9%)
+2026/09/28 10:03:31 AM INFO: Progress: 1581/12696 (12%)
+2026/09/28 10:03:40 AM INFO: Progress: 1885/12696 (14%)
+2026/09/28 10:03:50 AM INFO: Progress: 2192/12696 (17%)
+2026/09/28 10:03:59 AM INFO: Progress: 2536/12696 (19%)
+2026/09/28 10:04:08 AM INFO: Progress: 2815/12696 (22%)
+2026/09/28 10:04:17 AM INFO: Progress: 3133/12696 (24%)
+2026/09/28 10:04:26 AM INFO: Progress: 3463/12696 (27%)
+2026/09/28 10:04:35 AM INFO: Progress: 3709/12696 (29%)
+2026/09/28 10:04:44 AM INFO: Progress: 4015/12696 (31%)
+2026/09/28 10:04:53 AM INFO: Progress: 4331/12696 (34%)
+2026/09/28 10:05:03 AM INFO: Progress: 4571/12696 (36%)
+2026/09/28 10:05:13 AM INFO: Progress: 4867/12696 (38%)
+2026/09/28 10:05:25 AM INFO: Progress: 5451/12696 (42%)
+2026/09/28 10:05:41 AM INFO: Progress: 5577/12696 (43%)
+2026/09/28 10:05:51 AM INFO: Progress: 5656/12696 (44%)
+2026/09/28 10:05:58 AM INFO: Progress: 5723/12696 (45%)
+2026/09/28 10:06:05 AM INFO: Progress: 5804/12696 (45%)
+2026/09/28 10:06:13 AM INFO: Progress: 5838/12696 (45%)
+2026/09/28 10:06:19 AM INFO: Progress: 5900/12696 (46%)
+2026/09/28 10:06:28 AM INFO: Progress: 6247/12696 (49%)
+2026/09/28 10:06:37 AM INFO: Progress: 6558/12696 (51%)
+2026/09/28 10:06:46 AM INFO: Progress: 6881/12696 (54%)
+2026/09/28 10:06:56 AM INFO: Progress: 7204/12696 (56%)
+2026/09/28 10:07:05 AM INFO: Progress: 7536/12696 (59%)
+2026/09/28 10:07:14 AM INFO: Progress: 7820/12696 (61%)
+2026/09/28 10:07:23 AM INFO: Progress: 8018/12696 (63%)
+2026/09/28 10:07:33 AM INFO: Progress: 8330/12696 (65%)
+2026/09/28 10:07:42 AM INFO: Progress: 8649/12696 (68%)
+2026/09/28 10:07:51 AM INFO: Progress: 8890/12696 (70%)
+2026/09/28 10:08:01 AM INFO: Progress: 9153/12696 (72%)
+2026/09/28 10:08:10 AM INFO: Progress: 9466/12696 (74%)
+2026/09/28 10:08:19 AM INFO: Progress: 9749/12696 (76%)
+2026/09/28 10:08:28 AM INFO: Progress: 10044/12696 (79%)
+2026/09/28 10:08:38 AM INFO: Progress: 10303/12696 (81%)
+2026/09/28 10:08:47 AM INFO: Progress: 10598/12696 (83%)
+2026/09/28 10:08:57 AM INFO: Progress: 10917/12696 (85%)
+2026/09/28 10:09:06 AM INFO: Progress: 11251/12696 (88%)
+2026/09/28 10:09:15 AM INFO: Progress: 11579/12696 (91%)
+2026/09/28 10:09:24 AM INFO: Progress: 11846/12696 (93%)
+2026/09/28 10:09:33 AM INFO: Progress: 12096/12696 (95%)
+2026/09/28 10:09:42 AM INFO: Progress: 12387/12696 (97%)
+2026/09/28 10:09:52 AM INFO: Progress: 12696/12696 (100%)
+2026/09/28 10:09:52 AM INFO: Finished running singlem query-based taxonomic assignment, now running diamond using 2 thread(s) ..
+2026/09/28 10:09:52 AM INFO: Assigning taxonomy with DIAMOND blastx to 42014 OTUs (The 81.6% that were not assigned by smafa) ..
+2026/09/28 10:16:56 AM INFO: Finished DIAMOND blastx chunk 1 of 118
+2026/09/28 10:17:06 AM INFO: Finished DIAMOND blastx chunk 2 of 118
+2026/09/28 10:20:12 AM INFO: Finished DIAMOND blastx chunk 3 of 118
+2026/09/28 10:20:18 AM INFO: Finished DIAMOND blastx chunk 4 of 118
+2026/09/28 10:27:23 AM INFO: Finished DIAMOND blastx chunk 5 of 118
+2026/09/28 10:27:37 AM INFO: Finished DIAMOND blastx chunk 6 of 118
+2026/09/28 10:34:05 AM INFO: Finished DIAMOND blastx chunk 7 of 118
+2026/09/28 10:34:35 AM INFO: Finished DIAMOND blastx chunk 8 of 118
+2026/09/28 10:39:15 AM INFO: Finished DIAMOND blastx chunk 9 of 118
+2026/09/28 10:40:43 AM INFO: Finished DIAMOND blastx chunk 10 of 118
+2026/09/28 10:45:57 AM INFO: Finished DIAMOND blastx chunk 11 of 118
+2026/09/28 10:47:45 AM INFO: Finished DIAMOND blastx chunk 12 of 118
+2026/09/28 10:52:14 AM INFO: Finished DIAMOND blastx chunk 13 of 118
+2026/09/28 10:53:59 AM INFO: Finished DIAMOND blastx chunk 14 of 118
+2026/09/28 11:03:09 AM INFO: Finished DIAMOND blastx chunk 15 of 118
+2026/09/28 11:07:23 AM INFO: Finished DIAMOND blastx chunk 16 of 118
+2026/09/28 11:07:56 AM INFO: Finished DIAMOND blastx chunk 17 of 118
+2026/09/28 11:13:07 AM INFO: Finished DIAMOND blastx chunk 18 of 118
+2026/09/28 11:15:38 AM INFO: Finished DIAMOND blastx chunk 19 of 118
+2026/09/28 11:19:14 AM INFO: Finished DIAMOND blastx chunk 20 of 118
+2026/09/28 11:21:26 AM INFO: Finished DIAMOND blastx chunk 21 of 118
+2026/09/28 11:24:25 AM INFO: Finished DIAMOND blastx chunk 22 of 118
+2026/09/28 11:24:33 AM INFO: Finished DIAMOND blastx chunk 23 of 118
+2026/09/28 11:28:44 AM INFO: Finished DIAMOND blastx chunk 24 of 118
+2026/09/28 11:28:55 AM INFO: Finished DIAMOND blastx chunk 25 of 118
+2026/09/28 11:32:27 AM INFO: Finished DIAMOND blastx chunk 26 of 118
+2026/09/28 11:33:39 AM INFO: Finished DIAMOND blastx chunk 27 of 118
+2026/09/28 11:35:55 AM INFO: Finished DIAMOND blastx chunk 28 of 118
+2026/09/28 11:39:56 AM INFO: Finished DIAMOND blastx chunk 29 of 118
+2026/09/28 11:40:49 AM INFO: Finished DIAMOND blastx chunk 30 of 118
+2026/09/28 11:45:30 AM INFO: Finished DIAMOND blastx chunk 31 of 118
+2026/09/28 11:45:31 AM INFO: Finished DIAMOND blastx chunk 32 of 118
+2026/09/28 11:45:31 AM INFO: Finished DIAMOND blastx chunk 33 of 118
+2026/09/28 11:45:31 AM INFO: Finished DIAMOND blastx chunk 34 of 118
+2026/09/28 11:45:32 AM INFO: Finished DIAMOND blastx chunk 35 of 118
+2026/09/28 11:45:32 AM INFO: Finished DIAMOND blastx chunk 36 of 118
+2026/09/28 11:45:33 AM INFO: Finished DIAMOND blastx chunk 37 of 118
+2026/09/28 11:45:33 AM INFO: Finished DIAMOND blastx chunk 38 of 118
+2026/09/28 11:45:34 AM INFO: Finished DIAMOND blastx chunk 39 of 118
+2026/09/28 11:45:34 AM INFO: Finished DIAMOND blastx chunk 40 of 118
+2026/09/28 11:45:34 AM INFO: Finished DIAMOND blastx chunk 41 of 118
+2026/09/28 11:45:34 AM INFO: Finished DIAMOND blastx chunk 42 of 118
+2026/09/28 11:45:36 AM INFO: Finished DIAMOND blastx chunk 43 of 118
+2026/09/28 11:45:36 AM INFO: Finished DIAMOND blastx chunk 44 of 118
+2026/09/28 11:45:37 AM INFO: Finished DIAMOND blastx chunk 45 of 118
+2026/09/28 11:45:37 AM INFO: Finished DIAMOND blastx chunk 46 of 118
+2026/09/28 11:45:38 AM INFO: Finished DIAMOND blastx chunk 47 of 118
+2026/09/28 11:45:38 AM INFO: Finished DIAMOND blastx chunk 48 of 118
+2026/09/28 11:45:39 AM INFO: Finished DIAMOND blastx chunk 49 of 118
+2026/09/28 11:45:39 AM INFO: Finished DIAMOND blastx chunk 50 of 118
+2026/09/28 11:45:39 AM INFO: Finished DIAMOND blastx chunk 51 of 118
+2026/09/28 11:45:39 AM INFO: Finished DIAMOND blastx chunk 52 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 53 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 54 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 55 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 56 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 57 of 118
+2026/09/28 11:45:40 AM INFO: Finished DIAMOND blastx chunk 58 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 59 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 60 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 61 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 62 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 63 of 118
+2026/09/28 11:45:41 AM INFO: Finished DIAMOND blastx chunk 64 of 118
+2026/09/28 11:45:42 AM INFO: Finished DIAMOND blastx chunk 65 of 118
+2026/09/28 11:45:42 AM INFO: Finished DIAMOND blastx chunk 66 of 118
+2026/09/28 11:45:43 AM INFO: Finished DIAMOND blastx chunk 67 of 118
+2026/09/28 11:45:43 AM INFO: Finished DIAMOND blastx chunk 68 of 118
+2026/09/28 11:45:43 AM INFO: Finished DIAMOND blastx chunk 69 of 118
+2026/09/28 11:45:43 AM INFO: Finished DIAMOND blastx chunk 70 of 118
+2026/09/28 11:45:44 AM INFO: Finished DIAMOND blastx chunk 71 of 118
+2026/09/28 11:45:44 AM INFO: Finished DIAMOND blastx chunk 72 of 118
+2026/09/28 11:45:48 AM INFO: Finished DIAMOND blastx chunk 73 of 118
+2026/09/28 11:45:48 AM INFO: Finished DIAMOND blastx chunk 74 of 118
+2026/09/28 11:54:05 AM INFO: Finished DIAMOND blastx chunk 75 of 118
+2026/09/28 11:55:24 AM INFO: Finished DIAMOND blastx chunk 76 of 118
+2026/09/28 12:00:05 PM INFO: Finished DIAMOND blastx chunk 77 of 118
+2026/09/28 12:00:36 PM INFO: Finished DIAMOND blastx chunk 78 of 118
+2026/09/28 12:06:36 PM INFO: Finished DIAMOND blastx chunk 79 of 118
+2026/09/28 12:07:04 PM INFO: Finished DIAMOND blastx chunk 80 of 118
+2026/09/28 12:12:45 PM INFO: Finished DIAMOND blastx chunk 81 of 118
+2026/09/28 12:13:47 PM INFO: Finished DIAMOND blastx chunk 82 of 118
+2026/09/28 12:16:41 PM INFO: Finished DIAMOND blastx chunk 83 of 118
+2026/09/28 12:17:12 PM INFO: Finished DIAMOND blastx chunk 84 of 118
+2026/09/28 12:20:28 PM INFO: Finished DIAMOND blastx chunk 85 of 118
+2026/09/28 12:21:10 PM INFO: Finished DIAMOND blastx chunk 86 of 118
+2026/09/28 12:23:34 PM INFO: Finished DIAMOND blastx chunk 87 of 118
+2026/09/28 12:24:01 PM INFO: Finished DIAMOND blastx chunk 88 of 118
+2026/09/28 12:29:48 PM INFO: Finished DIAMOND blastx chunk 89 of 118
+2026/09/28 12:30:23 PM INFO: Finished DIAMOND blastx chunk 90 of 118
+2026/09/28 12:31:38 PM INFO: Finished DIAMOND blastx chunk 91 of 118
+2026/09/28 12:32:03 PM INFO: Finished DIAMOND blastx chunk 92 of 118
+2026/09/28 12:34:50 PM INFO: Finished DIAMOND blastx chunk 93 of 118
+2026/09/28 12:35:34 PM INFO: Finished DIAMOND blastx chunk 94 of 118
+2026/09/28 12:39:30 PM INFO: Finished DIAMOND blastx chunk 95 of 118
+2026/09/28 12:40:24 PM INFO: Finished DIAMOND blastx chunk 96 of 118
+2026/09/28 12:42:26 PM INFO: Finished DIAMOND blastx chunk 97 of 118
+2026/09/28 12:43:01 PM INFO: Finished DIAMOND blastx chunk 98 of 118
+2026/09/28 12:46:15 PM INFO: Finished DIAMOND blastx chunk 99 of 118
+2026/09/28 12:47:20 PM INFO: Finished DIAMOND blastx chunk 100 of 118
+2026/09/28 12:47:31 PM INFO: Finished DIAMOND blastx chunk 101 of 118
+2026/09/28 12:48:40 PM INFO: Finished DIAMOND blastx chunk 102 of 118
+2026/09/28 12:51:58 PM INFO: Finished DIAMOND blastx chunk 103 of 118
+2026/09/28 12:52:52 PM INFO: Finished DIAMOND blastx chunk 104 of 118
+2026/09/28 12:54:30 PM INFO: Finished DIAMOND blastx chunk 105 of 118
+2026/09/28 12:55:04 PM INFO: Finished DIAMOND blastx chunk 106 of 118
+2026/09/28 01:03:15 PM INFO: Finished DIAMOND blastx chunk 107 of 118
+2026/09/28 01:04:17 PM INFO: Finished DIAMOND blastx chunk 108 of 118
+2026/09/28 01:09:50 PM INFO: Finished DIAMOND blastx chunk 109 of 118
+2026/09/28 01:10:04 PM INFO: Finished DIAMOND blastx chunk 110 of 118
+2026/09/28 01:20:12 PM INFO: Finished DIAMOND blastx chunk 111 of 118
+2026/09/28 01:20:56 PM INFO: Finished DIAMOND blastx chunk 112 of 118
+2026/09/28 01:22:34 PM INFO: Finished DIAMOND blastx chunk 113 of 118
+2026/09/28 01:23:14 PM INFO: Finished DIAMOND blastx chunk 114 of 118
+2026/09/28 01:25:45 PM INFO: Finished DIAMOND blastx chunk 115 of 118
+2026/09/28 01:25:49 PM INFO: Finished DIAMOND blastx chunk 116 of 118
+2026/09/28 01:32:35 PM INFO: Finished DIAMOND blastx chunk 117 of 118
+2026/09/28 01:33:23 PM INFO: Finished DIAMOND blastx chunk 118 of 118
+2026/09/28 01:33:23 PM INFO: Finished running taxonomic assignment
+2026/09/28 01:34:20 PM INFO: Finished
+2026/09/28 01:34:20 PM INFO: Writing /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_otu_table.tsv
+2026/09/28 01:34:20 PM INFO: Writing taxonomic profile to /labgenomaarea2/valentina.pavelecini/EHI/SingleM/RF-2-B_taxonomic_profile.tsv
+2026/09/28 01:34:20 PM INFO: Using minimum taxon coverage of 0.35
+2026/09/28 01:34:20 PM INFO: Removing off-target OTUs from TF-2587-RF-2-B_S2_L001_R1
+2026/09/28 01:34:20 PM INFO: Found 69521.07 assigned and 0.00 unassigned OTU coverage units
+2026/09/28 01:34:20 PM INFO: After removing off-target OTUs, found 59802.04 assigned and 0.00 unassigned OTU coverage units
+2026/09/28 01:34:20 PM INFO: Total OTU coverage by query: 11717.857394122675
+2026/09/28 01:34:20 PM INFO: Total OTU coverage by diamond: 48084.18592057608
+2026/09/28 01:34:20 PM INFO: Applying species-wise expectation maximization algorithm to OTU table
+2026/09/28 01:34:20 PM INFO: Found 4 species uniquely hitting >= 10 marker genes
+2026/09/28 01:34:23 PM INFO: Species-wise EM converged in 57 steps
+2026/09/28 01:34:23 PM INFO: Gathering equivalence classes
+2026/09/28 01:34:23 PM INFO: Demultiplexing OTU table
+2026/09/28 01:34:23 PM INFO: Finished expectation maximization
+2026/09/28 01:34:23 PM INFO: Converting DIAMOND IDs to taxons
+2026/09/28 01:35:10 PM INFO: Converted 9156 Diamond-assigned OTU taxon_ids to taxon strings
+2026/09/28 01:35:10 PM INFO: Applying genus-wise expectation maximization algorithm to OTU table
+2026/09/28 01:35:24 PM INFO: Genus-wise EM converged in 217 steps
+2026/09/28 01:35:24 PM INFO: Gathering equivalence classes
+2026/09/28 01:35:24 PM INFO: Demultiplexing OTU table
+2026/09/28 01:35:24 PM INFO: Finished genus expectation maximization
+2026/09/28 01:35:24 PM INFO: Total profile coverage after condense domain to species: 1663.716928486934
+2026/09/28 01:35:24 PM INFO: Total profile coverage after push down: 1663.7169284869337
+2026/09/28 01:35:24 PM INFO: Taxonomic level coverage:
+2026/09/28 01:35:24 PM INFO: kingdom:   2.33%   2 taxons
+2026/09/28 01:35:24 PM INFO: phylum:    2.86%   22 taxons
+2026/09/28 01:35:24 PM INFO: class:     7.56%   46 taxons
+2026/09/28 01:35:24 PM INFO: order:     8.74%   79 taxons
+2026/09/28 01:35:24 PM INFO: family:    15.66%  133 taxons
+2026/09/28 01:35:24 PM INFO: genus:     54.84%  126 taxons
+2026/09/28 01:35:24 PM INFO: species:   8.01%   15 taxons
+2026/09/28 01:35:24 PM INFO: Finished condense
 ```
