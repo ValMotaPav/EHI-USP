@@ -1707,3 +1707,5 @@ Output:
 2026/09/28 01:35:24 PM INFO: species:   8.01%   15 taxons
 2026/09/28 01:35:24 PM INFO: Finished condense
 ```
+
+Agora, terminamos o pré-processamento dos dados e iremos prosseguir para a terceira parte: Assembly and Binning.
