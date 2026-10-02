@@ -1728,22 +1728,38 @@ Estaremos usando o Megahit, devido a ser o agrupador padrão da pipeline do EHI,
 
 Temos duas opções: rodar todas as amostras no Megahit, uma de cada vez individualmente (individual assembly), ou agrupá-las e então rodar no Megahit (coassembly). Como não fizemos a etapa de remover genoma hospedeiro, que é necessário para o coassembly, iremos em compensação fazer com o reads filtrados diretamente. Se não der certo, vamos fazer individual assembly.
 
-Primeiro definimos as variáveis R1 e R2 como, respectivamente, todos os reads filtrados R1 e todos os reads filtrados R2:
+Primeiro, abrimos uma janela do tmux com ```tmux new -s megahit``` e definimos os parâmetros da sessão para ```srun -N 1 -n 1 -c 24 -t 24:00:00 --pty bash -i```, em que:
+- ```-N 1``` = 1 máquina
+- ```-n 1``` = 1 tarefa
+- ```-c 24``` 24 CPUs/cores para essa tarefa
+- ```-t 24:00:00``` = 24 horas
+```--pty bash -i``` = abre um shell interativo
+
+Depois, definimos as variáveis R1 e R2 como, respectivamente, todos os reads filtrados R1 e todos os reads filtrados R2:
 ```
 R1="/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz"
 
 R2="/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz"
 ```
 
-Nesse caso, o comando ficaria mais ou menos assim:
+Depois, criamos uma parta dentro de Megahit chamada ```coassembly```, em que será salvo o output do comando, que vai ser mais ou menos assim:
 
 ```
 megahit \
     -t 24 \
     --verbose \
     --min-contig-len 1500 \
-    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
-    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
+    -1 "$R1" \
+    -2 "$R2" \
     -f \
-    -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/RF-2-B_assembly
+    -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log
 ```
+Em que:
+- ```-t 24``` = usa os 24 CPUs que reservamos
+- ```-1 "$R1"``` = usa as seis amostras R1 que colocamos na variável
+- ```-2 "$R2"``` = usa as seis amostras R2 que colocamos na variável
+- ```--min-contig-len 1500``` = mantém contigs maior que 1500 bp.
+- ```-f``` = força a execução caso o diretório de saída já exista
+- ```-o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \``` = coloca os resultados aqui
+- ```&> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log``` = salva output no arquivo de log
