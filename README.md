@@ -1756,10 +1756,10 @@ megahit \
     &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log
 ```
 Em que:
-- ```-t 24``` = usa os 24 CPUs que reservamos
-- ```-1 "$R1"``` = usa as seis amostras R1 que colocamos na variável
-- ```-2 "$R2"``` = usa as seis amostras R2 que colocamos na variável
-- ```--min-contig-len 1500``` = mantém contigs maior que 1500 bp.
-- ```-f``` = força a execução caso o diretório de saída já exista
-- ```-o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \``` = coloca os resultados aqui
-- ```&> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log``` = salva output no arquivo de log
+- ```-t 24``` = usa os 24 CPUs que reservamos.
+- ```-1 "$R1"``` = usa as seis amostras R1 que colocamos na variável.
+- ```-2 "$R2"``` = usa as seis amostras R2 que colocamos na variável.
+- ```--min-contig-len 1500``` = mantém contigs (sequências de DNA reconstruídas a partir de vários fragmentos menores/reads) maior que 1500 bp.
+- ```-f``` = força a execução caso o diretório de saída já exista.
+- ```-o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \``` = coloca os resultados aqui.
+- ```&> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log``` = salva output no arquivo .log.
