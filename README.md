@@ -1726,8 +1726,16 @@ Neste passo, iremos reconstruir o genoma dos microorganismos presentes nas amost
 
 Estaremos usando o Megahit, devido a ser o agrupador padrão da pipeline do EHI, sua simplicidade e aos requisitos de memória altos demais do Metaspades. Instalamos ele com ```conda install -c bioconda megahit```
 
-Temos duas opções: rodar todas as amostras no Megahit, uma de cada vez individualmente (individual assembly), ou agrupá-las e então rodar no Megahit (coassembly).
-No caso de individual assembly, o comando ficaria mais ou menos assim:
+Temos duas opções: rodar todas as amostras no Megahit, uma de cada vez individualmente (individual assembly), ou agrupá-las e então rodar no Megahit (coassembly). Como não fizemos a etapa de remover genoma hospedeiro, que é necessário para o coassembly, iremos em compensação fazer com o reads filtrados diretamente. Se não der certo, vamos fazer individual assembly.
+
+Primeiro definimos as variáveis R1 e R2 como, respectivamente, todos os reads filtrados R1 e todos os reads filtrados R2:
+```
+R1="/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz"
+
+R2="/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz,/labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz"```
+```
+
+Nesse caso, o comando ficaria mais ou menos assim:
 
 ```
 megahit \
