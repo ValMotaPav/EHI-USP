@@ -1737,5 +1737,5 @@ megahit \
     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
     -f \
-    -o /labgenomaarea2/valentina.pavelecini/EHI/Assembly/RF-2-B_assembly
+    -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/RF-2-B_assembly
 ```
