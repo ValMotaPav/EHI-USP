@@ -1724,7 +1724,7 @@ megahit \
 
 Neste passo, iremos reconstruir o genoma dos microorganismos presentes nas amostras. O material genético de todos os organismos presentes nessa amostra serão alvo do sequenciamento, para que a comunidade microbiana seja estudada por completo simultâneamente.
 
-Estaremos usando o Megahit, devido a ser o agrupador padrão da pipeline do EHI, sua simplicidade e aos requisitos de memória altos demais do Metaspades.
+Estaremos usando o Megahit, devido a ser o agrupador padrão da pipeline do EHI, sua simplicidade e aos requisitos de memória altos demais do Metaspades. Instalamos ele com ```conda install -c bioconda megahit```
 
 Temos duas opções: rodar todas as amostras no Megahit, uma de cada vez individualmente (individual assembly), ou agrupá-las e então rodar no Megahit (coassembly).
 No caso de individual assembly, o comando ficaria mais ou menos assim:
