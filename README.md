@@ -1709,3 +1709,33 @@ Output:
 ```
 
 Agora, terminamos o pré-processamento dos dados e iremos prosseguir para a terceira parte: Assembly and Binning.
+
+# Agrupamento e categorização: Agrupamento metagenômico
+
+```
+megahit \
+    -t {threads} \
+    --verbose \
+    --min-contig-len 1500 \
+    -1 {input.r1} -2 {input.r2} \
+    -f \
+    -o {config[workdir]}/{wildcards.PRB}_{wildcards.EHI}_assembly
+```
+
+Neste passo, iremos reconstruir o genoma dos microorganismos presentes nas amostras. O material genético de todos os organismos presentes nessa amostra serão alvo do sequenciamento, para que a comunidade microbiana seja estudada por completo simultâneamente.
+
+Estaremos usando o Megahit, devido a ser o agrupador padrão da pipeline do EHI, sua simplicidade e aos requisitos de memória altos demais do Metaspades.
+
+Temos duas opções: rodar todas as amostras no Megahit, uma de cada vez individualmente (individual assembly), ou agrupá-las e então rodar no Megahit (coassembly).
+No caso de individual assembly, o comando ficaria mais ou menos assim:
+
+```
+megahit \
+    -t 24 \
+    --verbose \
+    --min-contig-len 1500 \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
+    -f \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/Assembly/RF-2-B_assembly
+```
