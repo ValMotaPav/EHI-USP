@@ -1802,7 +1802,7 @@ E no nosso caso, para rodar o comando, utilizamos o ```final.contigs.fa```
 ```
 quast \
     -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST \
-    --threads 8 \
+    --threads 16 \
     /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
     &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST/quast.log
 ```
