@@ -1767,7 +1767,7 @@ Em que:
 Output:
 Arquivo foi copiado para o computador com o comando abaixo e está disponível neste repositório em ```megahit.log```
 ```
-C:\windows\system32> scp -J valentina.pavelecini@marfim.lad.pucrs.br `
+scp -J valentina.pavelecini@marfim.lad.pucrs.br `
 valentina.pavelecini@pantanal.lad.pucrs.br:/labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log `
 C:\Users\labgenoma\Downloads\
 ```
