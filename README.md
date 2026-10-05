@@ -1795,7 +1795,7 @@ quast \
 
 ```
 
-Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 24 CPUs/cores para essa tarefa, por 6 horas). Menos tempo dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```.
+Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 24 CPUs/cores para essa tarefa, por 6 horas). Menos tempo dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```. Então, vamos baixar o software com ```conda install -c bioconda quast```
 
 E no nosso caso, para rodar o comando, utilizamos o ```final.contigs.fa```. E claro, os outputs serão salvos em ```quast.log```.
 
