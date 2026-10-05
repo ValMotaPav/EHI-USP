@@ -1763,3 +1763,15 @@ Em que:
 - ```-f``` = força a execução caso o diretório de saída já exista.
 - ```-o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \``` = coloca os resultados aqui.
 - ```&> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log``` = salva output no arquivo .log.
+
+Output: Disponível em megahit.log
+
+
+Arquivos criados:
+- ```final.contigs.fa``` = resultado final do coassembly.
+- ```done``` = marcador criado pelo MEGAHIT indicando que a execução terminou.
+- ```megahit.log``` = log da execução para verificar se houve erros.
+- ```log``` = informações da execução.
+- ```options.json``` = parâmetros usados pelo MEGAHIT.
+- ```checkpoints.txt``` = informações sobre o progresso/checkpoints.
+- ```intermediate_contigs``` = pasta com resultados intermediários produzidos durante as diferentes etapas de assembly.
