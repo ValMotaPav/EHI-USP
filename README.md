@@ -1795,14 +1795,14 @@ quast \
 
 ```
 
-Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 16 -t 12:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 16 CPUs/cores para essa tarefa, por 12 horas). Menos cores dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```.
+Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 24 CPUs/cores para essa tarefa, por 6 horas). Menos tempo dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```.
 
 E no nosso caso, para rodar o comando, utilizamos o ```final.contigs.fa```
 
 ```
 quast \
     -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST \
-    --threads 16 \
+    --threads 24 \
     /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
     &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST/quast.log
 ```
