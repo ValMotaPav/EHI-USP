@@ -1764,7 +1764,13 @@ Em que:
 - ```-o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly \``` = coloca os resultados aqui.
 - ```&> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log``` = salva output no arquivo .log.
 
-Output: Disponível em megahit.log
+Output:
+Arquivo foi copiado para o computador com o comando abaixo e está disponível neste repositório em ```megahit.log```
+```
+PS C:\windows\system32> scp -J valentina.pavelecini@marfim.lad.pucrs.br `
+>> valentina.pavelecini@pantanal.lad.pucrs.br:/labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/megahit.log `
+>> C:\Users\labgenoma\Downloads\
+```
 
 
 Arquivos criados:
@@ -1775,3 +1781,28 @@ Arquivos criados:
 - ```options.json``` = parâmetros usados pelo MEGAHIT.
 - ```checkpoints.txt``` = informações sobre o progresso/checkpoints.
 - ```intermediate_contigs``` = pasta com resultados intermediários produzidos durante as diferentes etapas de assembly.
+
+
+
+## 05/10/2026
+
+Vamos fazer também a etapa do QUAST, para obtermos algumas estatísticas gerais do assembly:
+```
+quast \
+    -o {output.report} \
+    --threads {threads} \
+    {input.assembly}
+
+```
+
+Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 16 -t 12:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 16 CPUs/cores para essa tarefa, por 12 horas). Menos cores dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```.
+
+E no nosso caso, para rodar o comando, utilizamos o ```final.contigs.fa```
+
+```
+quast \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST \
+    --threads 8 \
+    /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST/quast.log
+```
