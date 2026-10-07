@@ -1877,6 +1877,7 @@ bowtie2 \
 
 Samtools é necessário, então baixamos com ```conda install -c bioconda bowtie2```. O comando final, no nosso caso, fica assim:
 
+### RF-2-B:
 ```
 bowtie2 \
     --time \
@@ -1899,3 +1900,43 @@ Em que:
 ```|``` = PIPE, pega a saída SAM gerada até aqui pelo bowtie2 e manda diretamente para o samtools.
 ```samtools sort``` = alinha a saída SAM em um arquivo BAM ordenado.
 ```-o``` = define onde salvar o BAM.
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:00
+Time loading forward index: 00:00:00
+Time loading mirror index: 00:00:00
+Multiseed full-index search: 00:16:17
+41834992 reads; of these:
+  41834992 (100.00%) were paired; of these:
+    25419428 (60.76%) aligned concordantly 0 times
+    14296986 (34.17%) aligned concordantly exactly 1 time
+    2118578 (5.06%) aligned concordantly >1 times
+    ----
+    25419428 pairs aligned concordantly 0 times; of these:
+      599396 (2.36%) aligned discordantly 1 time
+    ----
+    24820032 pairs aligned 0 times concordantly or discordantly; of these:
+      49640064 mates make up the pairs; of these:
+        48709722 (98.13%) aligned 0 times
+        547907 (1.10%) aligned exactly 1 time
+        382435 (0.77%) aligned >1 times
+41.78% overall alignment rate
+Time searching: 00:16:17
+Overall time: 00:16:17
+```
+
+### PM-1-A
+```
+bowtie2 \
+    --time \
+    --threads 24 \
+    -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-1-A_R2.fastq.gz \
+| samtools sort -@ 24 \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A-sorted-bam.log
+```
