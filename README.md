@@ -1839,7 +1839,7 @@ bowtie2-build \
     {input.contigs} {output.contigs}
 ```
 
-Para isso, primeiro vamos abrir a janela do tmux com ```tmux new -s bowtie2```, e iniciar os parâmetros da sessão com ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i```, os mesmos de antes. Também precisamos baixar o bowtie2 e fazemos isso com ```conda install -c bioconda bowtie2```. Depois disso, já podemos rodar o comando:
+Para isso, primeiro vamos abrir a janela do tmux com ```tmux new -s bowtie2```, e iniciar os parâmetros da sessão com ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i```, os mesmos de antes. Também precisamos baixar o bowtie2 e criar um diretório para estes resultados, fazemos isso com ```conda install -c bioconda bowtie2``` e ```mkdir bowtie2```. Depois disso, já podemos rodar o comando:
 
 ```
 bowtie2-build \
