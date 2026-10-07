@@ -1846,7 +1846,7 @@ bowtie2-build \
     --large-index \
     --threads 24 \
     /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
-    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/bowtie2contigs.log
 ```
 
