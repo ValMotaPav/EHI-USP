@@ -1859,3 +1859,41 @@ scp -J valentina.pavelecini@marfim.lad.pucrs.br `
 valentina.pavelecini@pantanal.lad.pucrs.br:/labgenomaarea2/valentina.pavelecini/EHI/bowtie2/bowtie2contigs.log `
 C:\Users\labgenoma\Downloads\
 ```
+
+________________________________________
+
+Depois de criar o índice, iremos mapear os reads metagenômicos contra o coassembly
+
+```
+# Map reads to assembly using Bowtie2
+bowtie2 \
+    --time \
+    --threads {threads} \
+    -x {input.contigs} \
+    -1 {input.r1} \
+    -2 {input.r2} \
+| samtools sort -@ {threads} -o {output}
+```
+
+O comando, no nosso caso, fica assim:
+```
+bowtie2 \
+    --time \
+    --threads 24 \
+    -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
+| samtools sort -@ 24 \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+```
+
+Em que:
+- ```bowtie2 ``` = alinha/mapeia as reads contra os contigs do coassembly
+- ```--time``` = mostra quanto tempo o Bowtie2 levou.
+- ```--threads 24``` = usa os 24 CPUs que você reservou.
+- ```-x``` = indica o prefixo do índice Bowtie2. Ao indicar apenas o prefixo, ele puxa todos os contigs.
+- ```-1``` = arquivo R1 da amostra filtrada
+- ```-2``` = arquivo R2 da amostra filtrada
+```|``` = PIPE, pega a saída SAM gerada até aqui pelo bowtie2 e manda diretamente para o samtools.
+```samtools sort``` = alinha a saída SAM em um arquivo BAM ordenado.
+```-o``` = define onde salvar o BAM.
