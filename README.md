@@ -1851,3 +1851,7 @@ bowtie2-build \
 ```
 
 Em que ```3.2``` se refere á etapa da pipeline do EHI, ```bowtie2``` ao programa usado e ```contigs``` ao conteúdo
+
+scp -J valentina.pavelecini@marfim.lad.pucrs.br `
+valentina.pavelecini@pantanal.lad.pucrs.br:/labgenomaarea2/valentina.pavelecini/EHI/bowtie2/bowtie2contigs.log `
+C:\Users\labgenoma\Downloads\
