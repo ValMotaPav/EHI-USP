@@ -1826,7 +1826,11 @@ N's/100 kbp                0                                  Não há bases amb
 
 # Mapeamento do agrupamento:
 
-Assim, a próxima etapa é mapear gerar informações de cobertura dos contigs do agrupamento (coassembly), que serão usadas pelos programas de binning para agrupar contigs em possíveis MAGs. O comando geral é:
+Assim, a próxima etapa é mapear gerar informações de cobertura dos contigs do agrupamento (coassembly), que serão usadas pelos programas de binning para agrupar contigs em possíveis MAGs.
+
+_______________________________________________________________________________________
+
+Na primeira etapa, organizaremos os contigs do agrupamento em um índice com o bowtie2:
 
 ```
 bowtie2-build \
