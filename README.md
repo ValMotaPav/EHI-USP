@@ -1875,7 +1875,8 @@ bowtie2 \
 | samtools sort -@ {threads} -o {output}
 ```
 
-O comando, no nosso caso, fica assim:
+Samtools é necessário, então baixamos com ```conda install -c bioconda bowtie2```. O comando final, no nosso caso, fica assim:
+
 ```
 bowtie2 \
     --time \
@@ -1884,7 +1885,8 @@ bowtie2 \
     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R1.fastq.gz \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-2-B_S2_L001_R2.fastq.gz \
 | samtools sort -@ 24 \
-    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B-sorted-bam.log
 ```
 
 Em que:
