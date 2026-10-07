@@ -1843,6 +1843,7 @@ bowtie2-build \
     --threads 24 \
     /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
     /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/bowtie2contigs.log
 ```
 
 Em que ```3.2``` se refere á etapa da pipeline do EHI, ```bowtie2``` ao programa usado e ```contigs``` ao conteúdo
