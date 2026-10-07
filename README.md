@@ -1795,7 +1795,7 @@ quast \
 
 ```
 
-Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 24 CPUs/cores para essa tarefa, por 6 horas). Menos tempo dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```. Então, vamos baixar o software com ```conda install -c bioconda quast```
+Vamos fazer isso na janela do tmux que criamos antes, entrando nela com ```tmux at```. Vamos pedir ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i``` (1 máquina, 1 tarefa, 24 CPUs/cores para essa tarefa, por 6 horas). Menos tempo dessa vez porque é um comando mais leve. Vamos criar também um diretório específico para o QUAST com ```mkdir QUAST```. Então, vamos baixar o software com ```conda install -c bioconda quast```.
 
 E no nosso caso, para rodar o comando, utilizamos o ```final.contigs.fa```. E claro, os outputs serão salvos em ```quast.log```.
 
@@ -1806,3 +1806,43 @@ quast \
     /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
     &> /labgenomaarea2/valentina.pavelecini/EHI/Megahit/QUAST/quast.log
 ```
+
+## 07/10/2026
+
+Interpretando os dados de report.tsv:
+
+Número total de contigs    63.170                             A montagem é bastante fragmentada
+Comprimento total          256.725.534 bp (~256,7 Mb)         Quantidade total de sequência montada
+Maior contig	           542.717 bp	                      O maior fragmento montado tem ~543 kb
+N50                        5.267 bp                           Metade da montagem está em contigs ≥ 5,3 kb
+N90                        1.736 bp                           90% da montagem está em contigs ≥ 1,7 kb
+Contigs ≥ 5 kb             8.203                              8.203 contigs têm pelo menos 5 kb
+Contigs ≥ 10 kb            3.333	                          3.333 contigs têm pelo menos 10 kb
+Contigs ≥ 25 kb            1.044                              1.044 contigs têm pelo menos 25 kb
+Contigs ≥ 50 kb            423	                              423 contigs têm pelo menos ≥50 kb
+GC                         47,24%	                          Conteúdo Guanina/Citosina médio da montagem é 47,24%
+N's/100 kbp                0                                  Não há bases ambíguas N na montagem
+
+
+# Mapeamento do agrupamento:
+
+Assim, a próxima etapa é mapear gerar informações de cobertura dos contigs do agrupamento (coassembly), que serão usadas pelos programas de binning para agrupar contigs em possíveis MAGs. O comando geral é:
+
+```
+bowtie2-build \
+    --large-index \
+    --threads {threads} \
+    {input.contigs} {output.contigs}
+```
+
+Para isso, primeiro vamos abrir a janela do tmux com ```tmux new -s bowtie2```, e iniciar os parâmetros da sessão com ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i```, os mesmos de antes. Também precisamos baixar o bowtie2 e fazemos isso com ```conda install -c bioconda bowtie2```. Depois disso, já podemos rodar o comando:
+
+```
+bowtie2-build \
+    --large-index \
+    --threads 24 \
+    /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs
+```
+
+Em que ```3.2``` se refere á etapa da pipeline do EHI, ```bowtie2``` ao programa usado e ```contigs``` ao conteúdo
