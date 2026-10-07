@@ -1961,3 +1961,110 @@ bowtie2 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A-sorted-bam.log
 ```
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:00
+Time loading forward index: 00:00:00
+Time loading mirror index: 00:00:00
+Multiseed full-index search: 00:01:41
+6442594 reads; of these:
+  6442594 (100.00%) were paired; of these:
+    5283872 (82.01%) aligned concordantly 0 times
+    1035222 (16.07%) aligned concordantly exactly 1 time
+    123500 (1.92%) aligned concordantly >1 times
+    ----
+    5283872 pairs aligned concordantly 0 times; of these:
+      30529 (0.58%) aligned discordantly 1 time
+    ----
+    5253343 pairs aligned 0 times concordantly or discordantly; of these:
+      10506686 mates make up the pairs; of these:
+        10443832 (99.40%) aligned 0 times
+        45492 (0.43%) aligned exactly 1 time
+        17362 (0.17%) aligned >1 times
+18.95% overall alignment rate
+Time searching: 00:01:42
+Overall time: 00:01:42
+```
+
+Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam``` output:
+```
+12885188 + 0 in total (QC-passed reads + QC-failed reads)
+12885188 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+2441356 + 0 mapped (18.95% : N/A)
+2441356 + 0 primary mapped (18.95% : N/A)
+12885188 + 0 paired in sequencing
+6442594 + 0 read1
+6442594 + 0 read2
+2317444 + 0 properly paired (17.99% : N/A)
+2392714 + 0 with itself and mate mapped
+48642 + 0 singletons (0.38% : N/A)
+15798 + 0 with mate mapped to a different chr
+12738 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+### RF-1-B
+```
+bowtie2 \
+    --time \
+    --threads 24 \
+    -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-1-B_S1_L001_R2.fastq.gz \
+| samtools sort -@ 24 \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B-sorted-bam.log
+```
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:00
+Time loading forward index: 00:00:00
+Time loading mirror index: 00:00:00
+Multiseed full-index search: 00:11:09
+26644982 reads; of these:
+  26644982 (100.00%) were paired; of these:
+    15854884 (59.50%) aligned concordantly 0 times
+    9425001 (35.37%) aligned concordantly exactly 1 time
+    1365097 (5.12%) aligned concordantly >1 times
+    ----
+    15854884 pairs aligned concordantly 0 times; of these:
+      294379 (1.86%) aligned discordantly 1 time
+    ----
+    15560505 pairs aligned 0 times concordantly or discordantly; of these:
+      31121010 mates make up the pairs; of these:
+        30617604 (98.38%) aligned 0 times
+        308117 (0.99%) aligned exactly 1 time
+        195289 (0.63%) aligned >1 times
+42.55% overall alignment rate
+Time searching: 00:11:09
+Overall time: 00:11:09
+```
+
+Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam``` output:
+```
+53289964 + 0 in total (QC-passed reads + QC-failed reads)
+53289964 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+22672360 + 0 mapped (42.55% : N/A)
+22672360 + 0 primary mapped (42.55% : N/A)
+53289964 + 0 paired in sequencing
+26644982 + 0 read1
+26644982 + 0 read2
+21580196 + 0 properly paired (40.50% : N/A)
+22359520 + 0 with itself and mate mapped
+312840 + 0 singletons (0.59% : N/A)
+181262 + 0 with mate mapped to a different chr
+150208 + 0 with mate mapped to a different chr (mapQ>=5)
+```
