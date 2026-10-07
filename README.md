@@ -1928,6 +1928,27 @@ Time searching: 00:16:17
 Overall time: 00:16:17
 ```
 
+Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam``` output:
+```
+samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+83669984 + 0 in total (QC-passed reads + QC-failed reads)
+83669984 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+34960262 + 0 mapped (41.78% : N/A)
+34960262 + 0 primary mapped (41.78% : N/A)
+83669984 + 0 paired in sequencing
+41834992 + 0 read1
+41834992 + 0 read2
+32831128 + 0 properly paired (39.24% : N/A)
+34409172 + 0 with itself and mate mapped
+551090 + 0 singletons (0.66% : N/A)
+320474 + 0 with mate mapped to a different chr
+263700 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
 ### PM-1-A
 ```
 bowtie2 \
