@@ -2071,14 +2071,15 @@ Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EH
 
 
 ### PM-5-A
+* Este foi rodado no meu computador pessoal, por isso diminuí o número de threads:
 ```
 bowtie2 \
     --time \
-    --threads 24 \
+    --threads 4 \
     -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz \
-    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz \
-| samtools sort -@ 24 \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz \
+| samtools sort -@ 4 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A-sorted-bam.log
 ```
