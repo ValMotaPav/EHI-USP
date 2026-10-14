@@ -2205,3 +2205,50 @@ bowtie2 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B-sorted-bam.log
 ```
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:00
+Time loading forward index: 00:00:00
+Time loading mirror index: 00:00:00
+Multiseed full-index search: 00:03:31
+9897059 reads; of these:
+  9897059 (100.00%) were paired; of these:
+    5633963 (56.93%) aligned concordantly 0 times
+    3720974 (37.60%) aligned concordantly exactly 1 time
+    542122 (5.48%) aligned concordantly >1 times
+    ----
+    5633963 pairs aligned concordantly 0 times; of these:
+      131887 (2.34%) aligned discordantly 1 time
+    ----
+    5502076 pairs aligned 0 times concordantly or discordantly; of these:
+      11004152 mates make up the pairs; of these:
+        10803650 (98.18%) aligned 0 times
+        119056 (1.08%) aligned exactly 1 time
+        81446 (0.74%) aligned >1 times
+45.42% overall alignment rate
+Time searching: 00:03:32
+Overall time: 00:03:32
+```
+
+Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam``` output:
+```
+19794118 + 0 in total (QC-passed reads + QC-failed reads)
+19794118 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+8990468 + 0 mapped (45.42% : N/A)
+8990468 + 0 primary mapped (45.42% : N/A)
+19794118 + 0 paired in sequencing
+9897059 + 0 read1
+9897059 + 0 read2
+8526192 + 0 properly paired (43.07% : N/A)
+8873676 + 0 with itself and mate mapped
+116792 + 0 singletons (0.59% : N/A)
+73924 + 0 with mate mapped to a different chr
+60899 + 0 with mate mapped to a different chr (mapQ>=5)
+```
