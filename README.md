@@ -2252,3 +2252,87 @@ Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI
 73924 + 0 with mate mapped to a different chr
 60899 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
+
+________________________________________________________________________________
+
+Assim, finalizamos o mapeamento dos reads metagenômicos contra o coassembly. Utilizando CoverM, podemos gerar dados de cobertura do assembly (ou seja, a quantidade de genomas do assembly) que utilizaremos para passos futuros.
+
+Comando geral:
+```
+coverm genome \
+      -b {input.bam} \
+      --genome-fasta-files {input.contigs} \
+      -m relative_abundance \
+      -t {threads} \
+      --min-covered-fraction 0 \
+      > {output.coverm}
+```
+Em que:
+- ```coverm genome``` = calcula cobertura e abundância de genomas.
+- ```-b```	= indica o arquivo BAM do mapeamento.
+- ```--genome-fasta-files``` = recebe os arquivos FASTA com os os genomas a avaliar.
+- ```-m relative_abundance``` = calcula a abundância relativa.
+- ```-t```	= número de threads.
+- ```--min-covered-fraction 0``` = define em zero o limite mínimo de fração coberta para incluir um genoma no cálculo.
+- ```>``` = redireciona a tabela de resultados para um arquivo.
+
+
+Tem mais um comando nessa etapa, que é:
+```
+#Run coverm for the eukaryotic assessment pipeline
+coverm genome \
+      -s - \
+      -b {input.bam} \
+      -m relative_abundance count mean covered_fraction \
+      -t {threads} \
+      --min-covered-fraction 0 \
+      > {output.euk}
+```
+
+Em que:
+- ```-s``` = comando específico para a avaliação eucariótica.
+- ```relative_abundance``` = abundância relativa.
+- ```count``` = contagem de alinhamentos conforme a definição do CoverM.
+- ```mean``` = cobertura média.
+- ```covered_fraction``` = fração do genoma coberta.
+
+
+Vamos começar instalando o coverm com ```conda install -c bioconda coverM```. É importante observar que aparentemente essa etapa pode ocorrer depois do binning, por isso vamos criar um diretório para os resultados com ```mkdir coverM-prebinning```. Também precisamos de uma pasta para os resultados do segundo comando e criamos com ```mkdir eukaryotic-assessment```. Além disso, como utilizaremos ```final.contigs.fa```, o resultado não será uma tabela de abundância individual de cada contig (genoma), e sim uma estimativa do quanto % cada procarioto representa na amostra, e por isso não apresentará a fielmente composição de uma comunidade microbiana. Uma alternativa é usar o samtools:
+```
+samtools coverage \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM/PM-1-A.contig_coverage.tsv
+```
+
+Mas iremos pensar nessa alternativa depois. Vamos primeiro rodar o coverM em cada amostra:
+
+### PM-1-A
+
+```
+coverm genome \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    --genome-fasta-files /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -m relative_abundance \
+    -t 24 \
+    --min-covered-fraction 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/PM-1-A.coverm.tsv
+```
+
+Output:
+```
+[2026-10-14T13:18:58Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T13:18:58Z INFO  coverm] Using min-covered-fraction 0%
+[2026-10-14T13:18:58Z INFO  coverm::genome] Of 63170 reference IDs, 63170 were assigned to a genome and 0 were not
+[2026-10-14T13:19:05Z INFO  coverm::genome] In sample 'PM-1-A.sorted', found 2441356 reads mapped out of 12885188 total (18.95%)
+```
+
+```
+coverm genome \
+      -s - \
+      -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+      -m relative_abundance count mean covered_fraction \
+      -t 24 \
+      --min-covered-fraction 0 \
+      > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/eukaryotic-assessment/PM-1-A.coverm-euk.tsv
+```
+
