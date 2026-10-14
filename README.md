@@ -2291,10 +2291,6 @@ coverm genome \
 
 Em que:
 - ```-s``` = comando específico para a avaliação eucariótica.
-- ```relative_abundance``` = abundância relativa.
-- ```count``` = contagem de alinhamentos conforme a definição do CoverM.
-- ```mean``` = cobertura média.
-- ```covered_fraction``` = fração do genoma coberta.
 
 
 Vamos começar instalando o coverm com ```conda install -c bioconda coverM```. É importante observar que aparentemente essa etapa pode ocorrer depois do binning, por isso vamos criar um diretório para os resultados com ```mkdir coverM-prebinning```. Também precisamos de uma pasta para os resultados do segundo comando e criamos com ```mkdir eukaryotic-assessment```. Além disso, como utilizaremos ```final.contigs.fa```, o resultado não será uma tabela de abundância individual de cada contig (genoma), e sim uma estimativa do quanto % cada procarioto representa na amostra, e por isso não apresentará a fielmente composição de uma comunidade microbiana. Uma alternativa é usar o samtools:
@@ -2326,13 +2322,85 @@ Output:
 [2026-10-14T13:19:05Z INFO  coverm::genome] In sample 'PM-1-A.sorted', found 2441356 reads mapped out of 12885188 total (18.95%)
 ```
 
+### RF-1-B
+
 ```
 coverm genome \
-      -s - \
-      -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
-      -m relative_abundance count mean covered_fraction \
-      -t 24 \
-      --min-covered-fraction 0 \
-      > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/eukaryotic-assessment/PM-1-A.coverm-euk.tsv
+    -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+    --genome-fasta-files /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -m relative_abundance \
+    -t 24 \
+    --min-covered-fraction 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/RF-1-B.coverm.tsv
 ```
 
+Output:
+```
+[2026-10-14T13:45:02Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T13:45:02Z INFO  coverm] Using min-covered-fraction 0%
+[2026-10-14T13:45:02Z INFO  coverm::genome] Of 63170 reference IDs, 63170 were assigned to a genome and 0 were not
+[2026-10-14T13:45:25Z INFO  coverm::genome] In sample 'RF-1-B.sorted', found 22672360 reads mapped out of 53289964 total (42.55%)
+```
+
+### RF-5-B
+
+```
+coverm genome \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
+    --genome-fasta-files /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -m relative_abundance \
+    -t 24 \
+    --min-covered-fraction 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/RF-5-B.coverm.tsv
+```
+
+Output:
+```
+[2026-10-14T13:47:56Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T13:47:56Z INFO  coverm] Using min-covered-fraction 0%
+[2026-10-14T13:47:56Z INFO  coverm::genome] Of 63170 reference IDs, 63170 were assigned to a genome and 0 were not
+[2026-10-14T13:48:03Z INFO  coverm::genome] In sample 'RF-5-B.sorted', found 19694320 reads mapped out of 50413130 total (39.07%)
+```
+
+### RF-2-B
+
+```
+coverm genome \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+    --genome-fasta-files /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -m relative_abundance \
+    -t 24 \
+    --min-covered-fraction 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/RF-2-B.coverm.tsv
+```
+
+Output:
+```
+[2026-10-14T13:51:08Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T13:51:08Z INFO  coverm] Using min-covered-fraction 0%
+[2026-10-14T13:51:08Z INFO  coverm::genome] Of 63170 reference IDs, 63170 were assigned to a genome and 0 were not
+[2026-10-14T13:51:44Z INFO  coverm::genome] In sample 'RF-2-B.sorted', found 34960262 reads mapped out of 83669984 total (41.78%)
+```
+
+
+### RF-4-B
+
+```
+coverm genome \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+    --genome-fasta-files /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -m relative_abundance \
+    -t 24 \
+    --min-covered-fraction 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/coverM-prebinning/RF-4-A.coverm.tsv
+```
+
+Output:
+```
+[2026-10-14T14:57:34Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T14:57:34Z INFO  coverm] Using min-covered-fraction 0%
+[2026-10-14T14:57:34Z INFO  coverm::genome] Of 63170 reference IDs, 63170 were assigned to a genome and 0 were not
+[2026-10-14T14:57:37Z INFO  coverm::genome] In sample 'RF-4-B.sorted', found 8990468 reads mapped out of 19794118 total (45.42%)
+```
+
+Não consegui fazer funcionar a etapa do eukaryotic assessment.
