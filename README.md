@@ -2084,3 +2084,29 @@ bowtie2 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A-sorted-bam.log
 ```
+
+### RF-5-B
+```
+bowtie2 \
+    --time \
+    --threads 24 \
+    -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtradosTF-2587-RF-5-B_S4_L001_R2.fastq.gz \
+| samtools sort -@ 24 \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B-sorted-bam.log
+```
+
+### RF-4-B
+```
+bowtie2 \
+    --time \
+    --threads 24 \
+    -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
+    -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R1.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-4-B_S3_L001_R2.fastq.gz \
+| samtools sort -@ 24 \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+    &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B-sorted-bam.log
+```
