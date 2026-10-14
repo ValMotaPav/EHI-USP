@@ -2069,17 +2069,18 @@ Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EH
 150208 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
 
+## 14/10/2026
 
 ### PM-5-A
-* Este foi rodado no meu computador pessoal, por isso diminuí o número de threads:
+
 ```
 bowtie2 \
     --time \
-    --threads 4 \
+    --threads 24 \
     -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R1.fastq.gz \
     -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-PM-5-A_S7_L001_R2.fastq.gz \
-| samtools sort -@ 4 \
+| samtools sort -@ 24 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A-sorted-bam.log
 ```
