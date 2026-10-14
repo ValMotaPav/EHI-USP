@@ -2049,7 +2049,7 @@ Time searching: 00:11:09
 Overall time: 00:11:09
 ```
 
-Samtools flasgstat ``` samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam``` output:
+Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam``` output:
 ```
 53289964 + 0 in total (QC-passed reads + QC-failed reads)
 53289964 + 0 primary
@@ -2084,6 +2084,36 @@ bowtie2 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A-sorted-bam.log
 ```
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:01
+Time loading forward index: 00:00:02
+Time loading mirror index: 00:00:01
+Multiseed full-index search: 00:02:29
+9798845 reads; of these:
+  9798845 (100.00%) were paired; of these:
+    7353724 (75.05%) aligned concordantly 0 times
+    2234758 (22.81%) aligned concordantly exactly 1 time
+    210363 (2.15%) aligned concordantly >1 times
+    ----
+    7353724 pairs aligned concordantly 0 times; of these:
+      111147 (1.51%) aligned discordantly 1 time
+    ----
+    7242577 pairs aligned 0 times concordantly or discordantly; of these:
+      14485154 mates make up the pairs; of these:
+        14324395 (98.89%) aligned 0 times
+        110267 (0.76%) aligned exactly 1 time
+        50492 (0.35%) aligned >1 times
+26.91% overall alignment rate
+Time searching: 00:02:33
+Overall time: 00:02:33
+```
+
+Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam``` output:
+
 
 ### RF-5-B
 ```
