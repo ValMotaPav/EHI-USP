@@ -2113,6 +2113,24 @@ Overall time: 00:02:33
 ```
 
 Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam``` output:
+```
+19597690 + 0 in total (QC-passed reads + QC-failed reads)
+19597690 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+5273295 + 0 mapped (26.91% : N/A)
+5273295 + 0 primary mapped (26.91% : N/A)
+19597690 + 0 paired in sequencing
+9798845 + 0 read1
+9798845 + 0 read2
+4890242 + 0 properly paired (24.95% : N/A)
+5159434 + 0 with itself and mate mapped
+113861 + 0 singletons (0.58% : N/A)
+45822 + 0 with mate mapped to a different chr
+36576 + 0 with mate mapped to a different chr (mapQ>=5)
+```
 
 
 ### RF-5-B
@@ -2122,10 +2140,57 @@ bowtie2 \
     --threads 24 \
     -x /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/3.2.bowtie2.contigs \
     -1 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R1.fastq.gz \
-    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtradosTF-2587-RF-5-B_S4_L001_R2.fastq.gz \
+    -2 /labgenomaarea2/valentina.pavelecini/EHI/filtrados/TF-2587-RF-5-B_S4_L001_R2.fastq.gz \
 | samtools sort -@ 24 \
     -o /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
     &> /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B-sorted-bam.log
+```
+
+Output:
+```
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+[WARNING] Failed to launch x86-64-v3 version, staying with default
+Time loading reference: 00:00:00
+Time loading forward index: 00:00:01
+Time loading mirror index: 00:00:00
+Multiseed full-index search: 00:08:24
+25206565 reads; of these:
+  25206565 (100.00%) were paired; of these:
+    15943828 (63.25%) aligned concordantly 0 times
+    8225994 (32.63%) aligned concordantly exactly 1 time
+    1036743 (4.11%) aligned concordantly >1 times
+    ----
+    15943828 pairs aligned concordantly 0 times; of these:
+      341813 (2.14%) aligned discordantly 1 time
+    ----
+    15602015 pairs aligned 0 times concordantly or discordantly; of these:
+      31204030 mates make up the pairs; of these:
+        30718810 (98.45%) aligned 0 times
+        293262 (0.94%) aligned exactly 1 time
+        191958 (0.62%) aligned >1 times
+39.07% overall alignment rate
+Time searching: 00:08:25
+Overall time: 00:08:25
+```
+
+Samtools flasgstat ```samtools flagstat /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam``` output:
+```
+50413130 + 0 in total (QC-passed reads + QC-failed reads)
+50413130 + 0 primary
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+19694320 + 0 mapped (39.07% : N/A)
+19694320 + 0 primary mapped (39.07% : N/A)
+50413130 + 0 paired in sequencing
+25206565 + 0 read1
+25206565 + 0 read2
+18525474 + 0 properly paired (36.75% : N/A)
+19367590 + 0 with itself and mate mapped
+326730 + 0 singletons (0.65% : N/A)
+160770 + 0 with mate mapped to a different chr
+133510 + 0 with mate mapped to a different chr (mapQ>=5)
 ```
 
 ### RF-4-B
