@@ -2404,3 +2404,265 @@ Output:
 ```
 
 Não consegui fazer funcionar a etapa do eukaryotic assessment.
+
+_____________________________________________________________________________
+
+# Ensemble Binning
+
+Nesta etapa, iremos agrupar sequências metagenômicas pelo seu organismo de origem, ou seja, agrupar contigs de um assembly metagenômico em supostos genomas bacterianos. Há muitos softwares que fazem essa etapa, e o site do EHI recomenda uma abordagem em que múltiplos algoritmos são usados, e uma etapa de refinamento agrupa toda a informação gerada pra criar um agrupamento de consenso. Por isso, haverá 3 etapas de agrupamento usando 3 diferentes softwares (Maxbin, Metabat, e CONCOCT), e uma etapa adicional de refinamento.
+
+## 16/10/2026
+
+## Maxbin
+
+O comando genérico do Maxbin é: 
+```
+# summarise contig depths
+jgi_summarize_bam_contig_depths \
+    --outputDepth {params.outdir}/mb2_master_depth.txt \
+    --noIntraDepthVariance \
+    {input.bam}
+
+#calculate total numper of columns
+A=($(head -n 1 {params.outdir}/mb2_master_depth.txt))
+N=${{#A[*]}}
+
+# split the contig depth file into multiple files
+if [ -f {params.outdir}/mb2_abund_list.txt ]; then rm {params.outdir}/mb2_abund_list.txt; fi
+for i in $(seq 4 $N); do
+    sample=$(head -n 1 {params.outdir}/mb2_master_depth.txt | cut -f $i)
+    grep -v totalAvgDepth {params.outdir}/mb2_master_depth.txt | cut -f 1,$i > {params.outdir}/mb2_${{sample%.*}}.txt
+    if [[ {params.outdir} == /* ]]; then
+        echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt
+    else
+        echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt
+    fi
+done
+
+# Run maxbin2
+run_MaxBin.pl \
+    -contig {input.contigs} \
+    -markerset 107 \
+    -thread {threads} \
+    -min_contig_length 1500 \
+  -out {params.outdir}/maxbin2_out/bin \
+  -abund_list {params.outdir}/mb2_abund_list.txt
+
+mkdir -p {params.outdir}/maxbin2_bins
+for i in {params.outdir}/maxbin2_out/*.fasta;
+    do mv $i {params.outdir}/maxbin2_bins/$(basename ${{i/.fasta/.fa}});
+done
+```
+
+Começamos instalando os softwares com ```conda install -c bioconda maxbin2 metabat2``` e criando uma pasta para os outputs do maxbin com ```mkdir maxbin```. Também abrimos uma janela no tmux para essa etapa com ```tmux new -s maxbin``` e pedimos ```srun -N 1 -n 1 -c 24 -t 6:00:00 --pty bash -i```. Em seguida executaremos a primeira parte do comando:
+```
+# summarise contig depths
+jgi_summarize_bam_contig_depths \
+    --outputDepth {params.outdir}/mb2_master_depth.txt \
+    --noIntraDepthVariance \
+    {input.bam}
+```
+
+Que fica:
+
+```
+jgi_summarize_bam_contig_depths \
+    --outputDepth /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt \
+    --noIntraDepthVariance \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+```
+
+Output:
+```
+Output depth matrix to /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt
+Calculating intra contig depth variance
+Output matrix to /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt
+Opening 6 bams
+Consolidating headers
+Processing bam files
+Thread 0 finished: PM-1-A.sorted.bam with 12885188 reads and 2048443 readsWellMapped
+Thread 4 finished: RF-4-B.sorted.bam with 19794118 reads and 8079267 readsWellMapped
+Thread 1 finished: PM-5-A.sorted.bam with 19597690 reads and 4521196 readsWellMapped
+Thread 2 finished: RF-1-B.sorted.bam with 53289964 reads and 20222034 readsWellMapped
+Thread 5 finished: RF-5-B.sorted.bam with 50413130 reads and 17442617 readsWellMapped
+Thread 3 finished: RF-2-B.sorted.bam with 83669984 reads and 30914560 readsWellMapped
+Creating depth matrix file: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt
+Closing most bam files
+Closing last bam file
+Finished
+```
+
+_______________________________________________________________________
+
+Próxima etapa
+```
+#calculate total numper of columns
+A=($(head -n 1 {params.outdir}/mb2_master_depth.txt))
+N=${{#A[*]}}
+```
+
+Que fica:
+
+```
+A=($(head -n 1 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt))
+N=${#A[*]}
+```
+
+Output de ```echo $N```: 9
+
+_______________________________________________________________________
+
+Próxima etapa
+
+```
+# split the contig depth file into multiple files
+if [ -f {params.outdir}/mb2_abund_list.txt ]; then rm {params.outdir}/mb2_abund_list.txt; fi
+for i in $(seq 4 $N); do
+    sample=$(head -n 1 {params.outdir}/mb2_master_depth.txt | cut -f $i)
+    grep -v totalAvgDepth {params.outdir}/mb2_master_depth.txt | cut -f 1,$i > {params.outdir}/mb2_${{sample%.*}}.txt
+    if [[ {params.outdir} == /* ]]; then
+        echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt
+    else
+        echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt
+    fi
+done
+```
+
+```
+if [ -f /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt ]; then rm /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt; fi
+for i in $(seq 4 $N); do
+    sample=$(head -n 1 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt | cut -f $i)
+    grep -v totalAvgDepth /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt | cut -f 1,$i > /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_${sample%.*}.txt
+    if [[ /labgenomaarea2/valentina.pavelecini/EHI/maxbin == /* ]]; then
+        echo /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_${sample%.*}.txt >> /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt
+    else
+        echo /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_${sample%.*}.txt >> /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt
+    fi
+done
+```
+
+Não tem output direto mas executando ```ls -lh /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_*.txt``` e ```cat /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt```, respectivamente, verificamos que:
+```
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.1M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_PM-1-A.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.1M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_PM-5-A.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.2M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-1-B.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.2M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-2-B.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.2M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-4-B.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 1.2M Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-5-B.sorted.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma  420 Oct 16 09:37 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt
+-rw-r--r-- 1 valentina.pavelecini labgenoma 4.1M Oct 16 09:18 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt
+```
+```
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_PM-1-A.sorted.txt
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_PM-5-A.sorted.txt
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-1-B.sorted.txt
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-2-B.sorted.txt
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-4-B.sorted.txt
+/labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_RF-5-B.sorted.txt
+```
+
+_____________________________________________________________________
+
+Pra etapa de execução do Maxbin em si vamos criar um diretório para os outputs com ```mkdir maxbin_out```. O comando genérico é:
+```
+run_MaxBin.pl \
+    -contig {input.contigs} \
+    -markerset 107 \
+    -thread 24 \
+    -min_contig_length 1500 \
+  -out {params.outdir}/maxbin2_out/bin \
+  -abund_list {params.outdir}/mb2_abund_list.txt
+
+mkdir -p {params.outdir}/maxbin2_bins
+for i in {params.outdir}/maxbin2_out/*.fasta;
+    do mv $i {params.outdir}/maxbin2_bins/$(basename ${{i/.fasta/.fa}});
+done
+```
+
+O segundo bloco é de renomeação dos arquivos e será executado separadamente depois.
+```
+run_MaxBin.pl \
+    -contig /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -markerset 107 \
+    -thread 24 \
+    -min_contig_length 1500 \
+    -out /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin \
+    -abund_list /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt
+```
+
+Output:
+
+```
+========== Job finished ==========
+Yielded 71 bins for contig (scaffold) file /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa
+
+Here are the output files for this run.
+Please refer to the README file for further details.
+
+Summary file: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.summary
+Genome abundance info file: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.abundance
+Marker counts: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.marker
+Marker genes for each bin: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.marker_of_each_gene.tar.gz
+Bin files: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.001.fasta - /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.071.fasta
+Unbinned sequences: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/bin.noclass
+
+
+========== Elapsed Time ==========
+0 hours 20 minutes and 51 seconds.
+```
+
+Agora o segundo bloco:
+```
+mkdir -p {params.outdir}/maxbin2_bins
+for i in {params.outdir}/maxbin2_out/*.fasta;
+    do mv $i {params.outdir}/maxbin2_bins/$(basename ${{i/.fasta/.fa}});
+done
+```
+Que fica:
+```
+mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins
+
+for i in /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin_out/*.fasta;
+do
+    mv $i /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins/$(basename ${i/.fasta/.fa})
+done
+```
+
+_* Se pa eu tenha panguado em colocar a pasta como ```maxbin_out``` ao invés de ```maxbin2_out```, espero que não afete outras etapas_
+
+_______________________________________________________________________
+
+## Metabat
+
+Essa parte tem só duas etapas. O comando genérico é:
+
+```
+# summarise contig depths
+jgi_summarize_bam_contig_depths --outputDepth {params.outdir}/metabat_depth.txt {input.bam}
+
+# Run metabat2
+metabat2 \
+     -i {input.contigs} \
+     -a {params.outdir}/metabat_depth.txt \
+     -o {params.outdir}/metabat2_bins/bin \
+     -m 1500 \
+     -t {threads} \
+     --unbinned
+```
+
+O primeiro fica:
+```
+jgi_summarize_bam_contig_depths \
+    --outputDepth /labgenomaarea2/valentina.pavelecini/EHI/maxbin/metabat_depth.txt \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+```
