@@ -2845,5 +2845,6 @@ Installing collected packages: setuptools
 Successfully installed setuptools-81.0.0
 ```
 
-E tentamos de novo.
-Atualização: deu errado de novo. Vou criar um env novo só pro CONCOCT com ```conda create -p /labgenomaarea2/valentina.pavelecini/conda_envs/CONCOCT python=3.10 concoct=1.1.0 scikit-learn=1.1.2 pandas=1.4.4 numpy=1.23.2 -c conda-forge -c bioconda```. Também reinstalaremos o setuptools ```python -m pip install "setuptools<82"```.
+
+Deu errado de novo. Vou criar um env novo só pro CONCOCT com ```conda create -p /labgenomaarea2/valentina.pavelecini/conda_envs/CONCOCT python=3.10 concoct=1.1.0 scikit-learn=1.1.2 pandas=1.4.4 numpy=1.23.2 -c conda-forge -c bioconda```. Também reinstalaremos o setuptools ```python -m pip install "setuptools<82"``` e vamos rodar de novo o CONCOCT.
+Atualização: deu certo ieba
