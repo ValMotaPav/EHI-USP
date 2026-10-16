@@ -2723,7 +2723,7 @@ _______________________________________________________________
 
 ## CONCOCT
 
-Começamos criando um diretório específico para o CONCOCT com ```mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/concoct```. Também precisamos baixar o CONCOCT com ```conda install -c bioconda CONCOCT``` A utilização deste software também está dividido emvárias etapas.
+Começamos criando um diretório específico para o CONCOCT com ```mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/concoct```. Também precisamos baixar o CONCOCT com ```conda install -c bioconda CONCOCT``` A utilização deste software também está dividido em várias etapas.
 ```
 #1 - Fragmentar a coassembly
 cut_up_fasta.py {input.contigs} -c 10000 --merge_last -b {params.outdir}/assembly_10K.bed -o 0 > {params.outdir}/assembly_10K.fa
@@ -2847,4 +2847,14 @@ Successfully installed setuptools-81.0.0
 
 
 Deu errado de novo. Vou criar um env novo só pro CONCOCT com ```conda create -p /labgenomaarea2/valentina.pavelecini/conda_envs/CONCOCT python=3.10 concoct=1.1.0 scikit-learn=1.1.2 pandas=1.4.4 numpy=1.23.2 -c conda-forge -c bioconda```. Também reinstalaremos o setuptools ```python -m pip install "setuptools<82"``` e vamos rodar de novo o CONCOCT.
-Atualização: deu certo ieba
+
+Atualização: no início deu certo mas depois foi terminado por limite de tempo.
+
+```
+(base) valentina.pavelecini@pantanal04:/labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out$ sacct -j 6824 --format=JobID,JobName,State,ExitCode,Elapsed,Timelimit,MaxRSS
+       JobID    JobName      State ExitCode    Elapsed  Timelimit     MaxRSS
+------------ ---------- ---------- -------- ---------- ---------- ----------
+6824               bash    TIMEOUT      0:0   06:00:14   06:00:00    680732K
+```
+
+Só rodar de novo e esperar eu acho.
