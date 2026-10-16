@@ -2775,3 +2775,75 @@ concoct_coverage_table.py \
     /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
     > /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_depth.txt
 ```
+
+Deu erro porque não vamos utilizar apenas os arquivos .bam, e sim os .bai, que serão índices que o CONCOCT precisa acessar. Por isso, vamos criá-los com o samtools:
+```
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam
+samtools index /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+```
+
+Sucesso ao executar ```s -lh /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/*.bai```:
+```
+-rw-r--r-- 1 valentina.pavelecini labgenoma 3.5M Oct 16 11:26 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam.bai
+-rw-r--r-- 1 valentina.pavelecini labgenoma 3.0M Oct 16 11:26 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam.bai
+-rw-r--r-- 1 valentina.pavelecini labgenoma 4.9M Oct 16 11:26 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam.bai
+-rw-r--r-- 1 valentina.pavelecini labgenoma 4.9M Oct 16 11:27 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam.bai
+-rw-r--r-- 1 valentina.pavelecini labgenoma 4.7M Oct 16 11:27 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam.bai
+-rw-r--r-- 1 valentina.pavelecini labgenoma 4.8M Oct 16 11:28 /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam.bai
+```
+
+Agora vamos repetir o comando original e rezar.
+Atualização: Sucesso, criou o arquivo ```concoct_depth.txt```
+
+
+_____________________________________________________
+
+
+Etapa #3 - Executar o CONCOCT
+
+```
+concoct \
+    -l 1500 \
+    -t 24 \
+    --coverage_file /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_depth.txt \
+    --composition_file /labgenomaarea2/valentina.pavelecini/EHI/concoct/assembly_10K.fa \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out
+```
+
+Erro:
+```
+(/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal04:/labgenomaarea2/valentina.pavelecini/EHI/concoct$ concoct \
+>     -l 1500 \
+>     -t 24 \
+>     --coverage_file /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_depth.txt \
+>     --composition_file /labgenomaarea2/valentina.pavelecini/EHI/concoct/assembly_10K.fa \
+>     -b /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out
+Traceback (most recent call last):
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/bin/concoct", line 10, in <module>
+    from concoct.output import Output
+  File "/labgenomaarea2/valentina.pavelecini/conda_envs/EHI/lib/python3.12/site-packages/concoct/__init__.py", line 1, in <module>
+    import pkg_resources  # part of setuptools
+    ^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pkg_resources'
+```
+
+O CONCOCT está tentando importar ```pkg_resources```, um componente fornecido pelo setuptools, que não está instalado. Logo, instalamos com ```python -m pip install "setuptools<82"```, em que <82 indica que deverá ser uma versão abaixo de 82, já que acima não possuem o ```pkg_resources```:
+```
+Collecting setuptools<82
+  Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+Downloading setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 3.2 MB/s  0:00:00
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 84.0.0
+    Uninstalling setuptools-84.0.0:
+      Successfully uninstalled setuptools-84.0.0
+Successfully installed setuptools-81.0.0
+```
+
+E tentamos de novo.
+Atualização: deu errado de novo. Vou criar um env novo só pro CONCOCT com ```conda create -p /labgenomaarea2/valentina.pavelecini/conda_envs/CONCOCT python=3.10 concoct=1.1.0 scikit-learn=1.1.2 pandas=1.4.4 numpy=1.23.2 -c conda-forge -c bioconda```. Também reinstalaremos o setuptools ```python -m pip install "setuptools<82"```.
