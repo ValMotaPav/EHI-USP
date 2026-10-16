@@ -2403,7 +2403,7 @@ Output:
 [2026-10-14T14:57:37Z INFO  coverm::genome] In sample 'RF-4-B.sorted', found 8990468 reads mapped out of 19794118 total (45.42%)
 ```
 
-Não consegui fazer funcionar a etapa do eukaryotic assessment.
+_* Não consegui fazer funcionar a etapa do eukaryotic assessment._
 
 _____________________________________________________________________________
 
@@ -2462,8 +2462,15 @@ jgi_summarize_bam_contig_depths \
     --noIntraDepthVariance \
     {input.bam}
 ```
+Em que:
+- ```jgi_summarize_bam_contig_depths``` = ferramenta do conjunto MetaBAT2 que resume a cobertura dos contigs a partir dos alinhamentos presentes nos BAMs.
+- ```--outputDepth``` = define o arquivo de saída com a matriz de profundidade. No caso, ```mb2_master_depth.txt```.
+- ```--noIntraDepthVariance``` = desativa o cálculo da variância da profundidade dentro de cada contig.
+- ```{input.bam}``` = os alinhamentos que permitem estimar a cobertura de cada contig em cada amostra.
 
-Que fica:
+Essa etapa transforma os alinhamentos dos reads (.bam) em estimativas de cobertura por contig. O resultado é o arquivo ```mb2_master_depth.txt```, que contém uma linha por contig (genoma) e colunas com informações como contigName (identificador do contig), contigLen (comprimento do contig), totalAvgDepth (profundidade média total estimada), colunas das amostras (profundidade de cobertura do contig em cada amostra). MaxBin2 utiliza esse arquivo na reconstrução dos bins metagenômicos.
+
+O comando final será:
 
 ```
 jgi_summarize_bam_contig_depths \
@@ -2499,7 +2506,9 @@ Finished
 
 _______________________________________________________________________
 
-Próxima etapa
+Próxima etapa é só um check pra ver se tem o número de colunas esperado em ```mb2_master_depth.txt``` (contigName, contigLen, totalAvgDepth, e mais 6 colunas pra cada amostra), que são 9.
+
+
 ```
 #calculate total numper of columns
 A=($(head -n 1 {params.outdir}/mb2_master_depth.txt))
@@ -2517,7 +2526,7 @@ Output de ```echo $N```: 9
 
 _______________________________________________________________________
 
-Próxima etapa
+Próxima etapa reorganiza os dados de ```mb2_masterdepth.txt``` (especificamente os da coluna 4 a 9, que correspondem aos das amostras) em um arquivo por amostra e prepara a lista necessária para executar o MaxBin2.
 
 ```
 # split the contig depth file into multiple files
@@ -2532,6 +2541,11 @@ for i in $(seq 4 $N); do
     fi
 done
 ```
+Em que:
+- ```if [ -f /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt ]; then rm /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt fi``` = Verifica se mb2_abund_list.txt já existe e remove-o para criar uma lista nova se já existir.
+- ```for i in $(seq 4 $N); do sample=$(head -n 1 /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_master_depth.txt | cut -f $i)``` = percorre da linha 4 á última e extrai o nome da amostra correspondente à coluna atual.
+- ```grep -v totalAvgDepth {params.outdir}/mb2_master_depth.txt | cut -f 1,$i > {params.outdir}/mb2_${{sample%.*}}.txt``` = remove a linha do cabeçalho, seleciona apenas a primeira coluna, com os identificadores dos contigs, e a coluna de profundidade da amostra atual, grava os dados no arquivo de saída correspondente, e remove a extensão a partir do último ponto. Assim, PM-1-A.sorted.bam vira PM-1-A.sorted, e o arquivo criado recebe o nome mb2_PM-1-A.sorted.txt. Isso acontece pra cada uma das seis amostras.
+- ```if [[ {params.outdir} == /* ]]; then echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt else echo {params.outdir}/mb2_${{sample%.*}}.txt >> {params.outdir}/mb2_abund_list.txt fi``` = Adiciona o caminho completo de cada arquivo à lista mb2_abund_list.txt. O >> acrescenta uma linha ao arquivo.
 
 ```
 if [ -f /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt ]; then rm /labgenomaarea2/valentina.pavelecini/EHI/maxbin/mb2_abund_list.txt; fi
@@ -2665,4 +2679,99 @@ jgi_summarize_bam_contig_depths \
     /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
     /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
     /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+```
+
+Output:
+
+```
+Output depth matrix to /labgenomaarea2/valentina.pavelecini/EHI/maxbin/metabat_depth.txt
+Output matrix to /labgenomaarea2/valentina.pavelecini/EHI/maxbin/metabat_depth.txt
+Opening 6 bams
+Consolidating headers
+Processing bam files
+Thread 1 finished: PM-5-A.sorted.bam with 19597690 reads and 4521196 readsWellMapped
+Thread 0 finished: PM-1-A.sorted.bam with 12885188 reads and 2048443 readsWellMapped
+Thread 4 finished: RF-4-B.sorted.bam with 19794118 reads and 8079267 readsWellMapped
+Thread 5 finished: RF-5-B.sorted.bam with 50413130 reads and 17442617 readsWellMapped
+Thread 2 finished: RF-1-B.sorted.bam with 53289964 reads and 20222034 readsWellMapped
+Thread 3 finished: RF-2-B.sorted.bam with 83669984 reads and 30914560 readsWellMapped
+Creating depth matrix file: /labgenomaarea2/valentina.pavelecini/EHI/maxbin/metabat_depth.txt
+Closing most bam files
+Closing last bam file
+Finished
+```
+
+E agora rodamos o Metabat em si. Primeiro criamos um diretório para receber esses outputs com ```mkdir metabat```, depois executamos:
+
+```     
+metabat2 \
+    -i /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -a /labgenomaarea2/valentina.pavelecini/EHI/maxbin/metabat_depth.txt \
+    -o /labgenomaarea2/valentina.pavelecini/EHI/metabat/metabat2_bins/bin \
+    -m 1500 \
+    -t 24 \
+    --unbinned
+```
+
+Output:
+```
+MetaBAT 2 (v2.12.1) using minContig 1500, minCV 1.0, minCVSum 1.0, maxP 95%, minS 60, and maxEdges 200.
+102 bins (199036087 bases in total) formed.
+```
+
+_______________________________________________________________
+
+## CONCOCT
+
+Começamos criando um diretório específico para o CONCOCT com ```mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/concoct```. Também precisamos baixar o CONCOCT com ```conda install -c bioconda CONCOCT``` A utilização deste software também está dividido emvárias etapas.
+```
+#1 - Fragmentar a coassembly
+cut_up_fasta.py {input.contigs} -c 10000 --merge_last -b {params.outdir}/assembly_10K.bed -o 0 > {params.outdir}/assembly_10K.fa
+
+#2 - Calcular a cobertura dos fragmentos
+concoct_coverage_table.py {params.outdir}/assembly_10K.bed {input.bam} > {params.outdir}/concoct_depth.txt
+
+#3 - Executar o CONCOCT
+concoct \
+    -l 1500 \
+    -t {threads} \
+    --coverage_file {params.outdir}/concoct_depth.txt \
+    --composition_file {params.outdir}/assembly_10K.fa \
+    -b {params.outdir}
+
+#4 - Reunir os fragmentos e reconstruir os bins
+merge_cutup_clustering.py {params.outdir}/clustering_gt1500.csv > {params.outdir}/clustering_gt1500_merged.csv
+mkdir -p {params.outdir}/concoct_bins
+python {config[codedir]}/scripts/metawrap_split_concoct_bins.py {params.outdir}/clustering_gt1500_merged.csv {input.contigs} {params.outdir}/concoct_bins
+```
+
+_______________________________________________________________________
+
+Começamos a etapa #1 - Fragmentar a coassembly
+```
+cut_up_fasta.py /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+    -c 10000 \
+    --merge_last \
+    -b /labgenomaarea2/valentina.pavelecini/EHI/concoct/assembly_10K.bed \
+    -o 0 \
+    > /labgenomaarea2/valentina.pavelecini/EHI/concoct/assembly_10K.fa
+```
+
+Crou em /concoct ```assembly_10k.bed``` e ```assembly_10K.fa```
+
+
+________________________________________________________________________
+
+#2 - Calcular a cobertura dos fragmentos
+
+```
+concoct_coverage_table.py \
+    /labgenomaarea2/valentina.pavelecini/EHI/concoct/assembly_10K.bed \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+    /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
+    > /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_depth.txt
 ```
