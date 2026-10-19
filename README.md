@@ -2864,3 +2864,40 @@ Atualização: no início deu certo mas depois foi terminado por limite de tempo
 ```
 
 Só rodar de novo e esperar eu acho.
+
+## 19/10/2026
+
+Deu certo!!
+```
+2026-10-16 16:44:20,017:INFO:root:Successfully loaded composition data.
+2026-10-16 16:44:20,158:INFO:root:Successfully loaded coverage data.
+2026-10-16 16:44:23,561:INFO:root:Performed PCA, resulted in 38 dimensions
+2026-10-16 16:44:39,650:INFO:root:Wrote original filtered data file.
+2026-10-16 16:44:44,177:INFO:root:Wrote PCA transformed file.
+2026-10-16 16:44:44,189:INFO:root:Wrote PCA components file.
+2026-10-16 16:44:44,189:INFO:root:PCA transformed data.
+2026-10-16 16:44:44,190:INFO:root:Will call vbgmm with parameters: /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out/, 400, 1500, 24, 500
+2026-10-16 20:05:13,082:INFO:root:Wrote assign file.
+2026-10-16 20:05:13,082:INFO:root:CONCOCT Finished
+2026-10-16 20:05:13,087:INFO:root:CONCOCT Finished, the log shows how it went.
+```
+
+Agora só falta a última parte do CONCOCT e poderemos seguir para Bin Refinement:
+```
+merge_cutup_clustering.py {params.outdir}/clustering_gt1500.csv > {params.outdir}/clustering_gt1500_merged.csv
+mkdir -p {params.outdir}/concoct_bins
+python {config[codedir]}/scripts/metawrap_split_concoct_bins.py {params.outdir}/clustering_gt1500_merged.csv {input.contigs} {params.outdir}/concoct_bins
+```
+
+Tem um problema em que ```metawrap_split_concoct_bins.py``` faz parte da pipeline do Metawrap, mas não utilizei esse software até agora. o nosso caso, fica:
+```
+merge_cutup_clustering.py \
+    concoct/concoct_out/clustering_gt1500.csv \
+    > concoct/concoct_out/clustering_gt1500_merged.csv
+
+mkdir -p concoct/concoct_bins
+
+python /CAMINHO/REAL/metawrap_split_concoct_bins.py \
+    concoct/concoct_out/clustering_gt1500_merged.csv \
+    Megahit/coassembly/final.contigs.fa \
+    concoct/concoct_bins
