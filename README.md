@@ -2889,15 +2889,4 @@ mkdir -p {params.outdir}/concoct_bins
 python {config[codedir]}/scripts/metawrap_split_concoct_bins.py {params.outdir}/clustering_gt1500_merged.csv {input.contigs} {params.outdir}/concoct_bins
 ```
 
-Tem um problema em que ```metawrap_split_concoct_bins.py``` faz parte da pipeline do Metawrap, mas não utilizei esse software até agora. o nosso caso, fica:
-```
-merge_cutup_clustering.py \
-    concoct/concoct_out/clustering_gt1500.csv \
-    > concoct/concoct_out/clustering_gt1500_merged.csv
-
-mkdir -p concoct/concoct_bins
-
-python /CAMINHO/REAL/metawrap_split_concoct_bins.py \
-    concoct/concoct_out/clustering_gt1500_merged.csv \
-    Megahit/coassembly/final.contigs.fa \
-    concoct/concoct_bins
+Tem um problema em que ```metawrap_split_concoct_bins.py``` faz parte da pipeline do Metawrap, mas não utilizei esse software até agora.
