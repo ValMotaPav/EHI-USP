@@ -2394,7 +2394,22 @@ Output:
 [2026-10-14T14:57:37Z INFO  coverm::genome] In sample 'RF-4-B.sorted', found 8990468 reads mapped out of 19794118 total (45.42%)
 ```
 
-_* Não consegui fazer funcionar a etapa do eukaryotic assessment._
+_* Não consegui fazer funcionar a etapa do eukaryotic assessment: não conseguiu identificar um contig específico e na tentativa de consertar não deixa combinar -s (FASTA de referência) com -b:_
+```
+[2026-10-14T13:31:57Z INFO  bird_tool_utils::clap_utils] CoverM version 0.8.0
+[2026-10-14T13:31:57Z INFO  coverm] Using min-covered-fraction 0%
+
+thread 'main' (2043762) panicked at src/genome.rs:802:86:
+Contig name k141_455344 does not contain split symbol, so cannot determine which genome it belongs to
+note: run with RUST_BACKTRACE=1 environment variable to display a backtrace
+```
+```
+error: the argument '--reference <reference>...' cannot be used with '--bam-files <bam-files>...'
+
+Usage: coverm genome --single-genome --reference <reference>... --methods <methods>... --threads <threads> --min-covered-fraction <min-covered-fraction>
+
+For more information, try '--help'.
+```
 
 _____________________________________________________________________________
 
