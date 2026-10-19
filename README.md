@@ -2889,4 +2889,127 @@ mkdir -p {params.outdir}/concoct_bins
 python {config[codedir]}/scripts/metawrap_split_concoct_bins.py {params.outdir}/clustering_gt1500_merged.csv {input.contigs} {params.outdir}/concoct_bins
 ```
 
-Tem um problema em que ```metawrap_split_concoct_bins.py``` faz parte da pipeline do Metawrap, mas não utilizei esse software até agora.
+1 Parte: 
+```
+merge_cutup_clustering.py \
+  /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out/clustering_gt1500.csv \
+  > /labgenomaarea2/valentina.pavelecini/EHI/concoct/concoct_out/clustering_gt1500_merged.csv
+```
+Output:
+```
+No consensus cluster for contig k141_28703: [('142', 2), ('74', 3)]      Chosen cluster: 74
+No consensus cluster for contig k141_541355: [('7', 8), ('71', 1), ('143', 1)]   Chosen cluster: 7
+No consensus cluster for contig k141_428952: [('74', 1), ('92', 1), ('115', 1)]  Chosen cluster: 74
+No consensus cluster for contig k141_115652: [('137', 1), ('149', 4), ('146', 1)]        Chosen cluster: 149
+No consensus cluster for contig k141_30009: [('74', 1), ('110', 4)]      Chosen cluster: 110
+No consensus cluster for contig k141_571434: [('141', 1), ('85', 5)]     Chosen cluster: 85
+No consensus cluster for contig k141_202434: [('5', 24), ('13', 1)]      Chosen cluster: 5
+No consensus cluster for contig k141_344901: [('74', 1), ('115', 1)]     Chosen cluster: 74
+No consensus cluster for contig k141_31580: [('71', 1), ('185', 1)]      Chosen cluster: 71
+No consensus cluster for contig k141_317255: [('13', 1), ('185', 8)]     Chosen cluster: 185
+No consensus cluster for contig k141_260400: [('60', 6), ('110', 4)]     Chosen cluster: 60
+No consensus cluster for contig k141_261048: [('143', 2), ('62', 1)]     Chosen cluster: 143
+No consensus cluster for contig k141_89941: [('14', 1), ('74', 2)]       Chosen cluster: 74
+No consensus cluster for contig k141_289144: [('13', 2), ('39', 26)]     Chosen cluster: 39
+No consensus cluster for contig k141_631716: [('68', 6), ('38', 1)]      Chosen cluster: 68
+No consensus cluster for contig k141_432476: [('68', 4), ('92', 1)]      Chosen cluster: 68
+No consensus cluster for contig k141_204143: [('38', 1), ('74', 1)]      Chosen cluster: 38
+No consensus cluster for contig k141_574867: [('39', 8), ('13', 1)]      Chosen cluster: 39
+No consensus cluster for contig k141_290038: [('91', 1), ('36', 1)]      Chosen cluster: 91
+No consensus cluster for contig k141_604644: [('142', 2), ('74', 2)]     Chosen cluster: 142
+No consensus cluster for contig k141_319516: [('74', 1), ('85', 1)]      Chosen cluster: 74
+No consensus cluster for contig k141_290743: [('113', 2), ('17', 1)]     Chosen cluster: 113
+No consensus cluster for contig k141_91887: [('38', 1), ('60', 1)]       Chosen cluster: 38
+No consensus cluster for contig k141_234288: [('87', 15), ('156', 1)]    Chosen cluster: 87
+No consensus cluster for contig k141_405314: [('5', 11), ('13', 1)]      Chosen cluster: 5
+No consensus cluster for contig k141_63469: [('74', 7), ('168', 1)]      Chosen cluster: 74
+No consensus cluster for contig k141_520318: [('87', 6), ('143', 1)]     Chosen cluster: 87
+No consensus cluster for contig k141_548358: [('110', 1), ('74', 1)]     Chosen cluster: 110
+No consensus cluster for contig k141_63818: [('185', 11), ('13', 1)]     Chosen cluster: 185
+No consensus cluster for contig k141_406296: [('85', 1), ('139', 3)]     Chosen cluster: 139
+No consensus cluster for contig k141_35888: [('153', 1), ('40', 1)]      Chosen cluster: 153
+No consensus cluster for contig k141_36013: [('142', 2), ('74', 1)]      Chosen cluster: 142
+No consensus cluster for contig k141_349264: [('117', 6), ('74', 1)]     Chosen cluster: 117
+No consensus cluster for contig k141_8551: [('49', 7), ('116', 2)]       Chosen cluster: 49
+No consensus cluster for contig k141_322226: [('110', 3), ('183', 1)]    Chosen cluster: 110
+No consensus cluster for contig k141_236784: [('74', 1), ('15', 2)]      Chosen cluster: 15
+No consensus cluster for contig k141_151433: [('5', 4), ('39', 2)]       Chosen cluster: 5
+No consensus cluster for contig k141_37252: [('54', 12), ('11', 2)]      Chosen cluster: 54
+No consensus cluster for contig k141_494186: [('87', 1), ('143', 1)]     Chosen cluster: 87
+No consensus cluster for contig k141_350687: [('113', 1), ('74', 1)]     Chosen cluster: 113
+No consensus cluster for contig k141_237746: [('181', 1), ('74', 1)]     Chosen cluster: 181
+No consensus cluster for contig k141_437323: [('110', 2), ('146', 1)]    Chosen cluster: 110
+No consensus cluster for contig k141_181057: [('82', 1), ('143', 1)]     Chosen cluster: 82
+No consensus cluster for contig k141_123710: [('113', 1), ('115', 1), ('74', 2), ('142', 2)]     Chosen cluster: 74
+No consensus cluster for contig k141_637610: [('68', 1), ('60', 1)]      Chosen cluster: 68
+No consensus cluster for contig k141_466480: [('14', 1), ('68', 7)]      Chosen cluster: 68
+No consensus cluster for contig k141_238944: [('113', 2), ('49', 1)]     Chosen cluster: 113
+No consensus cluster for contig k141_580385: [('110', 1), ('181', 6)]    Chosen cluster: 181
+No consensus cluster for contig k141_239549: [('74', 1), ('115', 1)]     Chosen cluster: 74
+No consensus cluster for contig k141_210017: [('110', 15), ('49', 1)]    Chosen cluster: 110
+No consensus cluster for contig k141_552691: [('5', 21), ('39', 1)]      Chosen cluster: 5
+No consensus cluster for contig k141_638902: [('39', 3), ('13', 3)]      Chosen cluster: 39
+No consensus cluster for contig k141_353070: [('13', 1), ('39', 11)]     Chosen cluster: 39
+No consensus cluster for contig k141_667983: [('181', 3), ('110', 2)]    Chosen cluster: 181
+No consensus cluster for contig k141_468643: [('81', 1), ('156', 1)]     Chosen cluster: 81
+No consensus cluster for contig k141_497173: [('181', 1), ('110', 1)]    Chosen cluster: 181
+No consensus cluster for contig k141_270283: [('40', 1), ('11', 6)]      Chosen cluster: 11
+No consensus cluster for contig k141_497337: [('98', 1), ('110', 1)]     Chosen cluster: 98
+No consensus cluster for contig k141_354370: [('122', 1), ('74', 1)]     Chosen cluster: 122
+No consensus cluster for contig k141_211515: [('39', 22), ('13', 2)]     Chosen cluster: 39
+No consensus cluster for contig k141_298407: [('7', 4), ('71', 1)]       Chosen cluster: 7
+No consensus cluster for contig k141_640693: [('5', 28), ('13', 1)]      Chosen cluster: 5
+No consensus cluster for contig k141_440674: [('92', 2), ('142', 1)]     Chosen cluster: 92
+No consensus cluster for contig k141_555171: [('54', 2), ('11', 1)]      Chosen cluster: 54
+No consensus cluster for contig k141_212604: [('146', 1), ('74', 3)]     Chosen cluster: 74
+No consensus cluster for contig k141_555497: [('87', 14), ('156', 1)]    Chosen cluster: 87
+No consensus cluster for contig k141_527610: [('17', 1), ('156', 3)]     Chosen cluster: 156
+No consensus cluster for contig k141_613904: [('142', 3), ('92', 1)]     Chosen cluster: 142
+No consensus cluster for contig k141_71643: [('162', 3), ('92', 1)]      Chosen cluster: 162
+No consensus cluster for contig k141_329776: [('81', 2), ('143', 1)]     Chosen cluster: 81
+No consensus cluster for contig k141_188457: [('85', 1), ('49', 1)]      Chosen cluster: 85
+No consensus cluster for contig k141_672806: [('15', 1), ('74', 1)]      Chosen cluster: 15
+No consensus cluster for contig k141_245376: [('40', 1), ('11', 10)]     Chosen cluster: 11
+No consensus cluster for contig k141_386346: [('11', 1), ('35', 1)]      Chosen cluster: 11
+No consensus cluster for contig k141_587582: [('120', 1), ('7', 2)]      Chosen cluster: 7
+No consensus cluster for contig k141_302812: [('115', 1), ('9', 1)]      Chosen cluster: 115
+No consensus cluster for contig k141_559143: [('140', 2), ('57', 1)]     Chosen cluster: 140
+No consensus cluster for contig k141_386952: [('142', 2), ('92', 1)]     Chosen cluster: 142
+No consensus cluster for contig k141_104509: [('132', 2), ('74', 1)]     Chosen cluster: 132
+No consensus cluster for contig k141_75001: [('40', 1), ('11', 3)]       Chosen cluster: 11
+No consensus cluster for contig k141_303806: [('74', 5), ('142', 1)]     Chosen cluster: 74
+No consensus cluster for contig k141_20119: [('87', 1), ('143', 1)]      Chosen cluster: 87
+No consensus cluster for contig k141_192188: [('74', 1), ('49', 1)]      Chosen cluster: 74
+No consensus cluster for contig k141_447201: [('156', 1), ('7', 1)]      Chosen cluster: 156
+No consensus cluster for contig k141_305906: [('74', 3), ('181', 1)]     Chosen cluster: 74
+No consensus cluster for contig k141_678259: [('40', 1), ('54', 1)]      Chosen cluster: 40
+No consensus cluster for contig k141_591721: [('82', 2), ('142', 1)]     Chosen cluster: 82
+No consensus cluster for contig k141_679229: [('87', 7), ('143', 1)]     Chosen cluster: 87
+No consensus cluster for contig k141_251975: [('92', 3), ('142', 1)]     Chosen cluster: 92
+No consensus cluster for contig k141_52188: [('13', 1), ('185', 2)]      Chosen cluster: 185
+No consensus cluster for contig k141_167518: [('98', 1), ('11', 1)]      Chosen cluster: 98
+No consensus cluster for contig k141_593857: [('68', 7), ('60', 1)]      Chosen cluster: 68
+No consensus cluster for contig k141_167575: [('5', 38), ('13', 1)]      Chosen cluster: 5
+No consensus cluster for contig k141_25393: [('92', 2), ('142', 1)]      Chosen cluster: 92
+No consensus cluster for contig k141_366288: [('105', 5), ('85', 1)]     Chosen cluster: 105
+No consensus cluster for contig k141_681305: [('49', 17), ('74', 1)]     Chosen cluster: 49
+No consensus cluster for contig k141_54087: [('156', 1), ('49', 8)]      Chosen cluster: 49
+No consensus cluster for contig k141_681320: [('57', 1), ('153', 2)]     Chosen cluster: 153
+No consensus cluster for contig k141_681337: [('113', 3), ('74', 1)]     Chosen cluster: 113
+No consensus cluster for contig k141_451863: [('110', 3), ('184', 1)]    Chosen cluster: 110
+No consensus cluster for contig k141_226257: [('142', 1), ('92', 4)]     Chosen cluster: 92
+```
+
+2 parte:
+```
+mkdir -p concoct/concoct_bins
+```
+
+3 parte: Tem um problema em que ```metawrap_split_concoct_bins.py``` faz parte da pipeline do Metawrap, mas não utilizei esse software até agora.
+```
+python /labgenomaarea2/valentina.pavelecini/EHI/concoct/metawrap_split_concoct_bins.py \
+    concoct/concoct_out/clustering_gt1500_merged.csv \
+    Megahit/coassembly/final.contigs.fa \
+    concoct/concoct_bins
+```
+Não sei como prosseguir :=
