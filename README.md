@@ -3013,3 +3013,61 @@ python /labgenomaarea2/valentina.pavelecini/EHI/concoct/metawrap_split_concoct_b
     concoct/concoct_bins
 ```
 Não sei como prosseguir :=
+
+## 21/10/2026
+
+Entrando em contato com o pessoal do EHI, recebi a seguinte resposta:
+
+```
+Dear Valentina
+
+The first chunk you mention is simply a bridge code to generate some extra analysis that requires a different pipeline, so it’s safe to ignore it in your case.
+
+The second chunk is to turn concoct output usable with the metawrap module, which is used for refining bins.
+
+A few things: the pipeline is quite old and we don’t use it anymore at the EHI. We don’t rely on CONCOCT anymore by use Semibin2 and Comebin2, since they perform significantly better. In addition, there are other bin refiners like binette or magscore you might want to use instead of metawrap.
+
+Hope this helps,
+Best,
+Antton
+```
+
+Vamos primeiro fazer uma avaliação da qualidade dos bins produzidos pelo Metabat, Maxbin e CONCOCT com CheckM2. Se ela for insuficiente, vamos utilizar Semibin2 e Comebin2, e para refinamento, Binette ou Magscore.
+Ou seja, relembrando o que fizemos e o que falta:
+```
+FEITO //////////////    METABAT
+FEITO //////////////    # summarise contig depths
+FEITO /////////////     # Run metabat2
+
+CONCOCT
+FEITO /////////////     #1 - Fragmentar a coassembly
+FEITO /////////////     #2 - Calcular a cobertura dos fragmentos
+#3 - Executar o CONCOCT ---> Qualidade insuficiente ---> Semibin2 + Comebin2
+#4 - Reunir os fragmentos e reconstruir os bins ---> Binette
+
+BIN REFINEMENT
+# setup checkm2 db path (in case of first run)
+# Rename output files, and sort metawrap by bin name
+# Rename metawrap bins to match coassembly group:
+# Compress output bins
+# Print the number of MAGs to a file for combining with the assembly report
+# Reformat MAG headers for CoverM
+
+TAXONOMIC ANNOTATION
+# Run GTDB-tk
+
+FUNCTIONAL ANNOTATION
+# DRAM.py annotate
+# DRAM.py distill
+
+MAG DEREPLICATION
+
+MAPPING TO MAG CATALOGUE
+# Concatenate MAGs
+# Index the coassembly
+# Bowtie2
+# Relative abundance
+# MAG coverage
+```
+
+Pra rodar o filtro de qualidade vamos usar o CheckM2. Vou voltar para o env EHI e instalar com ```conda install-c bioconda checkm2```. Não deu certo por alguma razão então incluí os dois canais especificamente ```conda install -c conda-forge -c bioconda checkm2 -y```... e não funcionou também? Teste c libmamba n rolou tb ```conda install --solver=libmamba -c conda-forge -c bioconda checkm2 -y```. PARA SEXTA: CRIAR UM ENV SEPARADO!!!
