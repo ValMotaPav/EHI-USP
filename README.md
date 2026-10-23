@@ -3071,3 +3071,35 @@ MAPPING TO MAG CATALOGUE
 ```
 
 Pra rodar o filtro de qualidade vamos usar o CheckM2. Vou voltar para o env EHI e instalar com ```conda install-c bioconda checkm2```. Não deu certo por alguma razão então incluí os dois canais especificamente ```conda install -c conda-forge -c bioconda checkm2 -y```... e não funcionou também? Teste c libmamba n rolou tb ```conda install --solver=libmamba -c conda-forge -c bioconda checkm2 -y```. PARA SEXTA: CRIAR UM ENV SEPARADO!!!
+
+## 23/10/2026
+
+Consegui criando um env novo eba!! Agora pro uso em si:
+
+```checkm2 predict --threads 24 --input <folder_with_bins> --output-directory <output_folder> ```
+
+Vou começar entrando na sessão do tmux com ```tmux new -s checkm2``` e fazendo o primeiro comando, do MAXBIN. Devo observar também que a etapa do Concoct não gerou bins, apenas um cluster. Criamos uma pasta só pros outputs desta etapa do CheckM2 com ```mkdir checkm2``` e iniciamos o comando:
+
+```checkm2 predict --threads 24 --input /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins --output-directory /labgenomaarea2/valentina.pavelecini/EHI/checkm2 ```
+
+Teve um pequeno erro em que ele não reconheceu as extensões .fa dos bins, por isso adicionamos ```-x fa``` no final do comando para indicar a extensão correta, como o próprio programa indicou na mensagem de erro. Vamos também separar em linhas pra deixar o comando mais claro e criar um diretório apenas para os resultados do Maxbin:
+
+```
+checkm2 predict \
+  --threads 24 \
+  --input /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins \
+  --output-directory /labgenomaarea2/valentina.pavelecini/EHI/checkm2/maxbin \
+  -x fa
+```
+
+E mais um erro, não temos a database DIAMOND, a própria mensagem de erro indica o comando de download com ```checkm2 database --download``` então rodamos este. Tive que rodar fora do tmux porque dentro não estava funcionando (?). Deu mais um erro por falta de memória então adicionamos MAIS UMA LINHA indicando pra rodar o comando com baixa memória:
+```
+checkm2 predict \
+  --threads 8 \
+  --lowmem \
+  --resume \
+  --input /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins \
+  --output-directory /labgenomaarea2/valentina.pavelecini/EHI/checkm2/maxbin \
+  -x fa
+```
+Mais um erro puta que o pariu agr é problema no database DIAMOND. Nem sei como resolver esta merda.
