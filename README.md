@@ -3103,3 +3103,7 @@ checkm2 predict \
   -x fa
 ```
 Mais um erro puta que o pariu agr é problema no database DIAMOND. Nem sei como resolver esta merda.
+
+## 26/10/2026
+
+Cara sei lá honestamente acho que é melhor trocar pro BUSCO + GUNC
