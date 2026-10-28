@@ -3042,7 +3042,7 @@ FEITO /////////////     # Run metabat2
 CONCOCT
 FEITO /////////////     #1 - Fragmentar a coassembly
 FEITO /////////////     #2 - Calcular a cobertura dos fragmentos
-#3 - Executar o CONCOCT ---> Qualidade insuficiente ---> Semibin2 + Comebin2
+#3 - Executar o CONCOCT ---> CheckM2 ---> Qualidade insuficiente ---> Semibin2 + Comebin2
 #4 - Reunir os fragmentos e reconstruir os bins ---> Binette
 
 BIN REFINEMENT
@@ -3107,3 +3107,69 @@ Mais um erro puta que o pariu agr é problema no database DIAMOND. Nem sei como 
 ## 26/10/2026
 
 Cara sei lá honestamente acho que é melhor trocar pro BUSCO + GUNC
+
+
+## 28/10/2026
+
+Lembrando nossa run:
+```
+FEITO //////////////    METABAT
+FEITO //////////////    # summarise contig depths
+FEITO /////////////     # Run metabat2
+
+CONCOCT
+FEITO /////////////     #1 - Fragmentar a coassembly
+FEITO /////////////     #2 - Calcular a cobertura dos fragmentos
+#3 - Executar o CONCOCT ---> BUSCO e GUNC ---> Qualidade insuficiente ---> Semibin2 + Comebin2
+#4 - Reunir os fragmentos e reconstruir os bins ---> Pular?
+
+BIN REFINEMENT ---> Binette
+# setup checkm2 db path (in case of first run)
+# Rename output files, and sort metawrap by bin name
+# Rename metawrap bins to match coassembly group:
+# Compress output bins
+# Print the number of MAGs to a file for combining with the assembly report
+# Reformat MAG headers for CoverM
+
+TAXONOMIC ANNOTATION
+# Run GTDB-tk
+
+FUNCTIONAL ANNOTATION
+# DRAM.py annotate
+# DRAM.py distill
+
+MAG DEREPLICATION
+
+MAPPING TO MAG CATALOGUE
+# Concatenate MAGs
+# Index the coassembly
+# Bowtie2
+# Relative abundance
+# MAG coverage
+```
+
+Vamos substituir o CONCOCT pelo Semibin2. Começamos criando um env com o software com:
+```
+conda create -p /labgenomaarea2/valentina.pavelecini/conda_envs/semibin2 \
+  -c conda-forge -c bioconda semibin -y
+```
+Depois, vamos abrir uma janela no tmux com ```tmux new -s semibin2``` e rodar:
+```
+set -o pipefail
+
+SemiBin2 single_easy_bin \
+  --self-supervised \
+  -i /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+  -b \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam \
+  /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam \
+  -o /labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly \
+  -t 8 \
+  2>&1 | tee /labgenomaarea2/valentina.pavelecini/EHI/semibin2/semibin2.log
+```
+
+Está rodando na janela do Tmux! Agora só esperar.
