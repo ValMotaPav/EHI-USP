@@ -3286,4 +3286,6 @@ Em que:
 - ```-p 1``` = Usa 1 processo.
 - ```--engine cpu``` Executa o treinamento na CPU.
 - ```2>&1``` = Redireciona as mensagens de erro para a mesma saída das mensagens normais.
-tee train.log	Exibe o andamento no terminal e grava o registro em train.log.
+- ```tee train.log``` = Exibe o andamento no terminal e grava o registro em train.log.
+
+Deu erro então vamos pedir recursos na janela do tmux ```srun --partition=LAD_geral --nodes=1 --ntasks=1 --cpus-per-task=2 --mem=16G --time=6:00:00 --pty bash``` e enviamos.
