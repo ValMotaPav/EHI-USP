@@ -3182,3 +3182,108 @@ SemiBin2 single_easy_bin \
 ```
 
 Está rodando na janela do Tmux! Agora só esperar.
+
+## 30/10/2026
+
+Relembrando as próximas etapas:
+```
+# Semibin2
+# BUSCO e GUNC
+
+BIN REFINEMENT ---> Binette
+# setup checkm2 db path (in case of first run)
+# Rename output files, and sort metawrap by bin name
+# Rename metawrap bins to match coassembly group:
+# Compress output bins
+# Print the number of MAGs to a file for combining with the assembly report
+# Reformat MAG headers for CoverM
+
+TAXONOMIC ANNOTATION
+# Run GTDB-tk
+
+FUNCTIONAL ANNOTATION
+# DRAM.py annotate
+# DRAM.py distill
+
+MAG DEREPLICATION
+
+MAPPING TO MAG CATALOGUE
+# Concatenate MAGs
+# Index the coassembly
+# Bowtie2
+# Relative abundance
+# MAG coverage
+```
+
+
+Output do Semibin2:
+```
+2026-10-28 11:53:54 pantanal SemiBin2[3084646] INFO Running SemiBin2 version 2.6.0
+2026-10-28 11:53:54 pantanal SemiBin2[3084646] INFO Binning for short_read
+2026-10-28 11:54:15 pantanal SemiBin2[3084646] WARNING Did not detect GPU or CUDA was not installed/supported, using CPU.
+2026-10-28 11:54:19 pantanal SemiBin2[3084646] INFO Generating training data...
+2026-10-28 11:58:03 pantanal SemiBin2[3084646] INFO Calculating coverage for every sample.
+2026-10-28 11:59:27 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam
+2026-10-28 12:00:09 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam
+2026-10-28 12:05:11 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam
+2026-10-28 12:08:11 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+2026-10-28 12:08:11 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam
+2026-10-28 12:11:42 pantanal SemiBin2[3084646] INFO Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+2026-10-28 12:12:26 pantanal SemiBin2[3084646] INFO Start training from a single sample.
+2026-10-28 12:12:27 pantanal SemiBin2[3084646] INFO Training model...
+  0%|          | 0/15 [00:00<?, ?it/s]/labgenomaarea2/valentina.pavelecini/conda_envs/semibin2/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-ti_ah8e_'}
+  warnings.warn(
+Killed
+```
+
+SemiBinRun.log:
+```
+[2026-10-28 11:53:54,747] INFO: Running SemiBin2 version 2.6.0
+[2026-10-28 11:53:54,748] DEBUG: Starting SemiBin2 with arguments: ['single_easy_bin', '--self-supervised', '-i', '/labgenomaarea2/valentina.pavele>
+[2026-10-28 11:53:54,748] DEBUG: Parsed arguments as: Namespace(verbose=False, quiet=False, cmd='single_easy_bin', contig_fasta='/labgenomaarea2/va>
+[2026-10-28 11:53:54,749] INFO: Binning for short_read
+[2026-10-28 11:54:15,984] WARNING: Did not detect GPU or CUDA was not installed/supported, using CPU.
+[2026-10-28 11:54:19,194] INFO: Generating training data...
+[2026-10-28 11:54:25,982] DEBUG: Start generating kmer features from fasta file.
+[2026-10-28 11:58:03,637] INFO: Calculating coverage for every sample.
+[2026-10-28 11:59:27,048] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-1-A.sorted.bam
+[2026-10-28 12:00:09,272] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/PM-5-A.sorted.bam
+[2026-10-28 12:05:11,633] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-1-B.sorted.bam
+[2026-10-28 12:08:11,693] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-2-B.sorted.bam
+[2026-10-28 12:08:11,698] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-4-B.sorted.bam
+[2026-10-28 12:11:42,208] INFO: Processed: /labgenomaarea2/valentina.pavelecini/EHI/bowtie2/mapping/RF-5-B.sorted.bam
+[2026-10-28 12:12:26,319] INFO: Start training from a single sample.
+[2026-10-28 12:12:27,738] INFO: Training model...
+[2026-10-28 12:12:27,739] DEBUG: Reading training data for index 0...
+[2026-10-28 12:12:29,303] DEBUG: Data shape from file `/labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly/data.csv`: (23645, 142)
+[2026-10-28 12:12:29,303] DEBUG: Data shape from file `/labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly/data_split.csv` (split data fil>
+[2026-10-28 12:12:29,435] DEBUG: Number of must-link pairs: 11172
+[2026-10-28 12:12:29,435] DEBUG: Number of cannot-link pairs: 4000000
+```
+
+O comando até chegou a produzir os dados a partir dos contigs, o cálculo de cobertura dos seis BAMs, e a preparação para os dados de treinamento, mas falhou na hora de treinar o modelo. Como só faltou essa parte, vamos criar uma pasta separada só pra essa parte com ```mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/semibin2/training``` e vamos usar um subcomando (```tran_self```) para rodar apenas as partes que faltaram:
+```
+set -o pipefail
+
+SemiBin2 train_self \
+  --data /labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly/data.csv \
+  --data-split /labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly/data_split.csv \
+  -o /labgenomaarea2/valentina.pavelecini/EHI/semibin2/training \
+  --batch-size 128 \
+  --epochs 15 \
+  -p 1 \
+  --engine cpu \
+  2>&1 | tee /labgenomaarea2/valentina.pavelecini/EHI/semibin2/training/train.log
+```
+Em que:
+- ```set -o pipefail``` = faz o terminal identificar erros no comando.
+- ```SemiBin2 train_self``` = Inicia o treinamento do modelo com aprendizagem autossupervisionada.
+- ```--data data.csv``` = Informa os dados de características das sequências já gerados.
+- ```--data-split data_split.csv``` = Informa os dados de sequências usados no treinamento.
+- ```-o .../training``` = Diretório de saída dos dados do treinamento.
+- ```--batch-size 128``` = Define 128 registros por lote de treinamento. É menor que o padrão 2048 e busca reduzir o uso de memória.
+- ```--epochs 15``` = 15 ciclos de treinamento.
+- ```-p 1``` = Usa 1 processo.
+- ```--engine cpu``` Executa o treinamento na CPU.
+- ```2>&1``` = Redireciona as mensagens de erro para a mesma saída das mensagens normais.
+tee train.log	Exibe o andamento no terminal e grava o registro em train.log.
