@@ -1,3 +1,12 @@
+Login:
+```
+ssh -J valentina.pavelecini@marfim.lad.pucrs.br valentina.pavelecini@pantanal.lad.pucrs.br
+```
+```
+cd /labgenomaarea2/valentina.pavelecini
+
+```
+
 Pipeline: https://www.earthhologenome.org/bioinformatics/index.html  
 
 Fluxograma: https://www.canva.com/design/DAHUDcTIaEc/Z9jiEwyVO9jZrfU_UPkavA/edit?ui=e30  
