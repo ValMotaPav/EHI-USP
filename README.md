@@ -3187,7 +3187,7 @@ Está rodando na janela do Tmux! Agora só esperar.
 
 Relembrando as próximas etapas:
 ```
-# Semibin2
+# Semibin2 
 # BUSCO e GUNC
 
 BIN REFINEMENT ---> Binette
@@ -3349,9 +3349,56 @@ Em que:
 E esperamos:
 
 ```
-2026-11-04 22:08:50 pantanal SemiBin2[389536] INFO Running SemiBin2 version 2.6.0
 2026-11-04 22:09:07 pantanal SemiBin2[389536] INFO Running with CPU.
 2026-11-04 22:09:11 pantanal SemiBin2[389536] INFO Start binning.
 2026-11-04 22:10:53 pantanal SemiBin2[389536] INFO Number of bins prior to reclustering: 129
 2026-11-04 22:10:55 pantanal SemiBin2[389536] INFO Running naive ORF finder
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO Number of bins after reclustering: 145
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO Binning summary:
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Bins produced: 145
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Contigs binned: 21,999 / 63,170 (34.8%)
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Basepairs binned: 175,033,155 / 256,725,534 (68.2%)
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Unbinned: 1,646 contigs (7,803,259 bp) passed the length filter but were not binned; 39,525 contigs (73,889,120 bp) too short (< 2,500 bp)
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Bin size (bp): mean 1,207,125, median 765,834, min 202,647, max 6,701,169
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Contigs per bin: mean 151.7, median 98
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO   Note: these bins are not quality-controlled and should not be treated as MAGs without further QC (e.g., checking completeness and contamination with CheckM2, and chimerism with GUNC)
+2026-11-04 22:25:21 pantanal SemiBin2[389536] INFO Binning finished
+If you find SemiBin useful, please cite:
+        Pan, S.; Zhu, C.; Zhao, XM.; Coelho, LP. A deep siamese neural network improves metagenome-assembled genomes in microbiome datasets across different environments. Nat Commun 13, 2326 (2022). https://doi.org/10.1038/s41467-022-29843-y
+
+        Pan, S.; Zhao, XM; Coelho, LP. SemiBin2: self-supervised contrastive learning leads to better MAGs for short- and long-read sequencing. Bioinformatics Volume 39, Issue Supplement_1, June 2023, Pages i21–i29. https://doi.org/10.1093/bioinformatics/btad209
 ```
+
+Sugoi.
+Falta as próximas:
+
+```
+# CheckM2
+# BUSCO e GUNC
+
+BIN REFINEMENT ---> Binette
+# setup checkm2 db path (in case of first run)
+# Rename output files, and sort metawrap by bin name
+# Rename metawrap bins to match coassembly group:
+# Compress output bins
+# Print the number of MAGs to a file for combining with the assembly report
+# Reformat MAG headers for CoverM
+
+TAXONOMIC ANNOTATION
+# Run GTDB-tk
+
+FUNCTIONAL ANNOTATION
+# DRAM.py annotate
+# DRAM.py distill
+
+MAG DEREPLICATION
+
+MAPPING TO MAG CATALOGUE
+# Concatenate MAGs
+# Index the coassembly
+# Bowtie2
+# Relative abundance
+# MAG coverage
+```
+
+Próxima etapa é baixar o CheckM2 again,
