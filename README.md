@@ -3289,3 +3289,69 @@ Em que:
 - ```tee train.log``` = Exibe o andamento no terminal e grava o registro em train.log.
 
 Deu erro então vamos pedir recursos na janela do tmux ```srun --partition=LAD_geral --nodes=1 --ntasks=1 --cpus-per-task=2 --mem=16G --time=6:00:00 --pty bash``` e enviamos.
+
+## 04/11/2026
+
+Sucesso!!! O SemiBin2 treinou o modelo.
+
+```
+>   --epochs 15 \
+>   -p 1 \
+>   --engine cpu \
+>   2>&1 | tee /labgenomaarea2/valentina.pavelecini/EHI/semibin2/training/train.log
+2026-10-30 10:37:42 pantanal05 SemiBin2[415182] INFO Running SemiBin2 version 2.6.0
+2026-10-30 10:37:46 pantanal05 SemiBin2[415182] INFO Running with CPU.
+2026-10-30 10:37:48 pantanal05 SemiBin2[415182] INFO Start training from a single sample.
+2026-10-30 10:37:48 pantanal05 SemiBin2[415182] INFO Training model...
+100%|██████████| 15/15 [2:15:15<00:00, 541.05s/it]                                                                                                  
+2026-10-30 12:53:08 pantanal05 SemiBin2[415182] INFO Training finished.
+If you find SemiBin useful, please cite:
+        Pan, S.; Zhu, C.; Zhao, XM.; Coelho, LP. A deep siamese neural network improves metagenome-assembled genomes in microbiome datasets across different environments. Nat Commun 13, 2326 (2022). https://doi.org/10.1038/s41467-022-29843-y
+
+        Pan, S.; Zhao, XM; Coelho, LP. SemiBin2: self-supervised contrastive learning leads to better MAGs for short- and long-read sequencing. Bioinformatics Volume 39, Issue Supplement_1, June 2023, Pages i21–i29. https://doi.org/10.1093/bioinformatics/btad209
+```
+
+Criamos um diretório com ```mkdir -p /labgenomaarea2/valentina.pavelecini/EHI/semibin2/bins```. Na documentação oficial, o próximo comando é o seguinte:
+
+```
+SemiBin bin \
+    -i S1.fa \
+    --model S1_output/model.h5 \
+    --data S1_output/data.csv \
+    -o S1_output
+
+```
+
+Então adaptamos e rodamos o comando abaixo:
+
+```
+set -o pipefail
+
+SemiBin2 bin \
+  -i /labgenomaarea2/valentina.pavelecini/EHI/Megahit/coassembly/final.contigs.fa \
+  -o /labgenomaarea2/valentina.pavelecini/EHI/semibin2/bins \
+  --data /labgenomaarea2/valentina.pavelecini/EHI/semibin2/coassembly/data.csv \
+  --model /labgenomaarea2/valentina.pavelecini/EHI/semibin2/training/model.pt \
+  -p 4 \
+  --engine cpu \
+  2>&1 | tee /labgenomaarea2/valentina.pavelecini/EHI/semibin2/bins/binning.log
+```
+Em que:
+- ```SemiBin2 bin``` = executa o agrupamento dos contigs em bins.
+- ```-i``` = arquivo FASTA da coassembly.
+-```o:``` = diretório onde serão salvos os resultados.
+- ```--data``` = arquivo de características gerado na primeira etapa.
+- ```--model```= modelo treinado na segunda etapa.
+- ```-p``` número de processos.
+- ```--engine cpu``` = utiliza a CPU.
+
+
+E esperamos:
+
+```
+2026-11-04 22:08:50 pantanal SemiBin2[389536] INFO Running SemiBin2 version 2.6.0
+2026-11-04 22:09:07 pantanal SemiBin2[389536] INFO Running with CPU.
+2026-11-04 22:09:11 pantanal SemiBin2[389536] INFO Start binning.
+2026-11-04 22:10:53 pantanal SemiBin2[389536] INFO Number of bins prior to reclustering: 129
+2026-11-04 22:10:55 pantanal SemiBin2[389536] INFO Running naive ORF finder
+```
