@@ -3370,14 +3370,16 @@ If you find SemiBin useful, please cite:
 ```
 
 Sugoi.
-Falta as próximas:
+
+## 11/11/2026
+
+Lembrete das próximas etapas:
 
 ```
-# CheckM2
-# BUSCO e GUNC
-
-BIN REFINEMENT ---> Binette
+CHECK DE QUALIDADE - BUSCO + GUNC ou CHECKM original
 # setup checkm2 db path (in case of first run)
+
+REFINAMENTO - BINETTE
 # Rename output files, and sort metawrap by bin name
 # Rename metawrap bins to match coassembly group:
 # Compress output bins
@@ -3401,4 +3403,30 @@ MAPPING TO MAG CATALOGUE
 # MAG coverage
 ```
 
-Próxima etapa é baixar o CheckM2 again,
+Troubleshooting o CheckM2. Vamos tentar trocar ele pelo CheckM original com ```conda install bioconda::checkm-genome``` como indicado no site oficial, num diretório novo em ```/labgenomaarea2/valentina.pavelecini/EHI/checkm```
+
+```
+done
+WARNING conda.conda_pypi.main:notify_externally_managed_future(156):
+  Did you know? You can install many PyPI packages with conda
+  using the conda-pypi beta. Get started:
+    https://docs.conda.io/projects/conda/en/stable/new-features.html
+```
+
+Vamos rodar o programa com checkm lineage_wf, porque ele é o fluxo padrão do CheckM para avaliar a qualidade de genomas reconstruídos (bins/MAGs) quando não temos uma classificação taxonômica prévia confiável para escolher os marcadores:
+
+```
+checkm lineage_wf -t 8 -x fa \
+    /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins \
+    /labgenomaarea2/valentina.pavelecini/EHI/checkm/Maxbin2
+```
+
+Deu erro porque ele tenta importar uma interface antiga do setuptools, então vamos baixar essa interface antiga:
+```
+conda install \
+  -p /labgenomaarea2/valentina.pavelecini/conda_envs/semibin2 \
+  -c conda-forge \
+  "setuptools=80.9.0"
+```
+
+Deu mais um erro porque não tem o banco de dados. Criamos um diretório novo em ```mkdir -p /home/valentina.pavelecini/databases/checkm_data``` e instalamos com ```wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz```. Depois descomprimimos com ```tar -xzf checkm_data_2015_01_16.tar.gz```. Erro de novo porque precisa de mais memória então vamos tmux ner ```srun -N 1 -n 1 -c 8 -t 2:00:00 --mem=64G --pty bash -i```
