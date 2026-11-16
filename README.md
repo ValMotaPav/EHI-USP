@@ -3431,3 +3431,34 @@ conda install \
 ```
 
 Deu mais um erro porque não tem o banco de dados. Criamos um diretório novo em ```mkdir -p /home/valentina.pavelecini/databases/checkm_data``` e instalamos com ```wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz```. Depois descomprimimos com ```tar -xzf checkm_data_2015_01_16.tar.gz```. Erro de novo porque precisa de mais memória então vamos tmux ner ```srun -N 1 -n 1 -c 8 -t 2:00:00 --mem=64G --pty bash -i```
+
+## 16/11/2026
+
+Rodei mais uma vez o CheckM, corrigindo os problemas, e funcionou! Agora, vamos usar o Binette para substituir o Metawrap. Primeiro, vamos baixar o Binette com ```conda install -c bioconda binette``` no ambiente EHI. Ele também precisa do banco de dados do CheckM2, que vamos baixar com ```conda install -c bioconda checkm2```, ```mkdir -p /home/valentina.pavelecini/databases/checkm2```, e ```checkm2 database --download --path /home/valentina.pavelecini/databases/checkm2```. Teve problema foda-se quero usar outro bancod e dados CHEGA de checkm2. E mano tem realmente algum problema na hora de baixar os programas porque nem o binette tá baixando:
+```
+(/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini$ conda install -c bioconda checkm2
+Channels:
+ - bioconda
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: - (/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini$ checkm2 database --download \
+>     --path /home/valentina.pavelecini/databases/checkm2
+
+Command 'checkm2' not found, did you mean:
+
+  command 'checkmk' from deb check (0.10.0-3build2)
+
+Try: apt install <deb name>
+
+(/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini$ conda install -c bioconda binette
+Channels:
+ - bioconda
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: / (/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini$ binette --help
+binette: command not found
+```
+
+QUARTA FEIRA: resolver pq não tá baixando a porra dos programas.
