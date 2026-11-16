@@ -3418,7 +3418,8 @@ Vamos rodar o programa com checkm lineage_wf, porque ele é o fluxo padrão do C
 ```
 checkm lineage_wf -t 8 -x fa \
     /labgenomaarea2/valentina.pavelecini/EHI/maxbin/maxbin2_bins \
-    /labgenomaarea2/valentina.pavelecini/EHI/checkm/Maxbin2
+    /labgenomaarea2/valentina.pavelecini/EHI/checkm/Maxbin2 \
+    2>&1 | tee /labgenomaarea2/valentina.pavelecini/EHI/checkm/Maxbin2/checkm.log
 ```
 
 Deu erro porque ele tenta importar uma interface antiga do setuptools, então vamos baixar essa interface antiga:
