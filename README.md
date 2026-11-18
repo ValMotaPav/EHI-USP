@@ -3462,3 +3462,115 @@ binette: command not found
 ```
 
 QUARTA FEIRA: resolver pq não tá baixando a porra dos programas.
+
+
+## 18/11/2026
+
+Então né o que acontece aparentemente é que tem um problema que o environment tá inconsistente oh my god bro. Vamos criar outro env então é os guri né ```conda create -n binette_checkm2 -c conda-forge -c bioconda python=3.10 binette=1.2.1 checkm2 -y```
+
+```
+Solving environment: | (/labgenomaarea2/valentina.pavelecini/conda_envs/EHI) valentina.pavelecini@pantanal:/labgenomaarea2/valentina.pavelecini$ conda install --dry-run --solver classic -c conda-forge -c bioconda binette=1.2.1
+Collecting package metadata (current_repodata.json): done
+Solving environment: -
+The environment is inconsistent, please check the package plan carefully
+The following packages are causing the inconsistency:
+
+  - conda-forge/noarch::packaging==26.3=pyhc364b38_0
+  - bioconda/linux-64::expressbetadiversity==1.0.10=h9948957_6
+  - conda-forge/noarch::threadpoolctl==3.7.0=pyhc455866_0
+  - conda-forge/linux-64::matplotlib-base==3.11.1=py312h4c94fcb_2
+  - conda-forge/linux-64::fonttools==4.65.0=py312hfd18d64_0
+  - conda-forge/noarch::python-gil==3.12.14=hd8ed1ab_3
+  - bioconda/linux-64::idba==1.1.3=h9948957_5
+  - conda-forge/noarch::jinja2==3.1.6=pyhcf101f3_1
+  - conda-forge/linux-64::sqlalchemy==2.0.52=py312h5253ce2_0
+  - conda-forge/linux-64::scipy==1.18.0=py312h54fa4ab_0
+  - conda-forge/noarch::psycopg2-binary==2.9.12=pyhd8ed1ab_1
+  - conda-forge/linux-64::biom-format==2.1.17=py312h5253ce2_1
+  - conda-forge/noarch::six==1.17.0=pyhe01879c_1
+  - conda-forge/noarch::pysocks==1.7.1=pyha55dd90_7
+  - conda-forge/noarch::argparse-manpage-birdtools==1.7.0=pyhd8ed1ab_1
+  - bioconda/linux-64::bowtie2==2.5.5=h63e9258_1
+  - conda-forge/noarch::urllib3==2.7.0=pyhd8ed1ab_0
+  - conda-forge/noarch::tabulate==0.10.0=pyhcf101f3_0
+  - conda-forge/noarch::typing_extensions==4.16.0=pyhcf101f3_0
+  - conda-forge/linux-64::pillow==12.3.0=py312h38079b3_4
+  - bioconda/noarch::singlem==0.21.4=pyhdfd78af_0
+  - conda-forge/noarch::typing-extensions==4.16.0=h69aa097_0
+  - conda-forge/noarch::cpython==3.12.14=py312hd8ed1ab_3
+  - conda-forge/linux-64::polars-runtime-32==1.40.1=py310h49dadd8_1
+  - conda-forge/linux-64::numpy==2.5.3=py312he827f4e_0
+  - conda-forge/linux-64::greenlet==3.5.5=py312h8285ef7_0
+  - bioconda/linux-64::sorted_nearest==0.0.41=py312h0fa9677_0
+  - conda-forge/linux-64::pyyaml==6.0.3=py312h8a5da7c_1
+  - conda-forge/linux-64::markupsafe==3.0.3=py312h8a5da7c_1
+  - conda-forge/noarch::zenodo_backpack==0.4.0=pyhd8ed1ab_0
+  - conda-forge/noarch::cached_property==2.0.1=pyhcf101f3_0
+  - conda-forge/noarch::extern==0.4.1=py_0
+  - conda-forge/linux-64::cython==3.3.0=py312h03570ca_0
+  - bioconda/noarch::pyranges==0.1.4=pyhdfd78af_0
+  - conda-forge/linux-64::h5py==3.16.0=nompi_py312hfaa9938_104
+  - conda-forge/noarch::squarify==0.4.3=py_0
+  - conda-forge/noarch::idna==3.19=pyhcf101f3_0
+  - conda-forge/noarch::python-dashing==0.1.0=pyhd8ed1ab_1
+  - conda-forge/noarch::pip==26.2.1=pyh8b19718_0
+  - conda-forge/linux-64::brotli-python==1.2.0=py312he9c40d5_4
+  - bioconda/noarch::seqmagick==0.8.6=pyhdfd78af_0
+  - conda-forge/linux-64::scikit-learn==1.9.1=np2py312h91ec553_1
+  - conda-forge/noarch::pyparsing==3.3.2=pyhcf101f3_0
+  - conda-forge/noarch::requests==2.34.2=pyhcf101f3_0
+  - conda-forge/noarch::wheel==0.48.0=pyhd8ed1ab_0
+  - conda-forge/noarch::cycler==0.12.1=pyhcf101f3_2
+  - conda-forge/noarch::_python_abi3_support==1.0=hd8ed1ab_3
+  - conda-forge/noarch::pytz==2026.5=pyh5ded981_0
+  - conda-forge/noarch::charset-normalizer==3.5.1=pyhd8ed1ab_0
+  - conda-forge/noarch::decorator==5.3.1=pyhd8ed1ab_0
+  - conda-forge/linux-64::contourpy==1.3.3=py312h0a2e395_4
+  - bioconda/noarch::taxtastic==1.0.1=pyhdfd78af_0
+  - bioconda/linux-64::concoct==1.1.0=py312h245ed52_5
+  - bioconda/noarch::bird_tool_utils_python==0.6.0=pyh7e72e81_0
+  - conda-forge/noarch::sqlparse==0.5.5=pyhcf101f3_0
+  - conda-forge/linux-64::kiwisolver==1.5.1=py312h9be0db6_1
+  - bioconda/noarch::graftm==0.15.1=pyhdfd78af_0
+  - conda-forge/noarch::jinxed==2.1.0=pyh8f84b5b_0
+  - conda-forge/noarch::cloudpickle==3.1.2=pyhcf101f3_1
+  - conda-forge/noarch::polars==1.40.1=pyh58ad624_1
+  - conda-forge/noarch::nose==1.3.7=py_1006
+  - conda-forge/noarch::tqdm==4.67.3=pyh8f84b5b_0
+  - conda-forge/noarch::narwhals==2.27.1=pyh5ded981_0
+  - conda-forge/linux-64::backports.zstd==1.7.0=py312h3f22e6b_1
+  - conda-forge/noarch::importlib-metadata==9.0.1=pyhcf101f3_0
+  - conda-forge/noarch::click==8.5.0=pyh5ded981_0
+  - conda-forge/noarch::zipp==4.1.0=pyhcf101f3_0
+  - conda-forge/linux-64::biopython==1.87=py312h4c3975b_0
+  - conda-forge/noarch::hyperframe==6.1.0=pyhd8ed1ab_0
+  - bioconda/noarch::fastalite==0.4.1=pyh7cba7a3_0
+  - bioconda/noarch::dendropy==5.0.13=pyhdfd78af_0
+  - conda-forge/linux-64::unicodedata2==17.0.1=py312h5cc1888_1
+  - conda-forge/noarch::certifi==2026.7.22=pyhd8ed1ab_0
+  - conda-forge/linux-64::simplejson==4.2.0=py312h5cc1888_0
+  - conda-forge/linux-64::pyarrow-core==24.0.0=py312h2054cf2_0_cpu
+  - conda-forge/noarch::blessed==1.49.0=pyh7c35ba6_0
+  - conda-forge/noarch::python-dateutil==2.9.0.post0=pyhe01879c_2
+  - conda-forge/noarch::natsort==8.4.0=pyhcf101f3_2
+  - bioconda/linux-64::coverm==0.8.0=h750ce8b_0
+  - conda-forge/noarch::cached-property==2.0.1=pyhcf101f3_0
+  - conda-forge/linux-64::python==3.12.14=h5f976f7_3_cpython
+  - bioconda/linux-64::ncls==0.0.70=py312h0fa9677_0
+  - conda-forge/noarch::joblib==1.6.0=pyhcf101f3_0
+  - bioconda/linux-64::megahit==1.2.9=haf24da9_8
+  - conda-forge/noarch::hpack==4.2.0=pyhd8ed1ab_0
+  - conda-forge/noarch::munkres==1.1.4=pyhd8ed1ab_1
+  - conda-forge/linux-64::pyarrow==24.0.0=py312h7900ff3_0
+  - conda-forge/linux-64::wcwidth==0.9.2=py311hd139983_0
+  - conda-forge/linux-64::psycopg2==2.9.12=py312ha13dc4e_2
+  - bioconda/linux-64::quast==5.3.0=py312pl5321hdcc493e_1
+  - conda-forge/noarch::h2==4.4.1=pyhcf101f3_0
+  - conda-forge/noarch::python-abi3==3.12=he1d15d4_3
+  - conda-forge/linux-64::pandas==3.0.5=py312h8ecdadd_1
+  - bioconda/linux-64::maxbin2==2.2.7=h503566f_8
+  - conda-forge/noarch::pygtrie==2.6.0=pyhd8ed1ab_0
+unsuccessful initial attempt using frozen solve. Retrying with flexible solve.
+Solving environment: unsuccessful attempt using repodata from current_repodata.json, retrying with next repodata source.
+Collecting package metadata (repodata.json): \ Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='conda.anaconda.org', port=443): Read timed out. (read timeout=60.0)")': /bioconda/linux-64/repodata.json.zst
+```
